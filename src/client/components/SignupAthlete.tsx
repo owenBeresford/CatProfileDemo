@@ -1,5 +1,6 @@
 import React, { useState, useEffect, ReactComponentElement, ReactElement } from "react";
 import { Athlete }      from '../types/Athlete';
+import { ChangeTab }    from '../types/ChangeTab';
 import { Transport }    from '../types/Transport';
 import { useTransport } from '../services/Transport';
 import { defaultAthlete } from '../services/util';
@@ -25,7 +26,7 @@ function SignupAthlete() {
     );
 }
 
-function spread(signupScreen:number, buildAth:Athlete, push:(i:number)=>void ):any {
+function spread(signupScreen:number, buildAth:Athlete, push:ChangeTab ):any {
     switch(signupScreen) {
         case 0: return (<AthleteScreen0 build={buildAth} inc={push} />); break;
         case 1: return (<AthleteScreen1 build={buildAth} inc={push} />); break;

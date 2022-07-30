@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from 'react-router-dom';
 import { Athlete } from '../types/Athlete';
-import { Transport }from '../types/Transport';
+import {Transport }from '../types/Transport';
 import { Transport as ObjTransport, useTransport } from '../services/Transport';
 import './ListAthletes.css';
 
@@ -10,9 +10,10 @@ function ListAthletes() {
     const API:Transport<Array<Athlete>> =useTransport( );
 
     useEffect(() => {
-       setAthletes(API.getAll());
-
-    }, [ setAthletes] );
+      if(currentAthletes.length===0) {
+        setAthletes(API.get());
+      }
+   }, [currentAthletes, setAthletes, API] );
 
   return (
     <div className="athletes">

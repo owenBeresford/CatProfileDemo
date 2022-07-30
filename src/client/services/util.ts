@@ -27,7 +27,9 @@ export function getDefaultSelfie():string {
     return  '/default-face.svg';
 }
 
-export function defaultAthlete():Athlete {
+export function defaultAthlete(cur:Athlete|null ):Athlete {
+    if(cur) { return cur;}
+
     return {
         name:"Default athlete",
         dob:new Date(),

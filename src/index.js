@@ -8,8 +8,9 @@ import App from './client/App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-     <OSSRoutes /> 
+     <OSSRoutes> 
      <App />
+     </OSSRoutes> 
   </React.StrictMode>
 );
 
