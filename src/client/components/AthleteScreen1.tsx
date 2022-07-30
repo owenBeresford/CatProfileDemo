@@ -6,7 +6,7 @@ import './signupAthletes.css';
 
 export interface Screen1Props {
     build:Athlete,
-    push:ChangeTab
+    incTab:ChangeTab
 }
 
 const AthleteScreen1: React.FC<Screen1Props> = ( props:Screen1Props)=> {
@@ -24,7 +24,7 @@ const AthleteScreen1: React.FC<Screen1Props> = ( props:Screen1Props)=> {
         props.build.about=about;
         props.build.interests=interests;
         props.build.team=team;
-        props.push(2);
+        props.incTab(2);
         return false;
     }
 

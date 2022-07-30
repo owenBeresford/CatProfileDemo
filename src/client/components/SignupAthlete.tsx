@@ -14,9 +14,7 @@ import './SignupAthletes.css';
 function SignupAthlete() {
     // short name isn't great, but confusing a type and variable is worse
     const [ signupScreen, setSignupScreen]=useState<number>( 0 );
-    const [ buildAth, setBuildingAthlete ]=useState<Athlete>( defaultAthlete() );
-
-    const API:Transport<Athlete> =useTransport( );
+    const [ buildAth, setBuildingAthlete ]=useState<Athlete>( defaultAthlete(null) );
 
     return (
         <div className="signupContainer ">
@@ -28,9 +26,9 @@ function SignupAthlete() {
 
 function spread(signupScreen:number, buildAth:Athlete, push:ChangeTab ):any {
     switch(signupScreen) {
-        case 0: return (<AthleteScreen0 build={buildAth} inc={push} />); break;
-        case 1: return (<AthleteScreen1 build={buildAth} inc={push} />); break;
-        case 2: return (<AthleteScreen2 build={buildAth} inc={push} />); break;
+        case 0: return (<AthleteScreen0 build={buildAth} incTab={push} />); break;
+        case 1: return (<AthleteScreen1 build={buildAth} incTab={push} />); break;
+        case 2: return (<AthleteScreen2 build={buildAth} incTab={push} />); break;
         default: throw new Error("Unknown value for the signup screen");
     }
 } 

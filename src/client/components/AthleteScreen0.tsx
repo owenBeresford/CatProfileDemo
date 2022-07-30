@@ -1,19 +1,10 @@
 import React, { useState, useEffect, useRef, ChangeEventHandler } from "react";
 import { Athlete } from '../types/Athlete';
-import { DayPicker, DateRange } from 'react-day-picker';
-import { format, isValid, parse } from 'date-fns';
 import  DateBlock from './DateBlock';
 import { KnownSports, KnownSportsValues } from '../types/KnownSports';
-// react-popper/typings/react-popper.d.ts
-/// <reference types="react-popper" />
-import { usePopper } from 'react-popper';
-import FocusTrap from 'focus-trap-react';
 import { ChangeTab }    from '../types/ChangeTab';
 import BooleanButton from './BooleanButton';
-// import { getPreferredLanguage, LANG_UK } from '../services/util';
 import './signupAthletes.css';
-//import { locale as lang1 } from 'date-fns/locale/en-GB';
-//import { locale as lang2 } from 'date-fns/locale/en-US';
 
 export interface Screen0Props {
     build:Athlete,
@@ -53,7 +44,6 @@ const AthleteScreen0: React.FC<Screen0Props> = ( props:Screen0Props)=> {
         return false;
     }
 
-// locale={getPreferredLanguage()===LANG_UK?lang1:lang2}
 // IOIO pull out the date widget wrapper
     return (
     <div className="aScreen popup">

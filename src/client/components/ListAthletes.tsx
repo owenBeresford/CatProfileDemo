@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from 'react-router-dom';
 import { Athlete } from '../types/Athlete';
-import {Transport }from '../types/Transport';
-import { Transport as ObjTransport, useTransport } from '../services/Transport';
+import { Transport, AxiosResponse } from '../types/Transport';
+import { useTransport } from '../services/Transport';
 import './ListAthletes.css';
 
 function ListAthletes() {
     const [currentAthletes, setAthletes]=useState<Array<Athlete>>([] as Array<Athlete>);
-    const API:Transport<Array<Athlete>> =useTransport( );
+    const API:Transport<Array<Athlete>, string> =useTransport( ) as Transport<Array<Athlete>, string> ;
 
     useEffect(() => {
       if(currentAthletes.length===0) {
-        setAthletes(API.get());
+        API.getAll(undefined).then((dd)=>{ 
+            let dd2:AxiosResponse<Array<Athlete>>=dd as AxiosResponse<Array<Athlete>>; 
+             setAthletes(dd2.data ); 
+             } )
+    
       }
    }, [currentAthletes, setAthletes, API] );
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { Athlete } from '../types/Athlete';
-import { Transport }from '../types/Transport';
+import { Transport, AxiosResponse }from '../types/Transport';
 import { useTransport } from '../services/Transport';
 import {renderDate, getDefaultSelfie, defaultAthlete } from '../services/util';
 import './ListAthletes.css';
@@ -15,14 +15,20 @@ const ShowAthlete: React.FC<ShowAthleteProps> = ( props:ShowAthleteProps)=> {
      // short name isn't great, but confusing a type and variable is worse
     const { ID } = useParams(); 
     const [ ath, setAthlete]=useState<Athlete>( defaultAthlete( props.current) );
-    const API:Transport<Athlete> =useTransport( );
+    const API:Transport<Athlete, string> =useTransport( );
 
     useEffect(() => {
        if(!ath.about) {
            if(! ID) { 
                 setAthlete(defaultAthlete(null)); 
                 throw new Error("Cannot load screen, no athlete ID and no athlete param");
-            } else { setAthlete(API.get( ID )); }
+
+            } else { 
+                API.get(ID, undefined).then((dd)=>{ 
+                    let dd2:AxiosResponse<Athlete>=dd as AxiosResponse<Athlete>;  
+                    setAthlete(dd2.data ); 
+                 } );
+             }
         }
     }, [ath, setAthlete, API, ID] );
 
