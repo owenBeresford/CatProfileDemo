@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, ChangeEventHandler } from "react";
+import React, { useState } from "react";
 import { Athlete } from '../types/Athlete';
 import  DateBlock from './DateBlock';
 import { KnownSports, KnownSportsValues } from '../types/KnownSports';
@@ -8,7 +8,7 @@ import './signupAthletes.css';
 
 export interface Screen0Props {
     build:Athlete,
-    push:ChangeTab
+    incTab:ChangeTab
 }
 
 const AthleteScreen0: React.FC<Screen0Props> = ( props:Screen0Props)=> {
@@ -29,7 +29,7 @@ const AthleteScreen0: React.FC<Screen0Props> = ( props:Screen0Props)=> {
         props.build.name=name;
         props.build.dob=new Date(dob);
         props.build.sports=[...sports];  
-        props.push(1);
+        props.incTab(1);
         return false;
     }
     

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef, ChangeEventHandler } from "react";
-import { DayPicker, DateRange } from 'react-day-picker';
+import React, { useState, useRef, ChangeEventHandler } from "react";
+import { DayPicker } from 'react-day-picker';
 import { format, isValid, parse } from 'date-fns';
 import { ChangeTab } from '../types/ChangeTab';
 // react-popper/typings/react-popper.d.ts

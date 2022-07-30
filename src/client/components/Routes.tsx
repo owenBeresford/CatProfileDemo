@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes, NavLink } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ShowAthlete from './ShowAthlete';
 import SignupAthlete from './SignupAthlete';
 import ListAthletes from './ListAthletes';

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { Athlete } from '../types/Athlete';
 import { Transport, AxiosResponse }from '../types/Transport';
-import { useTransport } from '../services/Transport';
+import { UseTransport } from '../services/Transport';
 import {renderDate, getDefaultSelfie, defaultAthlete } from '../services/util';
 import './ListAthletes.css';
 
@@ -15,7 +15,7 @@ const ShowAthlete: React.FC<ShowAthleteProps> = ( props:ShowAthleteProps)=> {
      // short name isn't great, but confusing a type and variable is worse
     const { ID } = useParams(); 
     const [ ath, setAthlete]=useState<Athlete>( defaultAthlete( props.current) );
-    const API:Transport<Athlete, string> =useTransport( );
+    const API:Transport<Athlete, string> =UseTransport( );
 
     useEffect(() => {
        if(!ath.about) {
@@ -38,7 +38,7 @@ const ShowAthlete: React.FC<ShowAthleteProps> = ( props:ShowAthleteProps)=> {
         <dl>
             <dt>Athlete name </dt>
             <dd> 
-               {ath.image===null? (<img src={ getDefaultSelfie() } width="100" height="150" alt="Fake image" />)
+               {ath.image===null? (<img src={ getDefaultSelfie() } width="100" height="150" alt="Fake face" />)
                                 : (<img src={ath.image} width="100" height="150" alt="The sporting professionals face" />)}
                <p> { ath.name} </p></dd>
             <dt>Expressed Gender </dt>

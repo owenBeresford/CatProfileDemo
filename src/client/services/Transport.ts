@@ -1,5 +1,5 @@
 import { Transport } from '../types/Transport';
-import { Axios, AxiosRequestConfig, AxiosResponse, AxiosError, AxiosDefaults } from "axios";
+import { Axios, AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 
 export class Transport_b1<T, B> implements Transport<T, B> {
     private ax:Axios;
@@ -7,7 +7,7 @@ export class Transport_b1<T, B> implements Transport<T, B> {
     constructor() {
         let t:AxiosRequestConfig= {
             timeout: 1000,
-            baseURL: location.protocol+"//"+location.host+":"+location.port,
+            baseURL: window.location.protocol+"//"+window.location.host+":"+window.location.port,
             headers: {
                 'X-Requested-With':'XMLHttpRequest',
                 'Content-encoding':'application/json; ecoding=utf8',
@@ -57,6 +57,6 @@ export class Transport_b1<T, B> implements Transport<T, B> {
 
 }
 
-export function useTransport<T, B>():Transport<T, B> {
+export function UseTransport<T, B>():Transport<T, B> {
     return new Transport_b1();
 }

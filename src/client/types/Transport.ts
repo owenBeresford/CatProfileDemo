@@ -1,4 +1,4 @@
-import { Axios, AxiosRequestConfig, AxiosResponse, AxiosError, AxiosDefaults } from "axios";
+import { Axios, AxiosRequestConfig, AxiosResponse } from "axios";
 
 export interface Transport<T, B> {
 

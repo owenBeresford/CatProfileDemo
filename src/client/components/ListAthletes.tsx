@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from 'react-router-dom';
 import { Athlete } from '../types/Athlete';
 import { Transport, AxiosResponse } from '../types/Transport';
-import { useTransport } from '../services/Transport';
+import { UseTransport } from '../services/Transport';
 import './ListAthletes.css';
 
 function ListAthletes() {
     const [currentAthletes, setAthletes]=useState<Array<Athlete>>([] as Array<Athlete>);
-    const API:Transport<Array<Athlete>, string> =useTransport( ) as Transport<Array<Athlete>, string> ;
+    const API:Transport<Array<Athlete>, string> =UseTransport( ) as Transport<Array<Athlete>, string> ;
 
     useEffect(() => {
       if(currentAthletes.length===0) {

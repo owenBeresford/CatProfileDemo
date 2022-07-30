@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef, ChangeEventHandler } from "react";
+import React  from "react";
 import { Athlete } from '../types/Athlete';
 import ShowAthlete from './ShowAthlete';
 
-import { useTransport } from '../services/Transport';
-import { Transport, AxiosResponse } from '../types/Transport';
+import { UseTransport } from '../services/Transport';
+import { Transport } from '../types/Transport';
 import { ChangeTab } from '../types/ChangeTab';
 import './signupAthletes.css';
  
@@ -13,7 +13,6 @@ export interface Screen2Props {
  }
 
 const AthleteScreen2: React.FC<Screen2Props> = ( props:Screen2Props)=> {    
-    const [errMsg, setErrmsg] = useState<string>('');
 
     function back(e:React.MouseEvent):boolean {
         props.incTab(0);
@@ -21,7 +20,7 @@ const AthleteScreen2: React.FC<Screen2Props> = ( props:Screen2Props)=> {
     }
 
     function next(e:React.MouseEvent):boolean {
-        const API:Transport<Athlete, string> =useTransport( );
+        const API:Transport<Athlete, string> =UseTransport( );
         API.post( JSON.stringify(props.build));
 
         window.history.pushState({}, "", '/list' );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, ChangeEventHandler } from "react";
+import React, { useState } from "react";
 import { Athlete } from '../types/Athlete';
 import { ChangeTab }    from '../types/ChangeTab';
 import './signupAthletes.css';
