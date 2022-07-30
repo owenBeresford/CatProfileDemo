@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+	"jsx": "react-jsx",
+    "noEmit": false,
+    "sourceMap": true,
+    "module": "esnext",
+    "strict": true,
+    "target": "esnext",
+	"allowSyntheticDefaultImports":true,
+    "moduleResolution": "node"
+  },
+  "exclude": ["./build", "./client"],
+  "include": ["."]
+}
