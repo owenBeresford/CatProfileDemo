@@ -21,6 +21,9 @@ OB NOTES
 * interaction: Improve logo, maybe your company one 
 * interaction: Make a better form validation, rather than that 2min "is it null" filter
 * Interaction: as this UI is designed in layers, add a big vague-focus sport-image in the background
+* hygiene: add HTTPS
+* hygiene: set HTTP headers 
+
 
 * IOIO https://devcenter.heroku.com/articles/getting-started-with-nodejs?singlepage=true
 * IOIO https://reactjs.org/docs/create-a-new-react-app.html

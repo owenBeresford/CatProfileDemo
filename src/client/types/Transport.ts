@@ -6,7 +6,9 @@ export interface Transport<T, B> {
 
     getAll<T, R = AxiosResponse<T>>(config: AxiosRequestConfig| undefined ):Promise<R>;
 
-    post<T, B, R = AxiosResponse<T>>( data?: B, config?: AxiosRequestConfig): Promise<R>;
+    post<T, B, R = AxiosResponse<T>>(data: B, config: AxiosRequestConfig|undefined): Promise<R>;
+
+    patch<T, B, R = AxiosResponse<T>>(ID:string, data: B, config: AxiosRequestConfig|undefined): Promise<R>;
 
     setUrl(u:string):void; 
 }

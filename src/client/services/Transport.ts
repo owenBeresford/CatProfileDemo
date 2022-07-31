@@ -7,10 +7,10 @@ export class Transport_b1<T, B> implements Transport<T, B> {
     constructor() {
         let t:AxiosRequestConfig= {
             timeout: 1000,
-            baseURL: window.location.protocol+"//"+window.location.host+":"+window.location.port,
+            baseURL: window.location.protocol+"//"+window.location.host,
             headers: {
                 'X-Requested-With':'XMLHttpRequest',
-                'Content-encoding':'application/json; ecoding=utf8',
+                'Content-encoding':'application/json; encoding=utf8',
                 'Accept':           'application/json; encoding=utf8',
             },
             transformResponse: [(data) => {
@@ -31,20 +31,32 @@ export class Transport_b1<T, B> implements Transport<T, B> {
         ID:string,
         config: AxiosRequestConfig| undefined
     ): Promise<R> {
+        console.log("GET", this.ax.defaults.baseURL+"/api/athlete/"+ID);        
         return this.ax.get(this.ax.defaults.baseURL+"/api/athlete/"+ID, config);
     }
 
     public getAll<T, R = AxiosResponse<T>>(config: AxiosRequestConfig| undefined  ):Promise<R> {
+        console.log("getall", this.ax.defaults.baseURL +"/api/athlete/all");        
         return this.ax.get(this.ax.defaults.baseURL +"/api/athlete/all", config);
     }
     
     public post<T, B, R = AxiosResponse<T>>(
-        data?: B,
+        data: B,
         config?: AxiosRequestConfig
     ): Promise<R> {
-
-        return this.ax.post(this.ax.defaults.baseURL +"/api/athlete/all" , data, config);
+        console.log("POST", this.ax.defaults.baseURL+"/api/athlete/", data );  
+        return this.ax.post(this.ax.defaults.baseURL +"/api/athlete/", data, config);
     }
+
+    public patch<T, B, R = AxiosResponse<T>>(
+        ID:string,
+        data: B,
+        config?: AxiosRequestConfig
+    ): Promise<R> {
+        console.log("PATCH", this.ax.defaults.baseURL+"/api/athlete/"+ID, data );  
+        return this.ax.patch(this.ax.defaults.baseURL +"/api/athlete/"+ID , data, config);
+    }
+
 
   // probably not needed  
     public success<T>(response: AxiosResponse<T>):T {
@@ -54,7 +66,6 @@ export class Transport_b1<T, B> implements Transport<T, B> {
     public error<T> (error: AxiosError<T>): void {
         throw error;
     }
-
 }
 
 export function UseTransport<T, B>():Transport<T, B> {

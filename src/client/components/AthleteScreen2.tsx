@@ -21,7 +21,7 @@ const AthleteScreen2: React.FC<Screen2Props> = ( props:Screen2Props)=> {
 
     function next(e:React.MouseEvent):boolean {
         const API:Transport<Athlete, string> =UseTransport( );
-        API.post( JSON.stringify(props.build));
+        API.post( JSON.stringify(props.build), undefined);
 
         window.history.pushState({}, "", '/list' );
         return false;
