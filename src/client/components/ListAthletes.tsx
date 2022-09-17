@@ -27,7 +27,7 @@ function ListAthletes() {
         </li>   
         {currentAthletes.map((ath, i) => {
             return (<li key={i} title={"Display "+ath.name+"'s profile "}>
-                <NavLink to={"/profile/"+i} >(ath.name)</NavLink>
+                <NavLink to={"/profile/"+i} >{ath.name}</NavLink>
             </li>);
             })}  
         </ul>

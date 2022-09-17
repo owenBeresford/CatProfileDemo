@@ -17,16 +17,16 @@ function SignupAthlete() {
     return (
         <div className="signupContainer ">
             <p>To comply with GDPR, please enter fake data.</p>    
-            { spread(signupScreen, buildAth, setSignupScreen ) }
+            { spread(signupScreen, buildAth, setBuildingAthlete,  setSignupScreen ) }
         </div>
     );
 }
 
-function spread(signupScreen:number, buildAth:Athlete, push:ChangeTab ):any {
+function spread(signupScreen:number, buildAth:Athlete, setBuildingAthlete:Function,  push:ChangeTab ):any {
     switch(signupScreen) {
-        case 0: return (<AthleteScreen0 build={buildAth} incTab={push} />); 
-        case 1: return (<AthleteScreen1 build={buildAth} incTab={push} />); 
-        case 2: return (<AthleteScreen2 build={buildAth} incTab={push} />); 
+        case 0: return (<AthleteScreen0 build={buildAth} incTab={push} returnAthlete={ setBuildingAthlete} />); 
+        case 1: return (<AthleteScreen1 build={buildAth} incTab={push} returnAthlete={ setBuildingAthlete} />); 
+        case 2: return (<AthleteScreen2 build={buildAth} incTab={push} returnAthlete={ setBuildingAthlete} />); 
         default: throw new Error("Unknown value for the signup screen");
     }
 } 

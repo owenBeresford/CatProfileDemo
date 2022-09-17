@@ -8,6 +8,7 @@ import './signupAthletes.css';
 
 export interface Screen0Props {
     build:Athlete,
+	returnAthlete:Function,
     incTab:ChangeTab
 }
 
@@ -17,7 +18,6 @@ const AthleteScreen0: React.FC<Screen0Props> = ( props:Screen0Props)=> {
     const [ name, setName ]=useState<string>('');
     const [ gender, setGender ]=useState<string>('');    
     const [errMsg, setErrmsg] = useState<string>('');
-
 
     function next(e:React.MouseEvent):boolean {
         if(!dob || !name || !gender || sports.length===0) {
@@ -30,6 +30,7 @@ const AthleteScreen0: React.FC<Screen0Props> = ( props:Screen0Props)=> {
         props.build.dob=new Date(dob);
         props.build.sports=[...sports];  
         props.incTab(1);
+		props.returnAthlete( props.build);
         return false;
     }
     

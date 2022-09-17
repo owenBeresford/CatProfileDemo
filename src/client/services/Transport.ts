@@ -7,7 +7,7 @@ export class Transport_b1<T, B> implements Transport<T, B> {
     constructor() {
         let t:AxiosRequestConfig= {
             timeout: 1000,
-            baseURL: window.location.protocol+"//"+window.location.host,
+            baseURL: window.location.protocol+"//"+window.location.host+"/test/",
             headers: {
                 'X-Requested-With':'XMLHttpRequest',
                 'Content-encoding':'application/json; encoding=utf8',
@@ -31,21 +31,21 @@ export class Transport_b1<T, B> implements Transport<T, B> {
         ID:string,
         config: AxiosRequestConfig| undefined
     ): Promise<R> {
-        console.log("GET", this.ax.defaults.baseURL+"/api/athlete/"+ID);        
-        return this.ax.get(this.ax.defaults.baseURL+"/api/athlete/"+ID, config);
+        console.log("GET", this.ax.defaults.baseURL+"athlete/"+ID);        
+        return this.ax.get(this.ax.defaults.baseURL+"athlete/"+ID, config);
     }
 
     public getAll<T, R = AxiosResponse<T>>(config: AxiosRequestConfig| undefined  ):Promise<R> {
-        console.log("getall", this.ax.defaults.baseURL +"/api/athlete/all");        
-        return this.ax.get(this.ax.defaults.baseURL +"/api/athlete/all", config);
+        console.log("getall", this.ax.defaults.baseURL +"athlete/all");        
+        return this.ax.get(this.ax.defaults.baseURL +"athlete/all", config);
     }
     
     public post<T, B, R = AxiosResponse<T>>(
         data: B,
         config?: AxiosRequestConfig
     ): Promise<R> {
-        console.log("POST", this.ax.defaults.baseURL+"/api/athlete/", data );  
-        return this.ax.post(this.ax.defaults.baseURL +"/api/athlete/", data, config);
+        console.log("POST", this.ax.defaults.baseURL+"athlete/", data );  
+        return this.ax.post(this.ax.defaults.baseURL +"athlete/", data, config);
     }
 
     public patch<T, B, R = AxiosResponse<T>>(
@@ -53,8 +53,8 @@ export class Transport_b1<T, B> implements Transport<T, B> {
         data: B,
         config?: AxiosRequestConfig
     ): Promise<R> {
-        console.log("PATCH", this.ax.defaults.baseURL+"/api/athlete/"+ID, data );  
-        return this.ax.patch(this.ax.defaults.baseURL +"/api/athlete/"+ID , data, config);
+        console.log("PATCH", this.ax.defaults.baseURL+"athlete/"+ID, data );  
+        return this.ax.patch(this.ax.defaults.baseURL + "athlete/"+ID , data, config);
     }
 
 

@@ -9,6 +9,7 @@ import './signupAthletes.css';
  
 export interface Screen2Props {
     build:Athlete,
+	returnAthlete:Function,
     incTab:ChangeTab,
  }
 
