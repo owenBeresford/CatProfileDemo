@@ -37,9 +37,10 @@ const KeysOfAthlete =[
 
 // this is a runtime process, not type washing
 // adding a Schema would be a nice touch, but no time now
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
 export function isAthlete(o: any): o is Athlete {
     let good=KeysOfAthlete.length;
-    KeysOfAthlete.map((val:string, i:number):number => {
+    KeysOfAthlete.map((val:string):number => {
          if( val in o ) {
 			if(val==='dob' && typeof o[val]==='object') { good--; }
 			else if(val ==='image') { good--; }
@@ -50,9 +51,10 @@ export function isAthlete(o: any): o is Athlete {
     return good===0;
 }
 
-export function isShippingAthlete(o: any): o is ShippingAthlete {
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
+export function isShippingAthlete(o: any):o is ShippingAthlete {
     let good=KeysOfAthlete.length;
-    KeysOfAthlete.map((val:string, i:number):number => {
+    KeysOfAthlete.map((val:string ):number => {
          if( val in o ) {
 			if(val==='dob' && typeof o[val]==='number') { good--; }
 			else if(val ==='image') { good--; }

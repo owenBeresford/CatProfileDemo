@@ -12,8 +12,8 @@ function ListAthletes() {
     useEffect(() => {
       if(currentAthletes.length===0) {
         API.getAll(undefined).then((dd)=>{ 
-            let dd2:AxiosResponse<Array<Athlete>>=dd as AxiosResponse<Array<Athlete>>; 
-             setAthletes(dd2.data ); 
+            const importList:AxiosResponse<Array<Athlete>>=dd as AxiosResponse<Array<Athlete>>; 
+             setAthletes(importList.data ); 
              } )
     
       }

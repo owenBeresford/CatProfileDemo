@@ -9,24 +9,25 @@ import './signupAthletes.css';
  
 export interface Screen2Props {
     build:Athlete,
-	returnAthlete:Function,
+//	returnAthlete:Function,
     incTab:ChangeTab,
  }
 
 const AthleteScreen2: React.FC<Screen2Props> = ( props:Screen2Props)=> {    
 	const NAVIGATE=useNavigate();
 
-    function back(e:React.MouseEvent):boolean {
+    function back():boolean {
         props.incTab(0);
         return false;
     }
 
-    function next(e:React.MouseEvent):boolean {
+    function next():boolean {
         const API:Transport<ShippingAthlete, string> =UseTransport( );
-		let tt:ShippingAthlete={...props.build, dob:props.build.dob.getTime()} as ShippingAthlete;
+					 /* eslint-disable react/jsx-no-bind */ 
+		const tt:ShippingAthlete={...props.build, dob:props.build.dob.getTime()} as ShippingAthlete;
         API.post( JSON.stringify(tt), undefined);
 
-        window.history.pushState({}, "", '/list' );
+    //    window.history.pushState({}, "", '/list' );
         NAVIGATE( '/list' );
         return false;
     }

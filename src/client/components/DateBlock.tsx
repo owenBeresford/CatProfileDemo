@@ -18,7 +18,8 @@ interface DateProps {
 
 const DateBlock: React.FC<DateProps> = ( props:DateProps)=> {
     const [ dob, setDOB] = useState<Date|undefined>( new Date(props.initialVal) );
- 
+    /* eslint-disable @typescript-eslint/no-non-null-assertion  */
+	// we have just assigned it 
     const [inputValue, setInputValue] = useState<string>( dob!.getUTCFullYear()+"-"+dob!.getUTCMonth()+"-"+dob!.getUTCDay());
     const [isPopperOpen, setIsPopperOpen] = useState(false);
     
@@ -43,7 +44,7 @@ const DateBlock: React.FC<DateProps> = ( props:DateProps)=> {
         } else {
             setInputValue('');
         }
-    };
+    }
 
     const handleButtonClick = () => {
         setIsPopperOpen(true);
@@ -105,6 +106,7 @@ const DateBlock: React.FC<DateProps> = ( props:DateProps)=> {
               mode="single"
               defaultMonth={dob}
               selected={dob}
+					 /* eslint-disable react/jsx-no-bind */ 
               onSelect={handleDaySelect}
             />
           </div>

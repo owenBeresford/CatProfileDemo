@@ -6,7 +6,7 @@ export class Transport_b1<T, B> implements Transport<T, B> {
     private ax:Axios;
 
     constructor() {
-        let t:AxiosRequestConfig= {
+        const config:AxiosRequestConfig= {
             timeout: 1000,
             baseURL: window.location.protocol+"//"+window.location.host+"/test/",
             headers: {
@@ -17,11 +17,11 @@ export class Transport_b1<T, B> implements Transport<T, B> {
             transformResponse: [(data) => {
               data=JSON.parse(data);
               if(data.dob && isShippingAthlete(data)) { 
-					let tt:ShippingAthlete=data as ShippingAthlete;
+					const tt:ShippingAthlete=data as ShippingAthlete;
 					return {...tt, dob:new Date(tt.dob) } as Athlete;
               } else if(Array.isArray( data) ) {
 				for(let i=0; i<data.length; i++){
-					let tt:ShippingAthlete=data[i] as ShippingAthlete;
+					const tt:ShippingAthlete=data[i] as ShippingAthlete;
 					data[i]={...tt, dob:new Date(tt.dob) } as Athlete;
 				}
               	return data;
@@ -31,7 +31,7 @@ export class Transport_b1<T, B> implements Transport<T, B> {
             }]
 
         };
-        this.ax= new Axios( t);
+        this.ax= new Axios( config);
     }
 
     // this call exists, as the API has 1 URL
@@ -58,13 +58,13 @@ export class Transport_b1<T, B> implements Transport<T, B> {
         config: AxiosRequestConfig|undefined
     ): Promise<R> {
         console.log("POST", this.ax.defaults.baseURL+"athlete/", data );  	
-		let fd=new URLSearchParams();
-		fd.append('data',""+JSON.stringify(data) );
+		const payload=new URLSearchParams();
+		payload.append('data',""+JSON.stringify(data) );
 
 		if(config) {
-        	return this.ax.post(this.ax.defaults.baseURL +"athlete/", fd, config.headers);
+        	return this.ax.post(this.ax.defaults.baseURL +"athlete/", payload, config.headers);
 		} else {
-        	return this.ax.post(this.ax.defaults.baseURL +"athlete/", fd, this.ax.defaults.headers.common);
+        	return this.ax.post(this.ax.defaults.baseURL +"athlete/", payload, this.ax.defaults.headers.common);
 		}
     }
 
@@ -74,13 +74,13 @@ export class Transport_b1<T, B> implements Transport<T, B> {
         config: AxiosRequestConfig|undefined
     ): Promise<R> {
         console.log("PATCH", this.ax.defaults.baseURL+"athlete/"+ID, {'data':data} );  
-		let fd=new URLSearchParams();
-		fd.append('data',""+JSON.stringify(data) );
+		const payload=new URLSearchParams();
+		payload.append('data',""+JSON.stringify(data) );
 		
 		if(config) {
-        	return this.ax.patch(this.ax.defaults.baseURL +"athlete/"+ID, fd, config.headers);
+        	return this.ax.patch(this.ax.defaults.baseURL +"athlete/"+ID, payload, config.headers);
 		} else {
-        	return this.ax.patch(this.ax.defaults.baseURL +"athlete/"+ID, fd, this.ax.defaults.headers.common);
+        	return this.ax.patch(this.ax.defaults.baseURL +"athlete/"+ID, payload, this.ax.defaults.headers.common);
 		}
     }
 

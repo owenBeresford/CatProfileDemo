@@ -7,17 +7,18 @@ import './signupAthletes.css';
 
 export interface Screen1Props {
     build:Athlete,
-	returnAthlete:Function,
+	returnAthlete:(a:Athlete)=>void,
     incTab:ChangeTab
 }
 
 const AthleteScreen1: React.FC<Screen1Props> = ( props:Screen1Props)=> {
+					 /* eslint-disable react/jsx-no-bind */ 
     const [ about, setAbout ]=useState<string>( mapInitialValue<string>(props.build, props.build.about, '') );
     const [ interests, setInterests ]=useState<string>( mapInitialValue<string>(props.build, props.build.interests, '') ); 
     const [ team, setTeam ]=useState<string>( mapInitialValue<string>(props.build, props.build.team, '') ); 
     const [errMsg, setErrmsg] = useState<string>('');
 
-    function next(e:React.MouseEvent):boolean {
+    function next():boolean {
         if(!about || !interests || !team ) {
             setErrmsg("All athletes must enter their team, and something for about and interests");
             return false;

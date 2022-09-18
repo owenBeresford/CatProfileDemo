@@ -10,7 +10,7 @@ import './signupAthletes.css';
 
 export interface Screen0Props {
     build:Athlete,
-	returnAthlete:Function,
+	returnAthlete:(a:Athlete)=>void,
     incTab:ChangeTab
 }
 
@@ -22,7 +22,7 @@ const AthleteScreen0: React.FC<Screen0Props> = ( props:Screen0Props)=> {
     const [ errMsg, setErrmsg] = useState<string>('');
 console.log("Building a screen0", props.build, name, gender, dob, sports);
 
-    function next(e:React.MouseEvent):boolean {
+    function next():boolean {
         if(!dob || !name || !gender || sports.length===0) {
             setErrmsg("All athletes must enter their name, gender, sports and date of birth");
             return false;
@@ -40,7 +40,8 @@ console.log("Building a screen0", props.build, name, gender, dob, sports);
     function chooseSport(item:string):boolean {
         const WHICH:KnownSports = item as KnownSports;
         if( sports.includes( WHICH) ) {
-            var index = sports.indexOf( WHICH );
+// to remove a sport
+            const index = sports.indexOf( WHICH );
             setSports( sports.splice(index, 1) );
         } else {    
             setSports( [...sports, WHICH as KnownSports ] );
@@ -49,6 +50,11 @@ console.log("Building a screen0", props.build, name, gender, dob, sports);
     }
 	const DEFAULT_DOB=(new Date('2002-09-01')).getTime();
     const CURRENT_SPORTS=mapInitialValue<Array<KnownSports>>(props.build, props.build.sports, []);
+	const BITS	=KnownSportsValues.map((name:KnownSports)=> {
+					 /* eslint-disable react/jsx-no-bind */ 
+                   return (<BooleanButton text={name} push={chooseSport} active={ includesWithBetterTyping( CURRENT_SPORTS, name ) } /> );
+               }) 
+
 // IOIO pull out the date widget wrapper
     return (
     <div className="aScreen popup">
@@ -65,9 +71,7 @@ console.log("Building a screen0", props.build, name, gender, dob, sports);
  
             <label htmlFor="athSports">Sports: //add columns </label> 
             <div>
-               { KnownSportsValues.map((name:KnownSports, i:number)=> {
-                   return (<BooleanButton text={name} push={chooseSport} active={ includesWithBetterTyping( CURRENT_SPORTS, name ) } /> );
-               }) } 
+               { BITS } 
             </div>    
  
             <div className="buttonBar">

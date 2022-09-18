@@ -25,8 +25,8 @@ const ShowAthlete: React.FC<ShowAthleteProps> = ( props:ShowAthleteProps)=> {
 
             } else { 
                 API.get(ID, undefined).then((dd)=>{ 
-                    let dd2:AxiosResponse<Athlete>=dd as AxiosResponse<Athlete>;  
-                    setAthlete(dd2.data ); 
+                    const localList:AxiosResponse<Athlete>=dd as AxiosResponse<Athlete>;  
+                    setAthlete(localList.data ); 
                  } );
              }
         }
