@@ -9,9 +9,9 @@ const OSSRoutes = () => {
     <BrowserRouter>
       <Routes>
         <Route index element={<ListAthletes />} />
-        <Route path="/list" element={<ListAthletes />} />
-        <Route path="/add" element={<SignupAthlete />} />
-        <Route path="/profile/:ID" element={<ShowAthlete current={null} />} />
+        <Route path="/list" element={<ListAthletes />} key="list" />
+        <Route path="/signup" element={<SignupAthlete />} key="signup" />
+        <Route path="/profile/:ID" element={<ShowAthlete current={null} />} key="profile" />
         <Route path="*" element={<ListAthletes />} />
       </Routes>
     </BrowserRouter>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Athlete } from '../types/Athlete';
 import { ChangeTab }    from '../types/ChangeTab';
+import { mapInitialValue } from '../services/util';
 import './signupAthletes.css';
  
 
@@ -11,9 +12,9 @@ export interface Screen1Props {
 }
 
 const AthleteScreen1: React.FC<Screen1Props> = ( props:Screen1Props)=> {
-    const [ about, setAbout ]=useState<string>('');
-    const [ interests, setInterests ]=useState<string>(''); 
-    const [ team, setTeam ]=useState<string>(''); 
+    const [ about, setAbout ]=useState<string>( mapInitialValue<string>(props.build, props.build.about, '') );
+    const [ interests, setInterests ]=useState<string>( mapInitialValue<string>(props.build, props.build.interests, '') ); 
+    const [ team, setTeam ]=useState<string>( mapInitialValue<string>(props.build, props.build.team, '') ); 
     const [errMsg, setErrmsg] = useState<string>('');
 
     function next(e:React.MouseEvent):boolean {
@@ -36,14 +37,14 @@ const AthleteScreen1: React.FC<Screen1Props> = ( props:Screen1Props)=> {
            <form >
                 <label htmlFor="athAbout">Describe yourself: </label> 
                 <textarea id="athAbout" name="athAbout" placeholder="Describe qualifications, ambitions etc"
-                    cols={50} rows={5} onChange={(e:React.ChangeEvent<HTMLTextAreaElement>):void =>{ setAbout(e.target.value); } } >
+                    cols={50} rows={5} onChange={(e:React.ChangeEvent<HTMLTextAreaElement>):void =>{ setAbout(e.target.value); } } >{ about}
                 </textarea>
                 <label htmlFor="athInterests">Your interests: </label> 
                 <textarea id="athInterests" name="athInterests" placeholder="Describe yourself" 
-                    cols={50} rows={5} onChange={(e:React.ChangeEvent<HTMLTextAreaElement>):void =>{ setInterests(e.target.value); } }>
+                    cols={50} rows={5} onChange={(e:React.ChangeEvent<HTMLTextAreaElement>):void =>{ setInterests(e.target.value); } }>{ interests }
                 </textarea>
                 <label htmlFor="athTeam">Your team: </label>
-                <input id="athTeam" name="athTeam" value="" placeholder="Real Madrid" 
+                <input id="athTeam" name="athTeam" value={team} placeholder="Real Madrid" 
                     onChange={(e:React.ChangeEvent<HTMLInputElement>):void =>{ setTeam(e.target.value); } } />
 
                 <div className="buttonBar">

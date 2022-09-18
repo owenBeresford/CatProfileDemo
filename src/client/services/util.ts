@@ -1,4 +1,5 @@
 import { Athlete } from '../types/Athlete';
+import { KnownSports } from '../types/KnownSports';
 
 export function getPreferredLanguage():string {
     if(!('language' in navigator) || navigator.language.length===0) {
@@ -7,6 +8,7 @@ export function getPreferredLanguage():string {
     return navigator.language[0].toLocaleLowerCase();
 }
 export const LANG_UK='en-gb';
+const DEFAULT_NAME="Default athlete";
 
 // this is too small to be its own component
 // yes there are some libraries that offer features like this; 
@@ -28,10 +30,15 @@ export function getDefaultSelfie():string {
 }
 
 export function defaultAthlete(cur:Athlete|null ):Athlete {
-    if(cur) { return cur;}
+    if(cur) { 
+		if(typeof cur.dob !=='object') {
+			cur.dob=new Date(cur.dob);
+		}
+		return cur;
+	}
 
     return {
-        name:"Default athlete",
+        name:DEFAULT_NAME,
         dob:new Date(),
         team:"",
         gender:"",
@@ -42,3 +49,18 @@ export function defaultAthlete(cur:Athlete|null ):Athlete {
     } as Athlete;
 }
 
+// If sharedAthlete is in default state, prefer local value, otherwise prefer non-empty shared values
+export function mapInitialValue<T>(shared:Athlete, field: T, defaultVal: T):T {
+	if(shared.name===DEFAULT_NAME) { return defaultVal; }
+	else if( field) { return field; }
+	else { return defaultVal; }
+}
+
+// snarl at whatever beaurocrat made types for Array.includes 
+// pour example https://stackoverflow.com/questions/71639989/typescript-why-array-includes-expects-searchelement-to-be-never-type
+
+export function includesWithBetterTyping(ar:Array<KnownSports>, key:KnownSports):boolean {
+	let found=false;
+	ar.forEach((cur:KnownSports, i:number):number => { if( cur===key) { found=true; } return i; });
+	return found;
+}

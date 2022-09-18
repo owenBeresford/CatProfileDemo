@@ -13,12 +13,13 @@ import './signupAthletes.css';
 
 interface DateProps {
     passback:ChangeTab;
+	initialVal:number;
 }
 
 const DateBlock: React.FC<DateProps> = ( props:DateProps)=> {
-    const [ dob, setDOB] = useState<Date|undefined>(new Date( '2002-07-01' ));
+    const [ dob, setDOB] = useState<Date|undefined>( new Date(props.initialVal) );
  
-    const [inputValue, setInputValue] = useState<string>('');
+    const [inputValue, setInputValue] = useState<string>( dob!.getUTCFullYear()+"-"+dob!.getUTCMonth()+"-"+dob!.getUTCDay());
     const [isPopperOpen, setIsPopperOpen] = useState(false);
     
     const popperRef = useRef<HTMLDivElement>(null);

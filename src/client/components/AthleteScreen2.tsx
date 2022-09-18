@@ -1,7 +1,7 @@
-import React  from "react";
-import { Athlete } from '../types/Athlete';
+import React from "react";
+import { useNavigate } from 'react-router';
 import ShowAthlete from './ShowAthlete';
-
+import { Athlete, ShippingAthlete } from '../types/Athlete';
 import { UseTransport } from '../services/Transport';
 import { Transport } from '../types/Transport';
 import { ChangeTab } from '../types/ChangeTab';
@@ -14,6 +14,7 @@ export interface Screen2Props {
  }
 
 const AthleteScreen2: React.FC<Screen2Props> = ( props:Screen2Props)=> {    
+	const NAVIGATE=useNavigate();
 
     function back(e:React.MouseEvent):boolean {
         props.incTab(0);
@@ -21,10 +22,12 @@ const AthleteScreen2: React.FC<Screen2Props> = ( props:Screen2Props)=> {
     }
 
     function next(e:React.MouseEvent):boolean {
-        const API:Transport<Athlete, string> =UseTransport( );
-        API.post( JSON.stringify(props.build), undefined);
+        const API:Transport<ShippingAthlete, string> =UseTransport( );
+		let tt:ShippingAthlete={...props.build, dob:props.build.dob.getTime()} as ShippingAthlete;
+        API.post( JSON.stringify(tt), undefined);
 
         window.history.pushState({}, "", '/list' );
+        NAVIGATE( '/list' );
         return false;
     }
 
