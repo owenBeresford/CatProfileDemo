@@ -1,0 +1,16 @@
+
+import mongoose, { Schema } from 'mongoose';
+import { Athlete, KeysOfAthlete, AthleteDocument, AthleteModel, AthleteDump } from '../types/Athlete';
+
+export const ATHLETE_SCHEMA:Schema =new Schema({
+    // _id is absent on purpose
+    name:{ type: String, index: true, required: true, trim:true }, 
+    dob:{ type:Date, required:true }, 
+    team: { type: String, index: true, required: true, trim:true  }, 
+    gender: { type: String, required: true }, 
+    sports: { type: [String], required: true }, 
+    about:{ type: String, required: true, minlength: 5, trim:true }, 
+    interests:{ type: String, required: true, minlength: 5, trim:true }, 
+    image:{ type: String }
+} as const, { collection: "athletes" });
+
