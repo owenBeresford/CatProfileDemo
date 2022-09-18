@@ -5,12 +5,12 @@
   "description": "see requirements",
   "main": "src/Client.js",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node ./build/server.js &",
     "#build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:client": "react-scripts build",
-    "build:server": "webpack --config webpack.config.server.js"
+    "build:client": "react-scripts build;cp ./src/client/default-face.svg build/",
+    "build:server": "webpack --config webpack.config.server.js;cp -r src/server/fixtures build/"
   },
   "author": "Owen Beresford",
   "license": "ISC",

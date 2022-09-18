@@ -9,7 +9,8 @@
 /coverage
 
 # production
-public
+public/
+build/
 
 # misc
 .DS_Store
@@ -17,6 +18,7 @@ public
 .env.development.local
 .env.test.local
 .env.production.local
+.env.production
 package-lock.json
 
 npm-debug.log*
