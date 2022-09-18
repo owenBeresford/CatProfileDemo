@@ -19,3 +19,5 @@ I have not built:
 * Any security on APIs or HTTPS etc
 * There are clearly documented omissions, tagged with TODO in the files
 * Move content of public/  to src/client/assets and edit build config to match
+* Add static meta data to HTML template
+
