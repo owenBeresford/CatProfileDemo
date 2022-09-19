@@ -1,0 +1,19 @@
+footer p { text-align:center; }
+footer { position:fixed; top:95vh; width:25em; left:calc( 50% - 12.5em ); }
+ul.ticks { list-style:none; }
+ul.ticks li:before { content:"✓"; font-size:150%; line-height: 1.0; }
+p.inset { margin-left:1.5em; }
+.popup { z-index:1; max-width:100%; min-width:40em; margin:1.5em; }
+.goBack { text-align:right; margin-left:50%; margin-right:2em; }
+.normal { display:inline-block; width:15em; }
+.dateBlock .normal { width:12.5em; }
+.dateBlock { margin-bottom:1em; }
+.error { font-size:150%; background-color:salmon; margin:1em; padding-top:0.3em; line-height:1.6; padding-left:1em; }
+button { margin-left:1em; margin-right:1em; } 
+span.react-toggle { margin-right:2em; }
+.appCols { columns:3 15em; margin-top: }
+.datePopper {  }
+.buttonBar { margin-top:2em; }
+.dialog-sheet { z-index:2; background-color:#ffffff; }
+.aList { width:40em; margin-left:auto; margin-right:auto; margin-top:3em;  }
+li.button a { color:#fff; }
