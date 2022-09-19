@@ -8,10 +8,10 @@ I am showing:
 * I can use basic React 
 * I have a reason to use a generic type (not been in a situation where those would help previously)
 * I extended to include a *test API*, which manipulates static JSON, NB: low concurrency
-* Some basic behavioural UI niceties added (to-date no CSS)
+* Some basic behavioural UI niceties added
 
 I have not built:
-* add CSS to webpack, add minify to it
+* add CSS to webpack, add minify to the CSS
 * any tests; but code does compile to JS
 * support for older browsers yet; for a product I would transpile to a more generic version of JS
 * correct types to compile Mongoose + lean() + typescript.  I spent 4h trying to solve that mess.  I could dodge by making that class a JS file
