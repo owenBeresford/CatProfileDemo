@@ -11,7 +11,7 @@ I am showing:
 * Some basic behavioural UI niceties added (to-date no CSS)
 
 I have not built:
-* or imported any CSS
+* add CSS to webpack, add minify to it
 * any tests; but code does compile to JS
 * support for older browsers yet; for a product I would transpile to a more generic version of JS
 * correct types to compile Mongoose + lean() + typescript.  I spent 4h trying to solve that mess.  I could dodge by making that class a JS file
