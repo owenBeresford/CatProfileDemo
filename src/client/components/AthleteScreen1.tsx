@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Athlete } from '../types/Athlete';
 import { ChangeTab }    from '../types/ChangeTab';
 import { mapInitialValue } from '../services/util';
-import './signupAthletes.css';
+import { NavLink } from 'react-router-dom';
+import './SignupAthletes.css';
  
 
 export interface Screen1Props {
@@ -48,9 +49,10 @@ const AthleteScreen1: React.FC<Screen1Props> = ( props:Screen1Props)=> {
                 <input id="athTeam" name="athTeam" value={team} placeholder="Real Madrid" 
                     onChange={(e:React.ChangeEvent<HTMLInputElement>):void =>{ setTeam(e.target.value); } } />
 
-                <div className="buttonBar">
-                    <input id="sendP2" type="button" value="Next to Review" onClick={next} />
-                </div>   
+            <div className="buttonBar">	
+				<NavLink to="/"><span className="goBack button">❌ Cancel</span></NavLink>
+                <input className="button" id="sendP2" type="button" value="Next to review" onClick={next} />
+            </div>  
             </form>
         </div>
   );

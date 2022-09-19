@@ -5,7 +5,11 @@ export function getPreferredLanguage():string {
     if(!('language' in navigator) || navigator.language.length===0) {
         return LANG_UK;       // I understand a US company may disagree with this
     }
-    return navigator.language[0].toLocaleLowerCase();
+	if(Array.isArray( navigator.language)) {
+	    return navigator.language[0].toLocaleLowerCase();
+	} else {
+	    return navigator.language.toLocaleLowerCase();
+	}
 }
 export const LANG_UK='en-gb';
 const DEFAULT_NAME="Default athlete";
@@ -14,11 +18,12 @@ const DEFAULT_NAME="Default athlete";
 // yes there are some libraries that offer features like this; 
 // but the code to set them up is about the same volume as below
 export function renderDate(d:Date):string {
-    if(getPreferredLanguage()===LANG_UK) {
-        return d.getUTCFullYear()+"-"+d.getUTCMonth()+"-"+d.getUTCDay();
+	const lang=getPreferredLanguage();
+    if(lang===LANG_UK) {
+        return d.getUTCFullYear()+"-"+d.getUTCMonth()+"-"+d.getUTCDate();
     }
-    if(getPreferredLanguage()==="en-us") {
-        return d.getUTCMonth()+"-"+d.getUTCDay()+"-" +d.getUTCFullYear();
+    if(lang==="en-us") {
+        return d.getUTCMonth()+"-"+d.getUTCDate()+"-" +d.getUTCFullYear();
     } else {
     // add more code here
         return d.toString();

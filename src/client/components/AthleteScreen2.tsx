@@ -5,7 +5,7 @@ import { Athlete, ShippingAthlete } from '../types/Athlete';
 import { UseTransport } from '../services/Transport';
 import { Transport } from '../types/Transport';
 import { ChangeTab } from '../types/ChangeTab';
-import './signupAthletes.css';
+import './SignupAthletes.css';
  
 export interface Screen2Props {
     build:Athlete,
@@ -37,9 +37,9 @@ const AthleteScreen2: React.FC<Screen2Props> = ( props:Screen2Props)=> {
             <ShowAthlete current={props.build }/> 
 
             <div className="buttonBar">
-                <input id="sendP3back" type="button" value="Edit my profile" onClick={back} />
+                <input id="sendP3back" className="goBack button" type="button" value="Edit my profile" onClick={back} />
 
-                <input id="sendP3" type="button" value="Save my profile" onClick={next} />
+                <input id="sendP3"  className="button" type="button" value="Save my profile" onClick={next} />
             </div>  
         </div>
   );

@@ -6,20 +6,22 @@ import { ChangeTab } from '../types/ChangeTab';
 /// <reference types="react-popper" />
 import { usePopper } from 'react-popper';
 import FocusTrap from 'focus-trap-react';
-// import { getPreferredLanguage, LANG_UK } from '../services/util';
-import './signupAthletes.css';
-//import { locale as lang1 } from 'date-fns/locale/en-GB';
-//import { locale as lang2 } from 'date-fns/locale/en-US';
+import './SignupAthletes.css';
 
 interface DateProps {
     passback:ChangeTab;
 	initialVal:number;
 }
 
+/**
+ DateBlock, a component to isolate issues relating to date entry
+ input date is usable except for Safari
+ this UI should be better interaction in any case 
+ */
 const DateBlock: React.FC<DateProps> = ( props:DateProps)=> {
     const [ dob, setDOB] = useState<Date|undefined>( new Date(props.initialVal) );
-    /* eslint-disable @typescript-eslint/no-non-null-assertion  */
 	// we have just assigned it 
+    /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion  */
     const [inputValue, setInputValue] = useState<string>( dob!.getUTCFullYear()+"-"+dob!.getUTCMonth()+"-"+dob!.getUTCDay());
     const [isPopperOpen, setIsPopperOpen] = useState(false);
     
@@ -60,21 +62,18 @@ const DateBlock: React.FC<DateProps> = ( props:DateProps)=> {
         }
     };
 
-
-// locale={getPreferredLanguage()===LANG_UK?lang1:lang2}
      return (
-      <div ref={popperRef}>
+      <div ref={popperRef} className="dateBlock">
         <input
-          type="text"
           placeholder={format(new Date(), 'y-MM-dd')}
           value={inputValue}
           onChange={handleInputChange}
-          className="input-reset pa2 ma2 bg-white black ba"
+          className="normal"
         />
         <button
           ref={buttonRef}
           type="button"
-          className="pa2 bg-white button-reset ba"
+          className="datePopper"
           aria-label="Pick a date"
           onClick={handleButtonClick}
         >

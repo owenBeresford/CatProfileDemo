@@ -6,7 +6,7 @@ import AthleteScreen0 from './AthleteScreen0';
 import AthleteScreen1 from './AthleteScreen1';
 import AthleteScreen2 from './AthleteScreen2';
 
-import './signupAthletes.css';
+import './SignupAthletes.css';
 
 function SignupAthlete() {
     // short name isn't great, but confusing a type and variable is worse
@@ -16,7 +16,7 @@ function SignupAthlete() {
 
     return (<div className="signupContainer ">
 			<>
-            <p>To comply with GDPR, please enter fake data.</p>    
+            <p className="error">To comply with GDPR, please enter fake data.</p>    
             { spread(signupScreen, buildAth, setBuildingAthlete,  setSignupScreen ) }
 			</>
         </div> );

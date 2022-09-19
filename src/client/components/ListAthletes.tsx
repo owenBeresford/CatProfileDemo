@@ -21,8 +21,8 @@ function ListAthletes() {
 
   return (
     <div className="athletes">
-        <ul>
-         <li key="new" title={"Signup and create a new profile"}> 
+        <ul className="aList">
+         <li key="new" title={"Signup and create a new profile"} className="button" > 
             <NavLink to="/signup/" > Signup</NavLink>
         </li>   
         {currentAthletes.map((ath, i) => {

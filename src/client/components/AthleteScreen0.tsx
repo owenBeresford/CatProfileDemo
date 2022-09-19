@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import DateBlock from './DateBlock';
 import BooleanButton from './BooleanButton';
+import { NavLink } from 'react-router-dom';
 
 import { ChangeTab }    from '../types/ChangeTab';
 import { Athlete } from '../types/Athlete';
 import { KnownSports, KnownSportsValues } from '../types/KnownSports';
 import { mapInitialValue, includesWithBetterTyping  } from '../services/util';
-import './signupAthletes.css';
+import './SignupAthletes.css';
 
 export interface Screen0Props {
     build:Athlete,
@@ -69,13 +70,14 @@ console.log("Building a screen0", props.build, name, gender, dob, sports);
             <label htmlFor="athDob">Birth date: </label>
             <DateBlock passback={ setDOB} initialVal={ dob || DEFAULT_DOB} />
  
-            <label htmlFor="athSports">Sports: //add columns </label> 
-            <div>
+            <label htmlFor="athSports">Sports: </label> 
+            <div className="appCols">
                { BITS } 
             </div>    
  
-            <div className="buttonBar">
-                <input id="sendP1" type="button" value="Next " onClick={next} />
+            <div className="buttonBar">	
+				<NavLink to="/"><span className="goBack button">❌ Cancel</span></NavLink>
+                <input className="button" id="sendP1" type="button" value="Next " onClick={next} />
             </div>   
        </form>
     </div>

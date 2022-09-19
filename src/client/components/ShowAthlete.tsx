@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Athlete } from '../types/Athlete';
 import { Transport, AxiosResponse }from '../types/Transport';
 import { UseTransport } from '../services/Transport';
@@ -36,11 +37,13 @@ const ShowAthlete: React.FC<ShowAthleteProps> = ( props:ShowAthleteProps)=> {
     return (
     <div className="athlete popup">
         <dl>
-            <dt>Athlete name </dt>
+            <dt>Athlete name 
+				<NavLink to="/"><span className="goBack">❌</span></NavLink>
+			</dt>
             <dd> 
                {ath.image===null? (<img src={ getDefaultSelfie() } width="100" height="150" alt="Fake face" />)
                                 : (<img src={ath.image} width="100" height="150" alt="The sporting professionals face" />)}
-               <p> { ath.name} </p></dd>
+               <p className="inset"> { ath.name} </p></dd>
             <dt>Expressed Gender </dt>
             <dd>{ ath.gender }</dd>
             <dt>Date of birth </dt>
@@ -50,7 +53,7 @@ const ShowAthlete: React.FC<ShowAthleteProps> = ( props:ShowAthleteProps)=> {
             <dt>Team </dt>
             <dd>{ ath.team } [this text is a sports flag]</dd>
             <dt>Sports </dt>
-            <dd> <ul>   
+            <dd> <ul className="ticks">   
              {ath.sports.map((val, i) => {
                 return (<li key={i} title={"A "+val+" sport "}> { val}</li>);
             })} </ul> </dd>
