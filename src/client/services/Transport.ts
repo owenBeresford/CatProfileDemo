@@ -14,21 +14,35 @@ export class Transport_b1<T, B> implements Transport<T, B> {
           //      'Content-encoding':'application/json; encoding=utf8',
                 'Accept':           'application/json; encoding=utf8',
             },
-            transformResponse: [(data) => {
-              data=JSON.parse(data);
+            transformResponse: [
+			(data, headers) => {
+				if(!headers || !('content-type' in headers) || headers['content-type'].indexOf("application/json")===-1) {
+					Promise.reject( new Error("Unexpected data format (think API fail)"));
+					return;	
+				}
+
+			  try {
+             	 data=JSON.parse(data);
+				} catch(e) {
+				Promise.reject( new Error("Received bad data."));
+				}
+	
               if(data.dob && isShippingCat(data)) { 
 					const tt:ShippingCat=data as ShippingCat;
 					return {...tt, dob:new Date(tt.dob) } as Cat;
+
               } else if(Array.isArray( data) ) {
 				for(let i=0; i<data.length; i++){
 					const tt:ShippingCat=data[i] as ShippingCat;
 					data[i]={...tt, dob:new Date(tt.dob) } as Cat;
 				}
               	return data;
+
               } else {
-				throw new Error("Unexpected data format ");
+				Promise.reject( new Error("Unexpected data format "));
 			  }
-            }]
+            }
+			]
 
         };
         this.ax= new Axios( config);
