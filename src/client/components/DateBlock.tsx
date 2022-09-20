@@ -6,7 +6,7 @@ import { ChangeTab } from '../types/ChangeTab';
 /// <reference types="react-popper" />
 import { usePopper } from 'react-popper';
 import FocusTrap from 'focus-trap-react';
-import './SignupAthletes.css';
+import './SignupCats.css';
 
 interface DateProps {
     passback:ChangeTab;

@@ -4,18 +4,18 @@ import BooleanButton from './BooleanButton';
 import { NavLink } from 'react-router-dom';
 
 import { ChangeTab }    from '../types/ChangeTab';
-import { Athlete } from '../types/Athlete';
+import { Cat } from '../types/Cat';
 import { KnownSports, KnownSportsValues } from '../types/KnownSports';
 import { mapInitialValue, includesWithBetterTyping  } from '../services/util';
-import './SignupAthletes.css';
+import './SignupCats.css';
 
 export interface Screen0Props {
-    build:Athlete,
-	returnAthlete:(a:Athlete)=>void,
+    build:Cat,
+	returnCat:(a:Cat)=>void,
     incTab:ChangeTab
 }
 
-const AthleteScreen0: React.FC<Screen0Props> = ( props:Screen0Props)=> {
+const CatScreen0: React.FC<Screen0Props> = ( props:Screen0Props)=> {
     const [ sports, setSports ] = useState<Array<KnownSports>>( mapInitialValue<Array<KnownSports>>(props.build, props.build.sports, [] as Array<KnownSports>));
     const [ dob, setDOB] = useState<number|undefined>( mapInitialValue<number>(props.build,  props.build.dob.getTime(), (new Date( '2002-07-01' ).getTime())));
     const [ name, setName ]=useState<string>( mapInitialValue<string>(props.build, props.build.name, ''));
@@ -34,7 +34,7 @@ console.log("Building a screen0", props.build, name, gender, dob, sports);
         props.build.dob=new Date(dob);
         props.build.sports=[...sports];  
         props.incTab(1);
-		props.returnAthlete( props.build);
+		props.returnCat( props.build);
         return false;
     }
     
@@ -84,4 +84,4 @@ console.log("Building a screen0", props.build, name, gender, dob, sports);
   );
 }
 
-export default AthleteScreen0;
+export default CatScreen0;

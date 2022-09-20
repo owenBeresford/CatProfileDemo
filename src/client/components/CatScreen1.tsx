@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { Athlete } from '../types/Athlete';
+import { Cat } from '../types/Cat';
 import { ChangeTab }    from '../types/ChangeTab';
 import { mapInitialValue } from '../services/util';
 import { NavLink } from 'react-router-dom';
-import './SignupAthletes.css';
+import './SignupCats.css';
  
 
 export interface Screen1Props {
-    build:Athlete,
-	returnAthlete:(a:Athlete)=>void,
+    build:Cat,
+	returnCat:(a:Cat)=>void,
     incTab:ChangeTab
 }
 
-const AthleteScreen1: React.FC<Screen1Props> = ( props:Screen1Props)=> {
+const CatScreen1: React.FC<Screen1Props> = ( props:Screen1Props)=> {
 					 /* eslint-disable react/jsx-no-bind */ 
     const [ about, setAbout ]=useState<string>( mapInitialValue<string>(props.build, props.build.about, '') );
     const [ interests, setInterests ]=useState<string>( mapInitialValue<string>(props.build, props.build.interests, '') ); 
@@ -29,7 +29,7 @@ const AthleteScreen1: React.FC<Screen1Props> = ( props:Screen1Props)=> {
         props.build.interests=interests;
         props.build.team=team;
         props.incTab(2);
-		props.returnAthlete( props.build);
+		props.returnCat( props.build);
         return false;
     }
 
@@ -58,5 +58,5 @@ const AthleteScreen1: React.FC<Screen1Props> = ( props:Screen1Props)=> {
   );
 }
 
-export default AthleteScreen1;
+export default CatScreen1;
 

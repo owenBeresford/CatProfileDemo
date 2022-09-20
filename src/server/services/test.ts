@@ -1,5 +1,5 @@
 import express, { Request,Response, Application } from "express";
-import { Athlete, KeysOfAthlete, isAthlete } from '../types/Athlete';
+import { Cat, KeysOfCat, isCat } from '../types/Cat';
 import path from "path";
 import { readFile } from 'fs/promises';
 
@@ -84,9 +84,9 @@ function postSingle(req:Request, res:Response) {
   let tt=(""+req.body.data).replace(/\\"/g, '"').replace('"{', '{').replace('}"', '}');
 
   tt= JSON.parse(tt);
-  if( isAthlete(tt)) {  
+  if( isCat(tt)) {  
     if( Math.random() >0.9) { res.status(500).send("The 10% random fail hit this request"); return; }
-    else { res.status(204).send("Made new Athlete."); }
+    else { res.status(204).send("Made new Cat."); }
   } else { 
     res.status(400).send("Bad data for an athlete");
   }
@@ -107,9 +107,9 @@ function patchSingle(req:Request, res:Response) {
 
   try {
     let tt= JSON.parse(req.body as string);
-    if( isAthlete(tt)) {  
+    if( isCat(tt)) {  
         if( Math.random() >0.9) { res.status(500).send("The 10% random fail hit this request"); return; }
-        else { res.status(202).send("Updated Athlete."); } 
+        else { res.status(202).send("Updated Cat."); } 
     } else { 
       res.status(400).send("Bad data for an athlete");
     }

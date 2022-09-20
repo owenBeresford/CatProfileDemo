@@ -1,6 +1,6 @@
 import { KnownSports } from './KnownSports';
  
-export interface Athlete {
+export interface Cat {
     name:string;
     dob:Date;
     team:string;
@@ -12,7 +12,7 @@ export interface Athlete {
     // want this to be a Blob 
 }
 
-export interface ShippingAthlete {
+export interface ShippingCat {
     name:string;
     dob:number;
     team:string;
@@ -24,7 +24,7 @@ export interface ShippingAthlete {
     // want this to be a Blob 
 }
 
-const KeysOfAthlete =[
+const KeysOfCat =[
     'name',
     'dob',
     'team',
@@ -38,9 +38,9 @@ const KeysOfAthlete =[
 // this is a runtime process, not type washing
 // adding a Schema would be a nice touch, but no time now
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-export function isAthlete(o: any): o is Athlete {
-    let good=KeysOfAthlete.length;
-    KeysOfAthlete.map((val:string):number => {
+export function isCat(o: any): o is Cat {
+    let good=KeysOfCat.length;
+    KeysOfCat.map((val:string):number => {
          if( val in o ) {
 			if(val==='dob' && typeof o[val]==='object') { good--; }
 			else if(val ==='image') { good--; }
@@ -52,9 +52,9 @@ export function isAthlete(o: any): o is Athlete {
 }
 
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-export function isShippingAthlete(o: any):o is ShippingAthlete {
-    let good=KeysOfAthlete.length;
-    KeysOfAthlete.map((val:string ):number => {
+export function isShippingCat(o: any):o is ShippingCat {
+    let good=KeysOfCat.length;
+    KeysOfCat.map((val:string ):number => {
          if( val in o ) {
 			if(val==='dob' && typeof o[val]==='number') { good--; }
 			else if(val ==='image') { good--; }

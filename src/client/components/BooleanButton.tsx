@@ -1,7 +1,7 @@
 import React from "react";
 import { Toggle } from  "react-toggle-component";
 import { KnownSports } from '../types/KnownSports';
-import './SignupAthletes.css';
+import './SignupCats.css';
 
 export interface ButtonProps {
     text:KnownSports;

@@ -1,5 +1,5 @@
 import { Transport } from '../types/Transport';
-import { isShippingAthlete, Athlete, ShippingAthlete  } from '../types/Athlete';
+import { isShippingCat, Cat, ShippingCat  } from '../types/Cat';
 import { Axios, AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 
 export class Transport_b1<T, B> implements Transport<T, B> {
@@ -16,13 +16,13 @@ export class Transport_b1<T, B> implements Transport<T, B> {
             },
             transformResponse: [(data) => {
               data=JSON.parse(data);
-              if(data.dob && isShippingAthlete(data)) { 
-					const tt:ShippingAthlete=data as ShippingAthlete;
-					return {...tt, dob:new Date(tt.dob) } as Athlete;
+              if(data.dob && isShippingCat(data)) { 
+					const tt:ShippingCat=data as ShippingCat;
+					return {...tt, dob:new Date(tt.dob) } as Cat;
               } else if(Array.isArray( data) ) {
 				for(let i=0; i<data.length; i++){
-					const tt:ShippingAthlete=data[i] as ShippingAthlete;
-					data[i]={...tt, dob:new Date(tt.dob) } as Athlete;
+					const tt:ShippingCat=data[i] as ShippingCat;
+					data[i]={...tt, dob:new Date(tt.dob) } as Cat;
 				}
               	return data;
               } else {

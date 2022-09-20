@@ -1,4 +1,4 @@
-import { Athlete } from '../types/Athlete';
+import { Cat } from '../types/Cat';
 import { KnownSports } from '../types/KnownSports';
 
 export function getPreferredLanguage():string {
@@ -34,7 +34,7 @@ export function getDefaultSelfie():string {
     return  '/default-face.svg';
 }
 
-export function defaultAthlete(cur:Athlete|null ):Athlete {
+export function defaultCat(cur:Cat|null ):Cat {
     if(cur) { 
 		if(typeof cur.dob !=='object') {
 			cur.dob=new Date(cur.dob);
@@ -51,11 +51,11 @@ export function defaultAthlete(cur:Athlete|null ):Athlete {
         about:"",
         interests:"",
         image:null 
-    } as Athlete;
+    } as Cat;
 }
 
-// If sharedAthlete is in default state, prefer local value, otherwise prefer non-empty shared values
-export function mapInitialValue<T>(shared:Athlete, field: T, defaultVal: T):T {
+// If sharedCat is in default state, prefer local value, otherwise prefer non-empty shared values
+export function mapInitialValue<T>(shared:Cat, field: T, defaultVal: T):T {
 	if(shared.name===DEFAULT_NAME) { return defaultVal; }
 	else if( field) { return field; }
 	else { return defaultVal; }

@@ -1,18 +1,18 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import ShowAthlete from './ShowAthlete';
-import SignupAthlete from './SignupAthlete';
-import ListAthletes from './ListAthletes';
+import ShowCat from './ShowCat';
+import SignupCat from './SignupCat';
+import ListCats from './ListCats';
 
 const OSSRoutes = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<ListAthletes />} />
-        <Route path="/list" element={<ListAthletes />} key="list" />
-        <Route path="/signup" element={<SignupAthlete />} key="signup" />
-        <Route path="/profile/:ID" element={<ShowAthlete current={null} />} key="profile" />
-        <Route path="*" element={<ListAthletes />} />
+        <Route index element={<ListCats />} />
+        <Route path="/list" element={<ListCats />} key="list" />
+        <Route path="/signup" element={<SignupCat />} key="signup" />
+        <Route path="/profile/:ID" element={<ShowCat current={null} />} key="profile" />
+        <Route path="*" element={<ListCats />} />
       </Routes>
     </BrowserRouter>
   );

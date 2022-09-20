@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from 'react-router-dom';
-import { Athlete } from '../types/Athlete';
+import { Cat } from '../types/Cat';
 import { Transport, AxiosResponse } from '../types/Transport';
 import { UseTransport } from '../services/Transport';
-import './ListAthletes.css';
+import './ListCats.css';
 
-function ListAthletes() {
-    const [currentAthletes, setAthletes]=useState<Array<Athlete>>([] as Array<Athlete>);
-    const API:Transport<Array<Athlete>, string> =UseTransport( ) as Transport<Array<Athlete>, string> ;
+function ListCats() {
+    const [currentCats, setCats]=useState<Array<Cat>>([] as Array<Cat>);
+    const API:Transport<Array<Cat>, string> =UseTransport( ) as Transport<Array<Cat>, string> ;
 
     useEffect(() => {
-      if(currentAthletes.length===0) {
+      if(currentCats.length===0) {
         API.getAll(undefined).then((dd)=>{ 
-            const importList:AxiosResponse<Array<Athlete>>=dd as AxiosResponse<Array<Athlete>>; 
-             setAthletes(importList.data ); 
+            const importList:AxiosResponse<Array<Cat>>=dd as AxiosResponse<Array<Cat>>; 
+             setCats(importList.data ); 
              } )
     
       }
-   }, [currentAthletes, setAthletes, API] );
+   }, [currentCats, setCats, API] );
 
   return (
     <div className="athletes">
@@ -25,7 +25,7 @@ function ListAthletes() {
          <li key="new" title={"Signup and create a new profile"} className="button" > 
             <NavLink to="/signup/" > Signup</NavLink>
         </li>   
-        {currentAthletes.map((ath, i) => {
+        {currentCats.map((ath, i) => {
             return (<li key={i} title={"Display "+ath.name+"'s profile "}>
                 <NavLink to={"/profile/"+i} >{ath.name}</NavLink>
             </li>);
@@ -35,4 +35,4 @@ function ListAthletes() {
   );
 }
 
-export default ListAthletes;
+export default ListCats;

@@ -1,43 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-import { Athlete } from '../types/Athlete';
+import { Cat } from '../types/Cat';
 import { Transport, AxiosResponse }from '../types/Transport';
 import { UseTransport } from '../services/Transport';
-import {renderDate, getDefaultSelfie, defaultAthlete } from '../services/util';
-import './ListAthletes.css';
+import {renderDate, getDefaultSelfie, defaultCat } from '../services/util';
+import './ListCats.css';
 
 
-export interface ShowAthleteProps {
-    current:Athlete|null;
+export interface ShowCatProps {
+    current:Cat|null;
 }
 
-const ShowAthlete: React.FC<ShowAthleteProps> = ( props:ShowAthleteProps)=> {
+const ShowCat: React.FC<ShowCatProps> = ( props:ShowCatProps)=> {
      // short name isn't great, but confusing a type and variable is worse
     const { ID } = useParams(); 
-    const [ ath, setAthlete]=useState<Athlete>( defaultAthlete( props.current) );
-    const API:Transport<Athlete, string> =UseTransport( );
+    const [ ath, setCat]=useState<Cat>( defaultCat( props.current) );
+    const API:Transport<Cat, string> =UseTransport( );
 
     useEffect(() => {
        if(!ath.about) {
            if(! ID) { 
-                setAthlete(defaultAthlete(null)); 
+                setCat(defaultCat(null)); 
                 throw new Error("Cannot load screen, no athlete ID and no athlete param");
 
             } else { 
                 API.get(ID, undefined).then((dd)=>{ 
-                    const localList:AxiosResponse<Athlete>=dd as AxiosResponse<Athlete>;  
-                    setAthlete(localList.data ); 
+                    const localList:AxiosResponse<Cat>=dd as AxiosResponse<Cat>;  
+                    setCat(localList.data ); 
                  } );
              }
         }
-    }, [ath, setAthlete, API, ID] );
+    }, [ath, setCat, API, ID] );
 
     const age:string=((new Date()).getUTCFullYear()- ath.dob.getUTCFullYear())+" years old";
     return (
     <div className="athlete popup">
         <dl>
-            <dt>Athlete name 
+            <dt>Cat name 
 				<NavLink to="/"><span className="goBack">❌</span></NavLink>
 			</dt>
             <dd> 
@@ -64,4 +64,4 @@ const ShowAthlete: React.FC<ShowAthleteProps> = ( props:ShowAthleteProps)=> {
   );
 }
 
-export default ShowAthlete;
+export default ShowCat;

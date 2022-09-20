@@ -1,19 +1,19 @@
 import React from "react";
 import { useNavigate } from 'react-router';
-import ShowAthlete from './ShowAthlete';
-import { Athlete, ShippingAthlete } from '../types/Athlete';
+import ShowCat from './ShowCat';
+import { Cat, ShippingCat } from '../types/Cat';
 import { UseTransport } from '../services/Transport';
 import { Transport } from '../types/Transport';
 import { ChangeTab } from '../types/ChangeTab';
-import './SignupAthletes.css';
+import './SignupCats.css';
  
 export interface Screen2Props {
-    build:Athlete,
-//	returnAthlete:Function,
+    build:Cat,
+//	returnCat:Function,
     incTab:ChangeTab,
  }
 
-const AthleteScreen2: React.FC<Screen2Props> = ( props:Screen2Props)=> {    
+const CatScreen2: React.FC<Screen2Props> = ( props:Screen2Props)=> {    
 	const NAVIGATE=useNavigate();
 
     function back():boolean {
@@ -22,9 +22,9 @@ const AthleteScreen2: React.FC<Screen2Props> = ( props:Screen2Props)=> {
     }
 
     function next():boolean {
-        const API:Transport<ShippingAthlete, string> =UseTransport( );
+        const API:Transport<ShippingCat, string> =UseTransport( );
 					 /* eslint-disable react/jsx-no-bind */ 
-		const tt:ShippingAthlete={...props.build, dob:props.build.dob.getTime()} as ShippingAthlete;
+		const tt:ShippingCat={...props.build, dob:props.build.dob.getTime()} as ShippingCat;
         API.post( JSON.stringify(tt), undefined);
 
     //    window.history.pushState({}, "", '/list' );
@@ -34,7 +34,7 @@ const AthleteScreen2: React.FC<Screen2Props> = ( props:Screen2Props)=> {
 
     return (
         <div className="aScreen popup">
-            <ShowAthlete current={props.build }/> 
+            <ShowCat current={props.build }/> 
 
             <div className="buttonBar">
                 <input id="sendP3back" className="goBack button" type="button" value="Edit my profile" onClick={back} />
@@ -45,4 +45,4 @@ const AthleteScreen2: React.FC<Screen2Props> = ( props:Screen2Props)=> {
   );
 }
 
-export default AthleteScreen2;
+export default CatScreen2;

@@ -1,7 +1,7 @@
 import { KnownSports } from './KnownSports';
 import { Model, Document } from 'mongoose';
  
-export interface Athlete {
+export interface Cat {
     ID:string|null;
     name:string;
     dob:number;
@@ -14,12 +14,12 @@ export interface Athlete {
     // want this to be a Blob 
 }
 
-// this is Athlete
-export interface AthleteDocument extends Athlete, Document {};
-export interface AthleteModel extends Model<AthleteDocument> {};
-export type AthleteDump = Array<Athlete>;  
+// this is Cat
+export interface CatDocument extends Cat, Document {};
+export interface CatModel extends Model<CatDocument> {};
+export type CatDump = Array<Cat>;  
 
-export const KeysOfAthlete =[
+export const KeysOfCat =[
     'name',
     'dob',
     'team',
@@ -32,10 +32,10 @@ export const KeysOfAthlete =[
 
 // This is a runtime process, not type washing
 // IOIO TODO adding a Schema would be a nice touch, but no time now
-export function isAthlete(o: any): o is Athlete {
-    let good=KeysOfAthlete.length;
+export function isCat(o: any): o is Cat {
+    let good=KeysOfCat.length;
 
-    KeysOfAthlete.map((val:string, i:number):number => {
+    KeysOfCat.map((val:string, i:number):number => {
          if( val in o ) {
 			if(val==='dob' && typeof o[val]==='number') { good--; }
 			else if(val ==='image') { good--; }

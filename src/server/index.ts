@@ -1,7 +1,7 @@
 import express, { Request,Response, Application } from "express";
 import bodyParser from "body-parser";
 import path from "path";
-import { Athlete, KeysOfAthlete, isAthlete } from './types/Athlete';
+import { Cat, KeysOfCat, isCat } from './types/Cat';
 // IOIO TODO disabled as do not have time to argue with types now
 // import { setUp as realAPI } from './services/v1';
 import { setUp as testAPI } from './services/test';
