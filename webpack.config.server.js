@@ -16,11 +16,12 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js"],
   },
     // don't compile node_modules
-  externals: [nodeExternals()],
+  externals: [nodeExternals(), "src/server/models/CatsModel.ts"],
   module: {
     rules: [
       {
         test: /\.tsx?$/,
+      //  exclude:/.*CatsModel\.ts$/,  // this is not doing anything https://webpack.js.org/configuration/module/#ruleexclude
         use: [
           {
             loader: "ts-loader",

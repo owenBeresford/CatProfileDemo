@@ -14,16 +14,16 @@ import { readFile } from 'fs/promises';
  * @return void
  */
 export function setUp(app:Application) {
-	app.get("/test/athlete/all", getAll);
-	app.get("/test/athlete/:ID", getSingle); 
-	app.post("/test/athlete/", postSingle);
-	app.patch("/test/athlete/:ID", patchSingle);
+	app.get("/test/cat/all", getAll);
+	app.get("/test/cat/:ID", getSingle); 
+	app.post("/test/cat/", postSingle);
+	app.patch("/test/cat/:ID", patchSingle);
 
 }
 
 /**
  * getAll
- * API to return the current athletes
+ * API to return the current cats
  
  * @param req an Express Request
  * @param res an Express Response
@@ -33,7 +33,7 @@ export function setUp(app:Application) {
 async function getAll(req:Request, res:Response) {
   if(process.env.NODE_ENV !== 'development') { res.status(404); return; }
 
-	const FILE=path.join(__dirname, 'fixtures', 'all-athletes.json');
+	const FILE=path.join(__dirname, 'fixtures', 'all-cats.json');
 	await readFile( FILE, {encoding:'utf8'})
 		.then((json) => { res.status(200).json( JSON.parse(json) ) })
 		.catch((err ) => { console.warn("WARNING: "+err); res.status(404).send("Not found."); });
@@ -51,13 +51,13 @@ async function getAll(req:Request, res:Response) {
 async function getSingle(req:Request, res:Response) {
   if(process.env.NODE_ENV !== 'development') { res.status(404); return; }
 
-  console.log("recieved GET single athlete data with id "+ req.params.ID);
+  console.log("recieved GET single cat data with id "+ req.params.ID);
   if(Math.random() >0.9) {
     res.status(404).send("The 10% random fail hit this request"); 
 	return;
   }
 
-  const FILE=path.join(__dirname, 'fixtures', 'single-athlete.json');
+  const FILE=path.join(__dirname, 'fixtures', 'single-cat.json');
   await readFile( FILE, {encoding:'utf8'}) 
 		.then((json) => { res.status(200).json( JSON.parse(json)) })
 		.catch((err ) => { console.warn("WARNING: "+err+" "+FILE); res.status(404).send("Not found."); });
@@ -76,7 +76,7 @@ async function getSingle(req:Request, res:Response) {
 function postSingle(req:Request, res:Response) {
   if(process.env.NODE_ENV !== 'development') { res.status(404); return; }
   if(! req.body!.data) {	    
-	res.status(400).send("Bad data for an athlete");
+	res.status(400).send("Bad data for a cat");
 	return;
   } 
 // i do not know why this Express library cannot unpack these
@@ -88,7 +88,7 @@ function postSingle(req:Request, res:Response) {
     if( Math.random() >0.9) { res.status(500).send("The 10% random fail hit this request"); return; }
     else { res.status(204).send("Made new Cat."); }
   } else { 
-    res.status(400).send("Bad data for an athlete");
+    res.status(400).send("Bad data for a cat");
   }
 }
 
@@ -111,10 +111,10 @@ function patchSingle(req:Request, res:Response) {
         if( Math.random() >0.9) { res.status(500).send("The 10% random fail hit this request"); return; }
         else { res.status(202).send("Updated Cat."); } 
     } else { 
-      res.status(400).send("Bad data for an athlete");
+      res.status(400).send("Bad data for a cat");
     }
   } catch(e) {
-    res.status(400).send("Bad data for an athlete");
+    res.status(400).send("Bad data for a cat");
   }
 }
 

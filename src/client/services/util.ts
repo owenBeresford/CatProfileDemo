@@ -12,7 +12,7 @@ export function getPreferredLanguage():string {
 	}
 }
 export const LANG_UK='en-gb';
-const DEFAULT_NAME="Default athlete";
+const DEFAULT_NAME="Default cat";
 
 // this is too small to be its own component
 // yes there are some libraries that offer features like this; 

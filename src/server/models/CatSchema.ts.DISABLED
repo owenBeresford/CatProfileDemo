@@ -1,8 +1,8 @@
 
 import mongoose, { Schema } from 'mongoose';
-import { Athlete, KeysOfAthlete, AthleteDocument, AthleteModel, AthleteDump } from '../types/Athlete';
+import { Cat, KeysOfCat, CatDocument, CatModel, CatDump } from '../types/Cat';
 
-export const ATHLETE_SCHEMA:Schema =new Schema({
+export const CAT_SCHEMA:Schema =new Schema({
     // _id is absent on purpose
     name:{ type: String, index: true, required: true, trim:true }, 
     dob:{ type:Date, required:true }, 
@@ -12,5 +12,5 @@ export const ATHLETE_SCHEMA:Schema =new Schema({
     about:{ type: String, required: true, minlength: 5, trim:true }, 
     interests:{ type: String, required: true, minlength: 5, trim:true }, 
     image:{ type: String }
-} as const, { collection: "athletes" });
+} as const, { collection: "cats" });
 

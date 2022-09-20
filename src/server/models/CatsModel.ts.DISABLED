@@ -1,6 +1,6 @@
 
 import mongoose, { Connection, Schema, Model, Document } from 'mongoose';
-import { Athlete, KeysOfAthlete, AthleteDocument, AthleteModel, AthleteDump } from '../types/Athlete';
+import { Cat, KeysOfCat, CatDocument, CatModel, CatDump } from '../types/Cat';
 
 function accessString():string {
     if( ! ('IMPORTED_ENV' in process.env)) {
@@ -15,7 +15,7 @@ function accessString():string {
 } 
 
 // split into files; assert( most systems have more than 1 schema)
-const ATHLETE_SCHEMA:Schema =new Schema({
+const CAT_SCHEMA:Schema =new Schema({
     // _id is absent on purpose
     name:{ type: String, index: true, required: true, trim:true }, 
     dob:{ type:Date, required:true }, 
@@ -25,12 +25,12 @@ const ATHLETE_SCHEMA:Schema =new Schema({
     about:{ type: String, required: true, minlength: 5, trim:true }, 
     interests:{ type: String, required: true, minlength: 5, trim:true }, 
     image:{ type: String }
-		} as const, { collection: "athletes" });
+		} as const, { collection: "cats" });
  
 //  model<T>(name: string, schema?: Schema<T>, collection?: string, options?: CompileModelOptions): Model<T>;
-export class AthleteWrapper {
+export class CatWrapper {
     private conn:Connection ;
-    private list:AthleteModel;
+    private list:CatModel;
 
     constructor(db:Connection, sch:Schema ) {
         this.conn=db;
@@ -41,21 +41,21 @@ export class AthleteWrapper {
         process.exit(1);
     }}
         */
-        this.list = <AthleteModel>mongoose.model('athletes', sch );
+        this.list = <CatModel>mongoose.model('cats', sch );
     }
 
-    async get(id:string):Promise<Athlete|null> {
+    async get(id:string):Promise<Cat|null> {
         return new Promise( (good, bad) => {
-            let tt=this.list.findOne({_id:id}).select( KeysOfAthlete.join(' ')).lean();
+            let tt=this.list.findOne({_id:id}).select( KeysOfCat.join(' ')).lean();
             // if observe null return
-            let tmp2:Athlete= tt as unknown as Athlete; 
+            let tmp2:Cat= tt as unknown as Cat; 
             good(tmp2);
         });
     }
 
-    async getAll( ):Promise<Array<Athlete>> {
+    async getAll( ):Promise<Array<Cat>> {
         return new Promise( (good, bad) => {
-            let bigObject= this.list.find({}).select( KeysOfAthlete.join(' '));
+            let bigObject= this.list.find({}).select( KeysOfCat.join(' '));
 console.log("WWW", typeof bigObject );            
             let data=bigObject.lean();
 console.log("WWW", typeof data );            
@@ -63,11 +63,11 @@ console.log("WWW", typeof data );
             // I haven't been able to find a length/ count function
             if( data.length===0) { bad(new Error("No data found")); }
 console.log("WWW", Object.keys(data) ); 
-            let out: Array<Athlete>=[];
+            let out: Array<Cat>=[];
             data.forEach((val:unknown, i:unknown )=> {
 console.log("WWW", val, i); 
                 if( val === null ) { return; }
-                let tmp2:Athlete= val as unknown as Athlete; 
+                let tmp2:Cat= val as unknown as Cat; 
                 if(tmp2.ID) { // will have a value, PK for mongo
                     tmp2.ID=tmp2.ID.toString();
                 }
@@ -80,7 +80,7 @@ console.log("WWW", val, i);
          });
      }
 
-    async post( dat:Athlete):Promise<boolean> {
+    async post( dat:Cat):Promise<boolean> {
         return new Promise((good, bad )=> {
             let doc=new this.list( dat);
             doc.save(); // how do I check for errors
@@ -88,7 +88,7 @@ console.log("WWW", val, i);
         });
     } 
 
-    async patch(ID:string, dat:Athlete):Promise<boolean> {
+    async patch(ID:string, dat:Cat):Promise<boolean> {
         dat.ID=ID;
         return new Promise( (good, bad) => {
             this.list.findOneAndUpdate(
@@ -100,13 +100,13 @@ console.log("WWW", val, i);
    }
 }
 
-let MODEL:AthleteWrapper|null=null;
-export function UseThisModel():AthleteWrapper {
+let MODEL:CatWrapper|null=null;
+export function UseThisModel():CatWrapper {
     if(!MODEL) {
         mongoose.set('debug', { color: false, shell: true } );
         // this database is tiny
         mongoose.set('bufferTimeoutMS', 500);
-        MODEL=new AthleteWrapper( mongoose.createConnection(accessString()), ATHLETE_SCHEMA );
+        MODEL=new CatWrapper( mongoose.createConnection(accessString()), CAT_SCHEMA );
     }
     return MODEL;
 }

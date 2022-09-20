@@ -21,7 +21,7 @@ const CatScreen1: React.FC<Screen1Props> = ( props:Screen1Props)=> {
 
     function next():boolean {
         if(!about || !interests || !team ) {
-            setErrmsg("All athletes must enter their team, and something for about and interests");
+            setErrmsg("All cats must enter their team, and something for about and interests");
             return false;
         }
    

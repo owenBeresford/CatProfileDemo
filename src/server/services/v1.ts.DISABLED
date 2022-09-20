@@ -1,21 +1,21 @@
 // ***** This is a very rushed API ********
-import {  UseThisModel } from '../models/AthletesModel'; 
+import {  UseThisModel } from '../models/CatsModel'; 
 import express, { Request,Response, Application } from "express";
-import { Athlete, KeysOfAthlete, isAthlete } from '../types/Athlete';
+import { Cat, KeysOfCat, isCat } from '../types/Cat';
 
 interface IdTagged {
   ID: string;
 }
 type JsonBody=string;
-type AthleteRequest= Request<unknown, JsonBody|null, unknown, IdTagged>;
+type CatRequest= Request<unknown, JsonBody|null, unknown, IdTagged>;
 
 const mongo=UseThisModel();
 
 export function setUp(app:Application) {
-	app.get("/api/athlete/all", getAll);
-	app.get("/api/athlete/:ID", getSingle); 
-	app.post("/api/athlete/", postSingle);
-	app.patch("/api/athlete/:ID", patchSingle);
+	app.get("/api/cat/all", getAll);
+	app.get("/api/cat/:ID", getSingle); 
+	app.post("/api/cat/", postSingle);
+	app.patch("/api/cat/:ID", patchSingle);
 
 }
 
@@ -26,7 +26,7 @@ function getAll(req:Request, res:Response) {
 }
 
 function getSingle(req:Request, res:Response) {
-  console.log("recieved GET single athlete data with id"+req.query.ID);
+  console.log("recieved GET single cat data with id"+req.query.ID);
 
   let ret=mongo.get(req.query.ID as string);
   if(ret) { res.status(200).json( ret); }
@@ -38,12 +38,12 @@ function postSingle(req:Request, res:Response) {
 
   let tt= JSON.parse(req.body);
   // better validation is done by mongoose schema; this just checks the payload was for this API 
-  if( isAthlete(tt)) {  
-    let ret=mongo.post( tt as Athlete); 
+  if( isCat(tt)) {  
+    let ret=mongo.post( tt as Cat); 
     if( !ret) { res.status(500).send("Something broke, add debug."); }
-    else { res.status(204).send("Made new Athlete."); }
+    else { res.status(204).send("Made new Cat."); }
   } else { 
-    res.status(400).send("Bad data for an athlete");
+    res.status(400).send("Bad data for a cat");
   }
 }
 
@@ -52,16 +52,16 @@ function patchSingle(req:Request, res:Response) {
 
   try {
     let tt= JSON.parse(req.body as string);
-    if( isAthlete(tt)) {  
-        let ret=mongo.patch(req.query.ID as string, tt as Athlete); 
+    if( isCat(tt)) {  
+        let ret=mongo.patch(req.query.ID as string, tt as Cat); 
         if( !ret) { res.status(500).send("Something broke, add debug."); }
     // Data will need to be pulled back to client... so 202
-        else { res.status(202).send("Updated Athlete."); } 
+        else { res.status(202).send("Updated Cat."); } 
     } else { 
-      res.status(400).send("Bad data for an athlete");
+      res.status(400).send("Bad data for a cat");
     }
   } catch(e) {
-    res.status(400).send("Bad data for an athlete");
+    res.status(400).send("Bad data for a cat");
   }
 }
 

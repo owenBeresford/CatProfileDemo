@@ -25,7 +25,7 @@ console.log("Building a screen0", props.build, name, gender, dob, sports);
 
     function next():boolean {
         if(!dob || !name || !gender || sports.length===0) {
-            setErrmsg("All athletes must enter their name, gender, sports and date of birth");
+            setErrmsg("All cats must enter their name, gender, sports and date of birth");
             return false;
         }
    

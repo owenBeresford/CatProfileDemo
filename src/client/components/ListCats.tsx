@@ -20,7 +20,7 @@ function ListCats() {
    }, [currentCats, setCats, API] );
 
   return (
-    <div className="athletes">
+    <div className="cats">
         <ul className="aList">
          <li key="new" title={"Signup and create a new profile"} className="button" > 
             <NavLink to="/signup/" > Signup</NavLink>

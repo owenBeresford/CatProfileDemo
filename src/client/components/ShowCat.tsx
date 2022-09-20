@@ -22,7 +22,7 @@ const ShowCat: React.FC<ShowCatProps> = ( props:ShowCatProps)=> {
        if(!ath.about) {
            if(! ID) { 
                 setCat(defaultCat(null)); 
-                throw new Error("Cannot load screen, no athlete ID and no athlete param");
+                throw new Error("Cannot load screen, no cat ID and no cat param");
 
             } else { 
                 API.get(ID, undefined).then((dd)=>{ 
@@ -35,7 +35,7 @@ const ShowCat: React.FC<ShowCatProps> = ( props:ShowCatProps)=> {
 
     const age:string=((new Date()).getUTCFullYear()- ath.dob.getUTCFullYear())+" years old";
     return (
-    <div className="athlete popup">
+    <div className="cat popup">
         <dl>
             <dt>Cat name 
 				<NavLink to="/"><span className="goBack">❌</span></NavLink>

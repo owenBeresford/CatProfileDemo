@@ -44,27 +44,27 @@ export class Transport_b1<T, B> implements Transport<T, B> {
         ID:string,
         config: AxiosRequestConfig| undefined
     ): Promise<R> {
-        console.log("GET", this.ax.defaults.baseURL+"athlete/"+ID);        
-        return this.ax.get(this.ax.defaults.baseURL+"athlete/"+ID, config);
+        console.log("GET", this.ax.defaults.baseURL+"cat/"+ID);        
+        return this.ax.get(this.ax.defaults.baseURL+"cat/"+ID, config);
     }
 
     public getAll<T, R = AxiosResponse<T>>(config: AxiosRequestConfig| undefined  ):Promise<R> {
-        console.log("getall", this.ax.defaults.baseURL +"athlete/all");        
-        return this.ax.get(this.ax.defaults.baseURL +"athlete/all", config);
+        console.log("getall", this.ax.defaults.baseURL +"cat/all");        
+        return this.ax.get(this.ax.defaults.baseURL +"cat/all", config);
     }
     
     public post<T, B, R = AxiosResponse<T>>(
         data: B,
         config: AxiosRequestConfig|undefined
     ): Promise<R> {
-        console.log("POST", this.ax.defaults.baseURL+"athlete/", data );  	
+        console.log("POST", this.ax.defaults.baseURL+"cat/", data );  	
 		const payload=new URLSearchParams();
 		payload.append('data',""+JSON.stringify(data) );
 
 		if(config) {
-        	return this.ax.post(this.ax.defaults.baseURL +"athlete/", payload, config.headers);
+        	return this.ax.post(this.ax.defaults.baseURL +"cat/", payload, config.headers);
 		} else {
-        	return this.ax.post(this.ax.defaults.baseURL +"athlete/", payload, this.ax.defaults.headers.common);
+        	return this.ax.post(this.ax.defaults.baseURL +"cat/", payload, this.ax.defaults.headers.common);
 		}
     }
 
@@ -73,14 +73,14 @@ export class Transport_b1<T, B> implements Transport<T, B> {
         data: B,
         config: AxiosRequestConfig|undefined
     ): Promise<R> {
-        console.log("PATCH", this.ax.defaults.baseURL+"athlete/"+ID, {'data':data} );  
+        console.log("PATCH", this.ax.defaults.baseURL+"cat/"+ID, {'data':data} );  
 		const payload=new URLSearchParams();
 		payload.append('data',""+JSON.stringify(data) );
 		
 		if(config) {
-        	return this.ax.patch(this.ax.defaults.baseURL +"athlete/"+ID, payload, config.headers);
+        	return this.ax.patch(this.ax.defaults.baseURL +"cat/"+ID, payload, config.headers);
 		} else {
-        	return this.ax.patch(this.ax.defaults.baseURL +"athlete/"+ID, payload, this.ax.defaults.headers.common);
+        	return this.ax.patch(this.ax.defaults.baseURL +"cat/"+ID, payload, this.ax.defaults.headers.common);
 		}
     }
 
