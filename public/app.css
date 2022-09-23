@@ -1,5 +1,5 @@
 footer p { text-align:center; }
-footer { position:fixed; top:95vh; width:25em; left:calc( 50% - 12.5em ); }
+footer { position:fixed; top:95vh; width:27em; left:calc( 50% - 11.5em ); }
 ul.ticks { list-style:none; }
 ul.ticks li:before { content:"✓"; font-size:150%; line-height: 1.0; }
 p.inset { margin-left:1.5em; }
@@ -17,5 +17,7 @@ span.react-toggle { margin-right:2em; }
 .dialog-sheet { z-index:2; background-color:#ffffff; }
 .aList { width:40em; margin-left:auto; margin-right:auto; margin-top:3em;  }
 li.button a { color:#fff; }
+.superLarge span { margin-left:0.3em; margin-right:0.3em; font-size:250%; }
+.superLarge { line-height:1.0; }
 
 input[type="checkbox"] + label::before { left:4px; }
