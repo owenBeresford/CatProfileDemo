@@ -21,16 +21,19 @@ const ShowCat: React.FC<ShowCatProps> = ( props:ShowCatProps)=> {
 
     useEffect(() => {
        if(!cat || !cat.about) {
+           setErrorMessage("");
+
            if(! ID) { 
                 setCat(defaultCat(null)); 
-                throw new Error("Cannot load screen, no cat ID and no cat param");
+                setErrorMessage("Cannot load screen, no cat ID and no cat param");
 
             } else { 
                 API.get(ID, undefined).then((dd)=>{ 
                     const localCat:AxiosResponse<Cat>=dd as AxiosResponse<Cat>;  
                     setCat(localCat.data ); 
-                 } ).catch(()=> { 
-					console.warn("oh no; the API busted!!!");
+                 } ).catch((ee)=> { 
+					console.warn("oh no; the API busted!!!", ee);
+                	setErrorMessage("Cannot load screen, API failed");
 					// this should force it to get called again
 				    ID=ID;
 				  } );
