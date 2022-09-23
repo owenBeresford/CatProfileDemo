@@ -1,5 +1,5 @@
 # OSStest
-this is only *three days* worth of typescript.  This is not a product.  
+this is only *four days* worth of typescript.  This is not a product.  
 +++++ I do not publish code without tests; this is not published +++++
 
 I am showing:
