@@ -54,6 +54,16 @@ export function defaultCat(cur:Cat|null ):Cat {
     } as Cat;
 }
 
+export function getFlag(team:string):string {
+// Flag chars have been manually extracted from
+// http://xahlee.info/comp/unicode_flags.html
+// convert to dictionary with more data https://stackoverflow.com/a/55005075/2375161
+	team=team.toLowerCase();
+	if(team.indexOf('portugal') !==-1) { return '🇵🇹 '; }
+	// IOIO add more code with better data,
+	else { return '🇪🇺'; }
+}
+
 // If sharedCat is in default state, prefer local value, otherwise prefer non-empty shared values
 export function mapInitialValue<T>(shared:Cat, field: T, defaultVal: T):T {
 	if(shared.name===DEFAULT_NAME) { return defaultVal; }

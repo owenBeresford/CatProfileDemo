@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { Cat } from '../types/Cat';
 import { Transport, AxiosResponse }from '../types/Transport';
 import { UseTransport } from '../services/Transport';
-import {renderDate, getDefaultSelfie, defaultCat } from '../services/util';
+import {renderDate, getDefaultSelfie, defaultCat, getFlag } from '../services/util';
 import './ListCats.css';
 
 
@@ -41,7 +41,7 @@ const ShowCat: React.FC<ShowCatProps> = ( props:ShowCatProps)=> {
 	if(!cat || !cat.dob) {
 		return (<div className="error popup">Data loading.. {errMsg}</div>);
 	}
-
+	const flag= getFlag(cat.team);
     const age:string=( (new Date()).getUTCFullYear()- cat.dob.getUTCFullYear() )+" years old";
     return (
     <div className="cat popup">
@@ -61,7 +61,7 @@ const ShowCat: React.FC<ShowCatProps> = ( props:ShowCatProps)=> {
             <dt>About me </dt>
             <dd>{ cat.about}</dd>        
             <dt>Team </dt>
-            <dd>{ cat.team } [this text is a sports flag]</dd>
+            <dd className="superLarge">{ cat.team } <span>{ flag}</span></dd>
             <dt>Sports </dt>
             <dd> <ul className="ticks">   
              {cat.sports.map((val, i) => {
