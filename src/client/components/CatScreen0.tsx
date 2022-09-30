@@ -17,11 +17,10 @@ export interface Screen0Props {
 
 const CatScreen0: React.FC<Screen0Props> = ( props:Screen0Props)=> {
     const [ sports, setSports ] = useState<Array<KnownSports>>( mapInitialValue<Array<KnownSports>>(props.build, props.build.sports, [] as Array<KnownSports>));
-    const [ dob, setDOB] = useState<number|undefined>( mapInitialValue<number>(props.build,  props.build.dob.getTime(), (new Date( '2002-07-01' ).getTime())));
+    const [ dob, setDOB] = useState<number|undefined>( mapInitialValue<number>(props.build,  props.build.dob.getTime(), (new Date( '2002-07-01' ).getTime())) );
     const [ name, setName ]=useState<string>( mapInitialValue<string>(props.build, props.build.name, ''));
     const [ gender, setGender ]=useState<string>( mapInitialValue<string>(props.build, props.build.gender, ''));    
     const [ errMsg, setErrmsg] = useState<string>('');
-console.log("Building a screen0", props.build, name, gender, dob, sports);
 
     function next():boolean {
         if(!dob || !name || !gender || sports.length===0) {
