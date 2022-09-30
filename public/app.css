@@ -21,3 +21,15 @@ li.button a { color:#fff; }
 .superLarge { line-height:1.0; }
 
 input[type="checkbox"] + label::before { left:4px; }
+/* I have no idea why the 1px displacement is needed; but it improves the visual */
+span.react-toggle label { width: 3.4em; transform: translate( 1px, 0); }
+/* Someones colour palette in the CSS, exported as vars includes --rdp-accent-color
+ DO NOT USE THIS its vastly over saturated  */
+label:has( input[type='checkbox']:checked ) { background-color: rgb(56, 135, 183); color:#fff; font-weight:bold; line-height: 93%; }
+/* firefox */
+@supports ( -moz-appearance:none ){
+	span.react-toggle label { width: 3.7em; transform: translate(1px, 0); }
+
+}
+
+
