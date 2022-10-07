@@ -34,7 +34,7 @@ const CatScreen2: React.FC<Screen2Props> = ( props:Screen2Props)=> {
 
     return (
         <div className="aScreen popup">
-            <ShowCat current={props.build }/> 
+            <ShowCat current={props.build} isChild={true} /> 
 
             <div className="buttonBar">
                 <input id="sendP3back" className="goBack button" type="button" value="Edit my profile" onClick={back} />

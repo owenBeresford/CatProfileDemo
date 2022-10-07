@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DateBlock from './DateBlock';
 import BooleanButton from './BooleanButton';
 import { NavLink } from 'react-router-dom';
@@ -17,10 +17,23 @@ export interface Screen0Props {
 
 const CatScreen0: React.FC<Screen0Props> = ( props:Screen0Props)=> {
     const [ sports, setSports ] = useState<Array<KnownSports>>( mapInitialValue<Array<KnownSports>>(props.build, props.build.sports, [] as Array<KnownSports>));
-    const [ dob, setDOB] = useState<number|undefined>( mapInitialValue<number>(props.build,  props.build.dob.getTime(), (new Date( '2002-07-01' ).getTime())) );
+    const [ dob, setDOB] = useState<number|undefined>( mapInitialValue<number>(props.build, props.build.dob.getTime(), (new Date( '2002-07-01' ).getTime())) );
     const [ name, setName ]=useState<string>( mapInitialValue<string>(props.build, props.build.name, ''));
     const [ gender, setGender ]=useState<string>( mapInitialValue<string>(props.build, props.build.gender, ''));    
     const [ errMsg, setErrmsg] = useState<string>('');
+
+	useEffect(() => {
+     setGender(props.build.gender);
+   }, [props.build, setGender]);
+	useEffect(() => {
+     setName(props.build.name);
+   }, [props.build, setName]);
+	useEffect(() => {
+     setDOB(props.build.dob.getTime());
+   }, [props.build, setDOB]);
+	useEffect(() => {
+     setSports(props.build.sports );
+   }, [props.build, setSports]);
 
     function next():boolean {
         if(!dob || !name || !gender || sports.length===0) {
@@ -50,6 +63,7 @@ const CatScreen0: React.FC<Screen0Props> = ( props:Screen0Props)=> {
     }
 	const DEFAULT_DOB=(new Date('2002-09-01')).getTime();
     const CURRENT_SPORTS=mapInitialValue<Array<KnownSports>>(props.build, props.build.sports, []);
+
 	const BITS	=KnownSportsValues.map((name:KnownSports)=> {
 					 /* eslint-disable react/jsx-no-bind */ 
                    return (<BooleanButton text={name} push={chooseSport} active={ includesWithBetterTyping( CURRENT_SPORTS, name ) } /> );
@@ -60,13 +74,13 @@ const CatScreen0: React.FC<Screen0Props> = ( props:Screen0Props)=> {
     <div className="aScreen popup">
        <form >
             {errMsg.length>0?(<p className="error">{errMsg}</p>):(<></>) }
-            <label htmlFor="athName"> Your name: </label> 
-            <input id="athName" name="athName" value={name} placeholder="Your name" 
+            <label htmlFor="athName" className="shortLegend"> Your name: </label> 
+            <input  key={"athName"+name} id="athName" name="athName" value={name} placeholder="Your name" 
                 onChange={(e:React.ChangeEvent<HTMLInputElement>):void =>{ setName(e.target.value); } } />
-            <label htmlFor="athGender">Gender: </label> 
-            <input id="athGender" name="athGender" value={gender} placeholder="Describe yourself"
+            <label htmlFor="athGender" className="shortLegend">Gender: {gender} </label> 
+            <input key={"athGender"+gender} id="athGender" name="athGender" value={gender} placeholder="Describe yourself"
                 onChange={(e:React.ChangeEvent<HTMLInputElement>):void =>{ setGender(e.target.value); } }  />
-            <label htmlFor="athDob">Birth date: </label>
+            <label htmlFor="athDob" className="shortLegend">Birth date: </label>
             <DateBlock passback={ setDOB} initialVal={ dob || DEFAULT_DOB} />
  
             <label htmlFor="athSports">Sports: </label> 

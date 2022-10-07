@@ -1,4 +1,4 @@
-import React, { useState, useRef, ChangeEventHandler } from "react";
+import React, { useState, useRef, ChangeEventHandler, useEffect } from "react";
 import { DayPicker } from 'react-day-picker';
 import { format, isValid, parse } from 'date-fns';
 import { ChangeTab } from '../types/ChangeTab';
@@ -24,7 +24,14 @@ const DateBlock: React.FC<DateProps> = ( props:DateProps)=> {
     /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion  */
     const [inputValue, setInputValue] = useState<string>( dob!.getUTCFullYear()+"-"+dob!.getUTCMonth()+"-"+dob!.getUTCDay());
     const [isPopperOpen, setIsPopperOpen] = useState(false);
-    
+   
+	useEffect(() => {
+		const ddd=new Date(props.initialVal);
+		setDOB( ddd);
+		setInputValue( ddd.getUTCFullYear()+"-"+ddd.getUTCMonth()+"-"+ddd.getUTCDay() );
+
+	}, [props.initialVal, setDOB, setInputValue]);
+ 
     const popperRef = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
     const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(

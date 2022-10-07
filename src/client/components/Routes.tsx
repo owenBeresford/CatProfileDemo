@@ -11,7 +11,8 @@ const OSSRoutes = () => {
         <Route index element={<ListCats />} />
         <Route path="/list" element={<ListCats />} key="list" />
         <Route path="/signup" element={<SignupCat />} key="signup" />
-        <Route path="/profile/:ID" element={<ShowCat current={null} />} key="profile" />
+        <Route path="/signup/:ID" element={<SignupCat />} key="edit" />
+        <Route path="/profile/:ID" element={<ShowCat current={null} isChild={false} />} key="profile" />
         <Route path="*" element={<ListCats />} />
       </Routes>
     </BrowserRouter>

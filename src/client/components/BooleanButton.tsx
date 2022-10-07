@@ -11,9 +11,10 @@ export interface ButtonProps {
 
 // NB: push is a CB, not a call to Array.push
 const BooleanButton: React.FC<ButtonProps> = ( props:ButtonProps)=> {
-	const nom=props.text.replaceAll(" ", "_");
-   return (<label id={"lbl"+nom} className="buttons" htmlFor={"tog"+nom}>
-  <Toggle name={"tog"+nom} onToggle={( ) => { props.push(props.text ); }} checked={ props.active} />
+
+	const nom=props.text.replace(/ /g, "_");
+	return (<label id={"lbl"+nom} className="buttons" htmlFor={"tog"+nom}>
+  <Toggle key={"tag"+nom+(props.active?"T":"F")} name={"tog"+nom} onToggle={( ) => { props.push(props.text ); }} checked={ props.active} />
   {props.text}
 </label>);
 }

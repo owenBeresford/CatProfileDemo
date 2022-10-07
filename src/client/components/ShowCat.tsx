@@ -10,6 +10,7 @@ import './ListCats.css';
 
 export interface ShowCatProps {
     current:Cat|null;
+	isChild:boolean;
 }
 
 const ShowCat: React.FC<ShowCatProps> = ( props:ShowCatProps)=> {
@@ -41,6 +42,8 @@ const ShowCat: React.FC<ShowCatProps> = ( props:ShowCatProps)=> {
         }
     }, [cat, setCat, API, ID] );
 
+// can also use &#9998; as an edit symbol
+// benefits from  .edit-icon { display: inline-block; transform: rotateZ(90deg); font-size:200%; }
 	if(!cat || !cat.dob) {
 		return (<div className="error popup">Data loading.. {errMsg}</div>);
 	}
@@ -51,7 +54,8 @@ const ShowCat: React.FC<ShowCatProps> = ( props:ShowCatProps)=> {
         <dl>{
 			errMsg?(<><dt></dt><dd className="error">{ errMsg}</dd></>):(<></>)
             }<dt>Cat name 
-				<NavLink to="/"><span className="goBack">❌</span></NavLink>
+				{ props.isChild?(<></>):( <span className="goBack"><NavLink to={"/signup/"+ID}>✍ </NavLink></span>) }
+				<span className="goBack"><NavLink to="/">❌</NavLink></span>
 			</dt>
             <dd> 
                {cat.image===null? (<img src={ getDefaultSelfie() } width="100" height="150" alt="Fake face until there is funding." />)
