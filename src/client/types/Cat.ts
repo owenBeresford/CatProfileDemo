@@ -64,3 +64,5 @@ export function isShippingCat(o: any):o is ShippingCat {
     });
     return good===0;
 }
+
+export const DEFAULT_BIRTH_DATE = new Date('2019-07-01');

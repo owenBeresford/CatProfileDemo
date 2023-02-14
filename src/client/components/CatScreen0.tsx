@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";  // RefObject
 import DateBlock from './DateBlock';
 import BooleanButton from './BooleanButton';
 import { NavLink } from 'react-router-dom';
 
 import { ChangeTab }    from '../types/ChangeTab';
-import { Cat } from '../types/Cat';
+import { Cat, DEFAULT_BIRTH_DATE } from '../types/Cat';
 import { KnownSports, KnownSportsValues } from '../types/KnownSports';
 import { mapInitialValue, includesWithBetterTyping  } from '../services/util';
 import './SignupCats.css';
@@ -17,7 +17,7 @@ export interface Screen0Props {
 
 const CatScreen0: React.FC<Screen0Props> = ( props:Screen0Props)=> {
     const [ sports, setSports ] = useState<Array<KnownSports>>( mapInitialValue<Array<KnownSports>>(props.build, props.build.sports, [] as Array<KnownSports>));
-    const [ dob, setDOB] = useState<number|undefined>( mapInitialValue<number>(props.build, props.build.dob.getTime(), (new Date( '2002-07-01' ).getTime())) );
+    const [ dob, setDOB] = useState<number|undefined>( mapInitialValue<number>(props.build, props.build.dob.getTime(), ( DEFAULT_BIRTH_DATE.getTime())) );
     const [ name, setName ]=useState<string>( mapInitialValue<string>(props.build, props.build.name, ''));
     const [ gender, setGender ]=useState<string>( mapInitialValue<string>(props.build, props.build.gender, ''));    
     const [ errMsg, setErrmsg] = useState<string>('');
@@ -61,7 +61,7 @@ const CatScreen0: React.FC<Screen0Props> = ( props:Screen0Props)=> {
         }
         return false;
     }
-	const DEFAULT_DOB=(new Date('2002-09-01')).getTime();
+	const DEFAULT_DOB=( DEFAULT_BIRTH_DATE).getTime();
     const CURRENT_SPORTS=mapInitialValue<Array<KnownSports>>(props.build, props.build.sports, []);
 
 	const BITS	=KnownSportsValues.map((name:KnownSports)=> {
@@ -75,8 +75,9 @@ const CatScreen0: React.FC<Screen0Props> = ( props:Screen0Props)=> {
        <form >
             {errMsg.length>0?(<p className="error">{errMsg}</p>):(<></>) }
             <label htmlFor="athName" className="shortLegend"> Your name: </label> 
-            <input  key={"athName"+name} id="athName" name="athName" value={name} placeholder="Your name" 
-                onChange={(e:React.ChangeEvent<HTMLInputElement>):void =>{ setName(e.target.value); } } />
+            <input  key={"athName"+name} id="athName" name="athName" value={ name } placeholder="Your name" autoFocus={true}
+                onBlur={(e:React.ChangeEvent<HTMLInputElement>):void =>{ setName(e.target.value); } } 
+                onChange={ (e:React.ChangeEvent<HTMLInputElement>):void =>{ setName(e.target.value ); }} />
             <label htmlFor="athGender" className="shortLegend">Gender: {gender} </label> 
             <input key={"athGender"+gender} id="athGender" name="athGender" value={gender} placeholder="Describe yourself"
                 onChange={(e:React.ChangeEvent<HTMLInputElement>):void =>{ setGender(e.target.value); } }  />

@@ -2,6 +2,7 @@ import React, { useState, useRef, ChangeEventHandler, useEffect } from "react";
 import { DayPicker } from 'react-day-picker';
 import { format, isValid, parse } from 'date-fns';
 import { ChangeTab } from '../types/ChangeTab';
+import { DEFAULT_BIRTH_DATE } from '../types/Cat'; 
 // react-popper/typings/react-popper.d.ts
 /// <reference types="react-popper" />
 import { usePopper } from 'react-popper';
@@ -22,7 +23,9 @@ const DateBlock: React.FC<DateProps> = ( props:DateProps)=> {
     const [ dob, setDOB] = useState<Date|undefined>( new Date(props.initialVal) );
 	// we have just assigned it 
     /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion  */
-    const [inputValue, setInputValue] = useState<string>( dob!.getUTCFullYear()+"-"+dob!.getUTCMonth()+"-"+dob!.getUTCDay());
+    const [inputValue, setInputValue] = useState<string>( 
+        dob?(dob!.getUTCFullYear()+"-"+dob!.getUTCMonth()+"-"+dob!.getUTCDay())
+        :(DEFAULT_BIRTH_DATE.getUTCFullYear()+"-"+DEFAULT_BIRTH_DATE.getUTCMonth()+"-"+DEFAULT_BIRTH_DATE.getUTCDay()) );
     const [isPopperOpen, setIsPopperOpen] = useState(false);
    
 	useEffect(() => {
