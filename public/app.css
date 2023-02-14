@@ -1,43 +1,142 @@
-footer p { text-align:center; }
-footer { position:fixed; top:95vh; max-width:27em; min-width:24em; left:calc( 50% - 13.5em ); }
-ul.ticks { list-style:none; }
-ul.ticks li:before { content:"✓"; font-size:150%; line-height: 1.0; }
-p.inset { margin-left:1.5em; }
-.popup { z-index:1; max-width:100%; min-width:40em; margin:1.5em; }
-.goBack { text-align:right; margin-left:1em; margin-right:2em; vertical-align: middle; }
-dt .goBack:nth-child(1) { margin-left:calc( 50% - 6em ); margin-right:1em; font-size: 200%; line-height: 0.8; vertical-align: sub; }
-.goBack.button { margin-left:calc( 50% - 6em ); }
-.normal { display:inline-block; width:15em; }
-.dateBlock .normal { width:12.5em; }
-.dateBlock { margin-bottom:1em; }
-.error { font-size:150%; background-color:salmon; margin:1em; padding-top:0.3em; line-height:1.6; padding-left:1em; }
-button { margin-left:1em; margin-right:1em; } 
-span.react-toggle { margin-right:2em; }
-.appCols { columns:3 14em; margin-top:0.5em; max-width:700px; margin-left:auto; margin-right:auto; }
-@media screen and (max-width:650px ) {
-	.appCols { columns:2 45%; margin-left:inherit; margin-right:inherit; max-width:100%; }
+footer p {
+  text-align: center;
 }
-@media screen and (max-width:400px ) {
-	.appCols { columns:1 100%; margin-left:inherit; margin-right:inherit; max-width:100%; }	
+footer {
+  position: fixed;
+  top: 95vh;
+  max-width: 27em;
+  min-width: 24em;
+  left: calc(50% - 13.5em);
+}
+ul.ticks {
+  list-style: none;
+}
+ul.ticks li:before {
+  content: "✓";
+  font-size: 150%;
+  line-height: 1;
+}
+p.inset {
+  margin-left: 1.5em;
+}
+.popup {
+  z-index: 1;
+  max-width: 100%;
+  min-width: 40em;
+  margin: 1.5em;
+}
+.goBack {
+  text-align: right;
+  margin-left: 1em;
+  margin-right: 2em;
+  vertical-align: middle;
+}
+dt .goBack:nth-child(1) {
+  margin-left: calc(50% - 6em);
+  margin-right: 1em;
+  font-size: 200%;
+  line-height: 0.8;
+  vertical-align: sub;
+}
+.goBack.button {
+  margin-left: calc(50% - 6em);
+}
+.normal {
+  display: inline-block;
+  width: 15em;
+}
+.dateBlock .normal {
+  width: 12.5em;
+}
+.dateBlock {
+  margin-bottom: 1em;
+}
+.error {
+  font-size: 150%;
+  background-color: salmon;
+  margin: 1em;
+  padding-top: 0.3em;
+  line-height: 1.6;
+  padding-left: 1em;
+}
+button {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+span.react-toggle {
+  margin-right: 2em;
+}
+.appCols {
+  columns: 3 14em;
+  margin-top: 0.5em;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media screen and (max-width: 650px) {
+  .appCols {
+    columns: 2 45%;
+    margin-left: inherit;
+    margin-right: inherit;
+    max-width: 100%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .appCols {
+    columns: 1 100%;
+    margin-left: inherit;
+    margin-right: inherit;
+    max-width: 100%;
+  }
 }
 
-.datePopper {  }
-.buttonBar { margin-top:2em; }
-.dialog-sheet { z-index:2; background-color:#ffffff; }
-.aList { width:40em; margin-left:auto; margin-right:auto; margin-top:3em;  }
-li.button a { color:#fff; }
-.superLarge span { margin-left:0.3em; margin-right:0.3em; font-size:250%; }
-.superLarge { line-height:1.0; }
+.datePopper {
+}
+.buttonBar {
+  margin-top: 2em;
+}
+.dialog-sheet {
+  z-index: 2;
+  background-color: #ffffff;
+}
+.aList {
+  width: 40em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3em;
+}
+li.button a {
+  color: #fff;
+}
+.superLarge span {
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+  font-size: 250%;
+}
+.superLarge {
+  line-height: 1;
+}
 
-input[type="checkbox"] + label::before { left:4px; }
+input[type="checkbox"] + label::before {
+  left: 4px;
+}
 /* I have no idea why the 1px displacement is needed; but it improves the visual */
-span.react-toggle label { width: 3.4em; transform: translate( 1px, 0); }
+span.react-toggle label {
+  width: 3.4em;
+  transform: translate(1px, 0);
+}
 /* Someone's colour palette in the CSS, exported as vars includes --rdp-accent-color
  DO NOT USE THIS its vastly over saturated  */
-label:has( input[type='checkbox']:checked ) { background-color: rgb(56, 135, 183); color:#fff; font-weight:bold; line-height: 93%; }
-/* firefox */
-@supports ( -moz-appearance:none ){
-	span.react-toggle label { width: 3.7em; transform: translate(1px, 0); }
+label:has(input[type="checkbox"]:checked) {
+  background-color: rgb(56, 135, 183);
+  color: #fff;
+  font-weight: bold;
+  line-height: 93%;
 }
-
-
+/* firefox */
+@supports (-moz-appearance: none) {
+  span.react-toggle label {
+    width: 3.7em;
+    transform: translate(1px, 0);
+  }
+}

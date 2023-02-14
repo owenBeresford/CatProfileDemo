@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
-	"jsx": "react-jsx",
+    "jsx": "react-jsx",
     "noEmit": false,
     "sourceMap": true,
-	"skipLibCheck":true,
+    "skipLibCheck": true,
     "module": "esnext",
     "strict": true,
     "target": "esnext",
-	"allowSyntheticDefaultImports":true,
+    "allowSyntheticDefaultImports": true,
     "moduleResolution": "node"
   },
   "exclude": ["./build", "./client"],

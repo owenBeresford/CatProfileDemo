@@ -1,16 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 // import './client/index.css';
-import OSSRoutes from './client/components/Routes';
-import App from './client/App';
+import OSSRoutes from "./client/components/Routes";
+import App from "./client/App";
 // import reportWebVitals from './client/reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-     <OSSRoutes> 
-     <App />
-     </OSSRoutes> 
+    <OSSRoutes>
+      <App />
+    </OSSRoutes>
   </React.StrictMode>
 );
 
