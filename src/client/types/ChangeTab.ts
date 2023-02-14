@@ -1,2 +1,1 @@
-
-export type ChangeTab=(i:number)=>void;
+export type ChangeTab = (i: number) => void;
