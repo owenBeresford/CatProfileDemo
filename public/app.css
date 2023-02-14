@@ -1,5 +1,5 @@
 footer p { text-align:center; }
-footer { position:fixed; top:95vh; width:27em; left:calc( 50% - 11.5em ); }
+footer { position:fixed; top:95vh; max-width:27em; min-width:24em; left:calc( 50% - 13.5em ); }
 ul.ticks { list-style:none; }
 ul.ticks li:before { content:"✓"; font-size:150%; line-height: 1.0; }
 p.inset { margin-left:1.5em; }
