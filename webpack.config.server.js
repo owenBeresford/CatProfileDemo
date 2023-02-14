@@ -15,24 +15,24 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
   },
-    // don't compile node_modules
-	devServer:{
-		magicHtml: true,
-	},
+  // don't compile node_modules
+  devServer: {
+    magicHtml: true,
+  },
 
-// https://stackoverflow.com/questions/39798095/multiple-html-files-using-webpack
+  // https://stackoverflow.com/questions/39798095/multiple-html-files-using-webpack
   externals: [nodeExternals(), "src/server/models/CatsModel.ts"],
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-      //  exclude:/.*CatsModel\.ts$/,  // this is not doing anything https://webpack.js.org/configuration/module/#ruleexclude
+        //  exclude:/.*CatsModel\.ts$/,  // this is not doing anything https://webpack.js.org/configuration/module/#ruleexclude
         use: [
           {
             loader: "ts-loader",
             options: {
-                // use the tsconfig in the server directory
-                configFile: "src/server/tsconfig.json",
+              // use the tsconfig in the server directory
+              configFile: "src/server/tsconfig.json",
             },
           },
         ],
@@ -40,4 +40,3 @@ module.exports = {
     ],
   },
 };
-
