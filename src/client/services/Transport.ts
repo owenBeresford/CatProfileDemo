@@ -2,13 +2,23 @@ import { Transport } from '../types/Transport';
 import { isShippingCat, Cat, ShippingCat  } from '../types/Cat';
 import { Axios, AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 
+interface CatWindow extends Window {
+    CAT_TESTING: number;
+}
+declare let window: CatWindow; 
+
 export class Transport_b1<T, B> implements Transport<T, B> {
     private ax:Axios;
 
     constructor() {
+		let testing=true;
+		if(typeof window.CAT_TESTING === 'number') {
+			testing= !! window.CAT_TESTING;
+		}
+
         const config:AxiosRequestConfig= {
             timeout: 1000,
-            baseURL: window.location.protocol+"//"+window.location.host+"/test/",
+            baseURL: window.location.protocol+"//"+window.location.host+ (testing? "/test/":"/api/"),
             headers: {
                 'X-Requested-With':'XMLHttpRequest',
           //      'Content-encoding':'application/json; encoding=utf8',
@@ -16,6 +26,10 @@ export class Transport_b1<T, B> implements Transport<T, B> {
             },
             transformResponse: [
 			(data, headers) => {
+                if(headers && headers.status === '204') {
+                    return [];	
+                }
+
 				if(!headers || !('content-type' in headers) || headers['content-type'].indexOf("application/json")===-1) {
 					Promise.reject( new Error("Unexpected data format (think API fail)"));
 					return;	
