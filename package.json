@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "description": "see requirements",
-  "main": "src/Client.js",
+  "main": "build/server.js",
   "scripts": {
     "start": "node ./build/server.js &",
     "#build": "react-scripts build",
     "#eject": "react-scripts eject",
     "test": "react-scripts test",
     "lint": "npx eslint --ext '*.ts' --exit-on-fatal-error --fix; npx eslint --ext '*.tsx' --exit-on-fatal-error --fix; ",
-    "build:client": "react-scripts build;cp ./src/client/default-face.svg build/; cat node_modules/foundation-sites/dist/css/foundation.min.css node_modules/react-day-picker/dist/style.css src/client/App.css  >build/app.css;",
+    "build:client": "react-scripts build;cp ./src/client/default-face.svg build/; cat node_modules/foundation-sites/dist/css/foundation.min.css node_modules/react-day-picker/dist/style.css src/client/App.css >build/app.css;",
     "build:server": "webpack --config webpack.config.server.js;node src/build-tools/build.mjs"
   },
   "author": "Owen Beresford",
