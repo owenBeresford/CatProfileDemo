@@ -2,7 +2,7 @@ import { KnownSports } from './KnownSports';
 import { Model, Document } from 'mongoose';
  
 export interface Cat {
-    ID:string|null;
+    ID:string| null;
     name:string;
     dob:number;
     team:string;
@@ -15,8 +15,8 @@ export interface Cat {
 }
 
 // this is Cat
-export interface CatDocument extends Cat, Document {};
-export interface CatModel extends Model<CatDocument> {};
+export interface CatDocument extends Cat, Document {}
+export type CatModel = Model<CatDocument>;
 export type CatDump = Array<Cat>;  
 
 export const KeysOfCat =[
@@ -32,10 +32,11 @@ export const KeysOfCat =[
 
 // This is a runtime process, not type washing
 // IOIO TODO adding a Schema would be a nice touch, but no time now
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isCat(o: any): o is Cat {
     let good=KeysOfCat.length;
 
-    KeysOfCat.map((val:string, i:number):number => {
+    KeysOfCat.map((val:string /* , i:number */):number => {
          if( val in o ) {
 			if(val==='dob' && typeof o[val]==='number') { good--; }
 			else if(val ==='image') { good--; }

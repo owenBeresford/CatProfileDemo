@@ -1,7 +1,7 @@
-import express, { Request,Response, Application } from "express";
+import express, { Request, Response, Application } from "express";
 import bodyParser from "body-parser";
 import path from "path";
-import { Cat, KeysOfCat, isCat } from './types/Cat';
+// import { Cat, KeysOfCat, isCat } from './types/Cat';
 // IOIO TODO disabled as do not have time to argue with types now
 // import { setUp as realAPI } from './services/v1';
 import { setUp as testAPI } from './services/test';
@@ -13,6 +13,7 @@ import { setUp as testAPI } from './services/test';
 
 const envFileName = `.env.${process.env.NODE_ENV}`;
 const pathToEnvFile = path.resolve(__dirname, '..', envFileName);
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config({ path: pathToEnvFile });
 
 process.env.IMPORTED_ENV='1';

@@ -37,7 +37,7 @@ const KeysOfCat =[
 
 // this is a runtime process, not type washing
 // adding a Schema would be a nice touch, but no time now
-// eslint-disable-next-line  @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isCat(o: any): o is Cat {
     let good=KeysOfCat.length;
     KeysOfCat.map((val:string):number => {

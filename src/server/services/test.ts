@@ -1,5 +1,6 @@
-import express, { Request,Response, Application } from "express";
-import { Cat, KeysOfCat, isCat } from '../types/Cat';
+import { Request,Response, Application } from "express";
+// import { Cat, KeysOfCat, isCat } from '../types/Cat';
+import { isCat } from '../types/Cat';
 import path from "path";
 import { readFile } from 'fs/promises';
 
@@ -75,9 +76,9 @@ async function getSingle(req:Request, res:Response) {
  */
 function postSingle(req:Request, res:Response) {
   if(process.env.NODE_ENV !== 'development') { res.status(404); return; }
-  if(! req.body!.data) {	    
-	res.status(400).send("Bad data for a cat");
-	return;
+  if(! req.body.data) {	    
+	  res.status(400).send("Bad data for a cat");
+	  return;
   } 
 // i do not know why this Express library cannot unpack these
 // or why Node string lacks replaceAll until v15
@@ -106,7 +107,7 @@ function patchSingle(req:Request, res:Response) {
   console.log("recieved PATCH data for "+ req.params.ID);
 
   try {
-    let tt= JSON.parse(req.body as string);
+    const tt= JSON.parse(req.body as string);
     if( isCat(tt)) {  
         if( Math.random() >0.9) { res.status(500).send("The 10% random fail hit this request"); return; }
         else { res.status(202).send("Updated Cat."); } 

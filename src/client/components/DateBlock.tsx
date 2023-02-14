@@ -24,7 +24,7 @@ const DateBlock: React.FC<DateProps> = ( props:DateProps)=> {
 	// we have just assigned it 
     /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion  */
     const [inputValue, setInputValue] = useState<string>( 
-        dob?(dob!.getUTCFullYear()+"-"+dob!.getUTCMonth()+"-"+dob!.getUTCDay())
+        dob?(dob.getUTCFullYear()+"-"+dob.getUTCMonth()+"-"+dob.getUTCDay())
         :(DEFAULT_BIRTH_DATE.getUTCFullYear()+"-"+DEFAULT_BIRTH_DATE.getUTCMonth()+"-"+DEFAULT_BIRTH_DATE.getUTCDay()) );
     const [isPopperOpen, setIsPopperOpen] = useState(false);
    
