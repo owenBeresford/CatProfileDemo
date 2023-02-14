@@ -30,13 +30,21 @@ app.use(
 const buildDir = path.join(process.cwd() + "/build");
 app.use(express.static(buildDir));
 app.get("/", function (req:Request, res:Response) {
-  console.log("request for HTML", req.url, req.path); 
+  console.log("request for HTML", req.url); 
   res.sendFile(path.join(buildDir, "index.html"));
 });
+
+if(process.env.NODE_ENV !== 'production') {
+	app.get("/test", function (req:Request, res:Response) {
+ 		console.log("request for HTML", req.url); 
+  		res.sendFile(path.join(buildDir, "test.html"));
+	});
+}
+
 // end
 
 if(process.env.NODE_ENV === 'production') {
-// IOIO TODO disabled as do not have time to argue with types now
+// IOIO TODO this module is disabled as do not have time to argue with types now
 //	realAPI(app);
 } else {
 	testAPI(app);
