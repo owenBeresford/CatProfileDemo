@@ -4,6 +4,7 @@
 	"jsx": "react-jsx",
     "noEmit": false,
     "sourceMap": true,
+	"skipLibCheck":true,
     "module": "esnext",
     "strict": true,
     "target": "esnext",
