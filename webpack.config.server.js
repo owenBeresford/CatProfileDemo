@@ -16,6 +16,11 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js"],
   },
     // don't compile node_modules
+	devServer:{
+		magicHtml: true,
+	},
+
+// https://stackoverflow.com/questions/39798095/multiple-html-files-using-webpack
   externals: [nodeExternals(), "src/server/models/CatsModel.ts"],
   module: {
     rules: [
