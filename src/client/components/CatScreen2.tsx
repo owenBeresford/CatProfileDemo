@@ -5,7 +5,7 @@ import { Cat, ShippingCat } from "../types/Cat";
 import { UseTransport } from "../services/Transport";
 import { Transport } from "../types/Transport";
 import { ChangeTab } from "../types/ChangeTab";
-import "./SignupCats.css";
+
 
 export interface Screen2Props {
   build: Cat;

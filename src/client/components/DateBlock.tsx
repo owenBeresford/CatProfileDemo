@@ -7,7 +7,7 @@ import { DEFAULT_BIRTH_DATE } from "../types/Cat";
 /// <reference types="react-popper" />
 import { usePopper } from "react-popper";
 import FocusTrap from "focus-trap-react";
-import "./SignupCats.css";
+
 
 interface DateProps {
   passback: ChangeTab;

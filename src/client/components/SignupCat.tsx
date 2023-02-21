@@ -9,7 +9,6 @@ import CatScreen0 from "./CatScreen0";
 import CatScreen1 from "./CatScreen1";
 import CatScreen2 from "./CatScreen2";
 
-import "./SignupCats.css";
 
 function SignupCat() {
   let { ID } = useParams();

@@ -10,7 +10,7 @@ import {
   defaultCat,
   getFlag,
 } from "../services/util";
-import "./ListCats.css";
+
 
 export interface ShowCatProps {
   current: Cat | null;

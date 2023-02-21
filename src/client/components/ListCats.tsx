@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Cat } from "../types/Cat";
 import { Transport, AxiosResponse } from "../types/Transport";
 import { UseTransport } from "../services/Transport";
-import "./ListCats.css";
+
 
 function ListCats() {
   const [currentCats, setCats] = useState<Array<Cat>>([] as Array<Cat>);
