@@ -28,9 +28,13 @@ export class Transport_b1<T, B> implements Transport<T, B> {
         //      'Content-encoding':'application/json; encoding=utf8',
         Accept: "application/json; encoding=utf8",
       },
+	validateStatus: function (status) {
+    	return (status >= 200 && status < 300);
+	},
       transformResponse: [
         (data, headers) => {
-          if (headers && headers.status === "204") {
+          if ( data==="") {
+			console.log("Assert this is a HTTP204 or possibly a HTTP5*; no data");
             return [];
           }
 
