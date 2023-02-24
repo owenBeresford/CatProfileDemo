@@ -32,7 +32,7 @@ type localArgTypes= {
 
 
 export default {
-  title: 'booleanbutton',
+  title: 'BooleanButton',
   component: BooleanButton,
   argTypes,
 //  parameters:{

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import ListCats  from '../client/components/ListCats';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { actions, action } from '@storybook/addon-actions';
 
 const argTypes= {
@@ -12,4 +13,4 @@ export default {
     argTypes,
 }
 
-export const STEP0 = () => { return (<ListCats   />) };
+export const STEP0 = () => { return ( <BrowserRouter><ListCats   /></BrowserRouter> ) };

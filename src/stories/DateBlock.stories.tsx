@@ -1,6 +1,7 @@
 
 import React from 'react';
 import DateBlock  from '../client/components/DateBlock';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { actions, action } from '@storybook/addon-actions';
 import { ChangeTab } from '../client/types/ChangeTab';
 
@@ -23,7 +24,7 @@ export default {
   //	}
   };
 
-  export const STEP0 = () => { return (<DateBlock passback={changeTab} initialVal={0}  />) };
-  export const STEP1 = () => { return (<DateBlock passback={changeTab} initialVal={1}  />) };
-  export const STEP2 = () => { return (<DateBlock passback={changeTab} initialVal={NaN}  />) };
-  export const STEP3 = () => { return (<DateBlock passback={alert} initialVal={2}  />) };
+  export const STEP0 = () => { return ( <BrowserRouter><DateBlock passback={changeTab} initialVal={(new Date()).getTime()}  /> </BrowserRouter>) };
+  export const STEP1 = () => { return (<BrowserRouter><DateBlock passback={changeTab} initialVal={(new Date('2000-04-05')).getTime()}  /></BrowserRouter>) };
+  export const STEP2 = () => { return (<BrowserRouter><DateBlock passback={changeTab} initialVal={NaN}  /></BrowserRouter>) };
+  export const STEP3 = () => { return (<BrowserRouter><DateBlock passback={alert} initialVal={(new Date()).getTime()}  /></BrowserRouter>) };
