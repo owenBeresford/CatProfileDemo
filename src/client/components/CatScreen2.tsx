@@ -9,7 +9,6 @@ import { ChangeTab } from "../types/ChangeTab";
 
 export interface Screen2Props {
   build: Cat;
-  //	returnCat:Function,
   incTab: ChangeTab;
 }
 
@@ -30,7 +29,6 @@ const CatScreen2: React.FC<Screen2Props> = (props: Screen2Props) => {
     } as ShippingCat;
     API.post(JSON.stringify(tt), undefined);
 
-    //    window.history.pushState({}, "", '/list' );
     NAVIGATE("/list");
     return false;
   }

@@ -4,7 +4,6 @@ import { Cat } from "../types/Cat";
 import { Transport, AxiosResponse } from "../types/Transport";
 import { UseTransport } from "../services/Transport";
 
-
 function ListCats() {
   const [currentCats, setCats] = useState<Array<Cat>>([] as Array<Cat>);
   const API: Transport<Array<Cat>, string> = UseTransport() as Transport<

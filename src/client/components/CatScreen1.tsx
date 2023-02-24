@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Cat } from "../types/Cat";
+import { Cat, storeACat } from "../types/Cat";
 import { ChangeTab } from "../types/ChangeTab";
 import { mapInitialValue } from "../services/util";
 import { NavLink } from "react-router-dom";
@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 
 export interface Screen1Props {
   build: Cat;
-  returnCat: (a: Cat) => void;
+  returnCat: storeACat;
   incTab: ChangeTab;
 }
 

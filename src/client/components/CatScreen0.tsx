@@ -4,14 +4,14 @@ import BooleanButton from "./BooleanButton";
 import { NavLink } from "react-router-dom";
 
 import { ChangeTab } from "../types/ChangeTab";
-import { Cat, DEFAULT_BIRTH_DATE } from "../types/Cat";
+import { Cat, DEFAULT_BIRTH_DATE, storeACat } from "../types/Cat";
 import { KnownSports, KnownSportsValues } from "../types/KnownSports";
 import { mapInitialValue, includesWithBetterTyping } from "../services/util";
 
 
 export interface Screen0Props {
   build: Cat;
-  returnCat: (a: Cat) => void;
+  returnCat: storeACat;
   incTab: ChangeTab;
 }
 

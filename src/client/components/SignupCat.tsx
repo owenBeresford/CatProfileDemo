@@ -1,6 +1,6 @@
 import React, { useState, ReactElement, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Cat } from "../types/Cat";
+import { Cat, storeACat } from "../types/Cat";
 import { ChangeTab } from "../types/ChangeTab";
 import { defaultCat } from "../services/util";
 import { Transport, AxiosResponse } from "../types/Transport";
@@ -8,7 +8,6 @@ import { UseTransport } from "../services/Transport";
 import CatScreen0 from "./CatScreen0";
 import CatScreen1 from "./CatScreen1";
 import CatScreen2 from "./CatScreen2";
-
 
 function SignupCat() {
   let { ID } = useParams();
@@ -55,7 +54,7 @@ function SignupCat() {
 function spread(
   signupScreen: number,
   buildCat: Cat,
-  setBuildingCat: (a: Cat) => void,
+  setBuildingCat: storeACat,
   push: ChangeTab
 ): ReactElement {
   switch (signupScreen) {
@@ -68,7 +67,7 @@ function spread(
         <CatScreen1 build={buildCat} incTab={push} returnCat={setBuildingCat} />
       );
     case 2:
-      return <CatScreen2 build={buildCat} incTab={push} />;
+      return (<CatScreen2 build={buildCat} incTab={push} />);
     default:
       throw new Error("Unknown value for the signup screen");
   }
