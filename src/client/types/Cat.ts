@@ -24,6 +24,8 @@ export interface ShippingCat {
   // want this to be a Blob
 }
 
+export type storeACat= (a: Cat) => void;
+
 const KeysOfCat = [
   "name",
   "dob",
