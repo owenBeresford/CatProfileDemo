@@ -3,15 +3,29 @@
     "ecmaVersion": 2021,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "jest-dom" ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "jest-dom"],
   "extends": [
-	"plugin:@typescript-eslint/recommended",
-	"plugin:react-hooks/recommended",
-	"standard-react" 
-	],
-  "rules":{ "strict":1  },
-	"env":{ 
-		"browser": true,
-        "node": true
-	}
-}
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "standard-react",
+      "react-app",
+      "react-app/jest"
+  ],
+  "rules": { "strict": 1 },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+  }
+
