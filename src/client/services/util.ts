@@ -58,12 +58,43 @@ export function getFlag(team: string): string {
   // Flag chars have been manually extracted from
   // http://xahlee.info/comp/unicode_flags.html
   // convert to dictionary with more data https://stackoverflow.com/a/55005075/2375161
-  team = team.toLowerCase();
-  if (team.indexOf("portugal") !== -1) {
-    return "🇵🇹 ";
-  }
-  // IOIO add more code with better data,
-  else {
+  team = team.toLowerCase().trim();
+  const flags:Record<string,string> ={
+	"iceland":"🇮🇸",
+	"denmark": "🇩🇰",
+	"norway": "🇳🇴",
+	"finland": "🇫🇮",
+	"sweden": "🇸🇪",
+	"united kingdom": "🇬🇧",
+	"ireland": "🇮🇪",
+	"netherlands": "🇳🇱",
+	"belgium": "🇧🇪",
+	"france": "🇫🇷",
+	"spain": "🇪🇸",
+	"portugal": "🇵🇹",
+	"italy": "🇮🇹",
+	"germany": "🇩🇪",
+	"poland": "🇵🇱",
+	"czechia": "🇨🇿",
+	"luxembourg": "🇱🇺",
+	"switzerland": "🇨🇭",
+	"austria": "🇦🇹",
+	"slovakia": "🇸🇰",
+	"slovenia": "🇸🇮",
+	"croatia": "🇭🇷",
+	"hungary": "🇭🇺",
+	"estonia": "🇪🇪",
+	"latvia": "🇱🇻",
+	"lithuania": "🇱🇹",
+	"ukraine": "🇺🇦",
+	"romania": "🇷🇴",
+	"macedonia": "🇲🇰",
+	"greece": "🇬🇷",
+  };
+ 
+  if( flags[team] ) {
+    return flags[team];
+  }  else {
     return "🇪🇺";
   }
 }
