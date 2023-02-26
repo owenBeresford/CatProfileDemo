@@ -9,23 +9,20 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
     "standard-react",
-      "react-app",
-      "react-app/jest"
+    "react-app",
+    "react-app/jest"
   ],
   "rules": { "strict": 1 },
   "env": {
     "browser": true,
     "node": true
   },
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
+  "overrides": [
+    {
+      "files": ["**/*.stories.*"],
+      "rules": {
+        "import/no-anonymous-default-export": "off"
       }
-    ]
-  }
-
+    }
+  ]
+}

@@ -11,8 +11,8 @@
     "test": "react-scripts test",
     "lint": "./node_modules/.bin/eslint --exit-on-fatal-error --fix --no-cache 'src/**/*.ts' ; ./node_modules/.bin/eslint --exit-on-fatal-error --fix --no-cache 'src/**/*.tsx' ; prettier --write . ; ",
     "build:client": "react-scripts build;",
-    "build:server": "webpack --config webpack.config.server.js;",
-    "build:app": "react-scripts build; webpack --config webpack.config.server.js; cp ./src/client/default-face.svg build/; cat node_modules/foundation-sites/dist/css/foundation.min.css node_modules/react-day-picker/dist/style.css src/client/App.css >build/app.css; node src/build-tools/build.mjs ",
+    "build:server": "webpack --display-error-details --config webpack.config.server.js;",
+    "build:app": "react-scripts build; webpack  --config webpack.config.server.js; cp ./src/client/default-face.svg build/; cat node_modules/foundation-sites/dist/css/foundation.min.css node_modules/react-day-picker/dist/style.css src/client/App.css >build/app.css; node src/build-tools/build.mjs ",
     "start:storybook": "start-storybook -p 6006 -s public --disable-telemetry --modern --loglevel 3 --no-version-updates ",
     "build:storybook": "build-storybook -s public --disable-telemetry --modern --loglevel 3 "
   },
@@ -21,6 +21,7 @@
   "dependencies": {
     "@popperjs/core": "^2.11.5",
     "@reach/utils": "^0.17.0",
+    "@storybook/cli": "^6.5.16",
     "axios": "^0.27.2",
     "axios-es6-class": "^6.0.1",
     "body-parser": "^1.20.0",
@@ -44,42 +45,8 @@
     "react-scripts": "^5.0.1",
     "react-toggle-component": "^3.0.8",
     "redux": "^4.2.0",
+    "styled-components": "^5.3.6",
     "svgo": "^2.8.0"
-  },
-  "eslintConfig": {
-    "parserOptions": {
-      "ecmaVersion": 2021,
-      "sourceType": "module"
-    },
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint",
-      "jest-dom"
-    ],
-    "extends": [
-      "plugin:@typescript-eslint/recommended",
-      "plugin:react-hooks/recommended",
-      "standard-react",
-      "react-app",
-      "react-app/jest"
-    ],
-    "rules": {
-      "strict": 1
-    },
-    "env": {
-      "browser": true,
-      "node": true
-    },
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
-    ]
   },
   "browserslist": {
     "production": [
@@ -101,15 +68,19 @@
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-coverage": "0.0.8",
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-interactions": "^6.5.16",
     "@storybook/addon-links": "^6.5.16",
     "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/core": "^6.5.16",
+    "@storybook/jest": "0.0.10",
     "@storybook/manager-webpack5": "^6.5.16",
     "@storybook/node-logger": "^6.5.16",
     "@storybook/preset-create-react-app": "^4.1.2",
     "@storybook/react": "^6.5.16",
-    "@storybook/testing-library": "^0.0.13",
+    "@storybook/testing-library": "0.0.13",
+    "@storybook/types": "^7.0.0-alpha.44",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
@@ -147,7 +118,6 @@
     "process": "^0.11.10",
     "prop-types": "^15.8.1",
     "react-test-renderer": "^18.2.0",
-    "storybook": "^6.5.16",
     "testing-library": "0.0.2",
     "ts-jest": "^29.0.0",
     "ts-loader": "^9.3.1",
