@@ -1,26 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
-import { Cat } from "../types/Cat";
-import { Transport, AxiosResponse } from "../types/Transport";
-import { UseTransport } from "../services/Transport";
+import { Cat, storeCats, storeACat } from "../types/Cat";
 
-function ListCats() {
-  const [currentCats, setCats] = useState<Array<Cat>>([] as Array<Cat>);
-  const API: Transport<Array<Cat>, string> = UseTransport() as Transport<
-    Array<Cat>,
-    string
-  >;
+interface ListCatProps {
+  currentCats:Array<Cat>;
+  updateCats:storeCats;
+  updateCat:storeACat;
+}
 
-  useEffect(() => {
-    if (currentCats.length === 0) {
-      API.getAll(undefined).then((dd) => {
-        const importList: AxiosResponse<Array<Cat>> = dd as AxiosResponse<
-          Array<Cat>
-        >;
-        setCats(importList.data);
-      });
+const ListCats:React.FC<ListCatProps> =function(props: ListCatProps):React.ReactElement<ListCatProps> {
+  const changeCat= function(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>):void { 
+    let dom=e!.currentTarget as HTMLElement;
+    while(!dom.getAttribute('data-id') && dom.parentNode!==dom) {
+      if(dom.parentNode) {
+         dom=dom.parentNode as HTMLElement;
+      }
     }
-  }, [currentCats, setCats, API]);
+    const id:string|null=dom.getAttribute('data-id');
+    if(typeof id !=='string') { return; }
+
+    if(parseInt(id, 10)<props.currentCats.length) {
+      props.updateCats( props.currentCats[ id] );
+    }
+  }
+
 
   return (
     <div className="cats">
@@ -28,20 +31,20 @@ function ListCats() {
         <li
           key="new"
           title={"Signup and create a new profile"}
-          className="button"
+          className="button" 
         >
           <NavLink to="/signup/"> Signup</NavLink>
         </li>
-        {currentCats.map((ath, i) => {
+        {props.currentCats.map((ath, i) => {
           return (
-            <li key={i} title={"Display " + ath.name + "'s profile "}>
-              <NavLink to={"/profile/" + i}>{ath.name}</NavLink>
+            <li key={i} title={"Display " + ath.name + "'s profile "} data-id={i} >
+              <NavLink to={"/profile/" + i} onClick={changeCat} >{ath.name}</NavLink>
             </li>
           );
         })}
       </ul>
     </div>
-  );
+  ) as React.ReactElement<ListCatProps>;
 }
 
 export default ListCats;

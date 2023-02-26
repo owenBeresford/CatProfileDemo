@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import ShowCat from "./ShowCat";
-import { Cat, ShippingCat } from "../types/Cat";
+import { Cat, ShippingCat, storeACat } from "../types/Cat";
 import { UseTransport } from "../services/Transport";
 import { Transport } from "../types/Transport";
 import { ChangeTab } from "../types/ChangeTab";
@@ -10,6 +10,8 @@ import { ChangeTab } from "../types/ChangeTab";
 export interface Screen2Props {
   build: Cat;
   incTab: ChangeTab;
+  updateCat:storeACat;
+  removeCat:storeACat;
 }
 
 const CatScreen2: React.FC<Screen2Props> = (props: Screen2Props) => {
@@ -21,6 +23,7 @@ const CatScreen2: React.FC<Screen2Props> = (props: Screen2Props) => {
   }
 
   function next(): boolean {
+    props.updateCat(props.build);
     const API: Transport<ShippingCat, string> = UseTransport();
     /* eslint-disable react/jsx-no-bind */
     const tt: ShippingCat = {
@@ -35,7 +38,7 @@ const CatScreen2: React.FC<Screen2Props> = (props: Screen2Props) => {
 
   return (
     <div className="aScreen popup">
-      <ShowCat current={props.build} isChild={true} />
+      <ShowCat current={props.build} isChild={true} removeCat={props.removeCat} />
 
       <div className="buttonBar">
         <input

@@ -34,11 +34,12 @@ export function getDefaultSelfie(): string {
   return "/default-face.svg";
 }
 
-export function defaultCat(cur: Cat | null): Cat {
+export function defaultCat(cur: Cat | null, nextID:number): Cat {
   if (cur) {
     if (typeof cur.dob !== "object") {
       cur.dob = new Date(cur.dob);
     }
+    cur.ID=nextID;
     return cur;
   }
 
@@ -51,6 +52,7 @@ export function defaultCat(cur: Cat | null): Cat {
     about: "",
     interests: "",
     image: null,
+    ID:nextID,
   } as Cat;
 }
 
