@@ -8,7 +8,6 @@ import { Cat, DEFAULT_BIRTH_DATE, storeACat } from "../types/Cat";
 import { KnownSports, KnownSportsValues } from "../types/KnownSports";
 import { mapInitialValue, includesWithBetterTyping } from "../services/util";
 
-
 export interface Screen0Props {
   build: Cat;
   returnCat: storeACat;
@@ -16,7 +15,7 @@ export interface Screen0Props {
 }
 
 const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
-// I like the 'custom hooks' as described in https://react.school/ui/input; BUT it doesnt work efficiently with typescript
+  // I like the 'custom hooks' as described in https://react.school/ui/input; BUT it doesnt work efficiently with typescript
 
   const [sports, setSports] = useState<Array<KnownSports>>(
     mapInitialValue<Array<KnownSports>>(
@@ -161,4 +160,3 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
 };
 
 export default CatScreen0;
- 

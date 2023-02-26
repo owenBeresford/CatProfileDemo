@@ -6,12 +6,11 @@ import { UseTransport } from "../services/Transport";
 import { Transport } from "../types/Transport";
 import { ChangeTab } from "../types/ChangeTab";
 
-
 export interface Screen2Props {
   build: Cat;
   incTab: ChangeTab;
-  updateCat:storeACat;
-  removeCat:storeACat;
+  updateCat: storeACat;
+  removeCat: storeACat;
 }
 
 const CatScreen2: React.FC<Screen2Props> = (props: Screen2Props) => {
@@ -38,7 +37,11 @@ const CatScreen2: React.FC<Screen2Props> = (props: Screen2Props) => {
 
   return (
     <div className="aScreen popup">
-      <ShowCat current={props.build} isChild={true} removeCat={props.removeCat} />
+      <ShowCat
+        current={props.build}
+        isChild={true}
+        removeCat={props.removeCat}
+      />
 
       <div className="buttonBar">
         <input

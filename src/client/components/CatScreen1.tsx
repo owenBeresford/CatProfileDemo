@@ -4,7 +4,6 @@ import { ChangeTab } from "../types/ChangeTab";
 import { mapInitialValue } from "../services/util";
 import { NavLink } from "react-router-dom";
 
-
 export interface Screen1Props {
   build: Cat;
   returnCat: storeACat;

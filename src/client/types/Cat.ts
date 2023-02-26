@@ -9,7 +9,7 @@ export interface Cat {
   about: string;
   interests: string;
   image: string | null;
-  ID: number|null;
+  ID: number | null;
   // want this to be a Blob
 }
 
@@ -26,8 +26,8 @@ export interface ShippingCat {
   // want this to be a Blob
 }
 
-export type storeACat= (a: Cat) => void;
-export type storeCats= (a: Array<Cat>) => void;
+export type storeACat = (a: Cat) => void;
+export type storeCats = (a: Array<Cat>) => void;
 
 const KeysOfCat = [
   "name",

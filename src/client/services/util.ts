@@ -34,12 +34,12 @@ export function getDefaultSelfie(): string {
   return "/default-face.svg";
 }
 
-export function defaultCat(cur: Cat | null, nextID:number): Cat {
+export function defaultCat(cur: Cat | null, nextID: number): Cat {
   if (cur) {
     if (typeof cur.dob !== "object") {
       cur.dob = new Date(cur.dob);
     }
-    cur.ID=nextID;
+    cur.ID = nextID;
     return cur;
   }
 
@@ -52,7 +52,7 @@ export function defaultCat(cur: Cat | null, nextID:number): Cat {
     about: "",
     interests: "",
     image: null,
-    ID:nextID,
+    ID: nextID,
   } as Cat;
 }
 
@@ -61,42 +61,42 @@ export function getFlag(team: string): string {
   // http://xahlee.info/comp/unicode_flags.html
   // convert to dictionary with more data https://stackoverflow.com/a/55005075/2375161
   team = team.toLowerCase().trim();
-  const flags:Record<string,string> ={
-	"iceland":"🇮🇸",
-	"denmark": "🇩🇰",
-	"norway": "🇳🇴",
-	"finland": "🇫🇮",
-	"sweden": "🇸🇪",
-	"united kingdom": "🇬🇧",
-	"ireland": "🇮🇪",
-	"netherlands": "🇳🇱",
-	"belgium": "🇧🇪",
-	"france": "🇫🇷",
-	"spain": "🇪🇸",
-	"portugal": "🇵🇹",
-	"italy": "🇮🇹",
-	"germany": "🇩🇪",
-	"poland": "🇵🇱",
-	"czechia": "🇨🇿",
-	"luxembourg": "🇱🇺",
-	"switzerland": "🇨🇭",
-	"austria": "🇦🇹",
-	"slovakia": "🇸🇰",
-	"slovenia": "🇸🇮",
-	"croatia": "🇭🇷",
-	"hungary": "🇭🇺",
-	"estonia": "🇪🇪",
-	"latvia": "🇱🇻",
-	"lithuania": "🇱🇹",
-	"ukraine": "🇺🇦",
-	"romania": "🇷🇴",
-	"macedonia": "🇲🇰",
-	"greece": "🇬🇷",
+  const flags: Record<string, string> = {
+    iceland: "🇮🇸",
+    denmark: "🇩🇰",
+    norway: "🇳🇴",
+    finland: "🇫🇮",
+    sweden: "🇸🇪",
+    "united kingdom": "🇬🇧",
+    ireland: "🇮🇪",
+    netherlands: "🇳🇱",
+    belgium: "🇧🇪",
+    france: "🇫🇷",
+    spain: "🇪🇸",
+    portugal: "🇵🇹",
+    italy: "🇮🇹",
+    germany: "🇩🇪",
+    poland: "🇵🇱",
+    czechia: "🇨🇿",
+    luxembourg: "🇱🇺",
+    switzerland: "🇨🇭",
+    austria: "🇦🇹",
+    slovakia: "🇸🇰",
+    slovenia: "🇸🇮",
+    croatia: "🇭🇷",
+    hungary: "🇭🇺",
+    estonia: "🇪🇪",
+    latvia: "🇱🇻",
+    lithuania: "🇱🇹",
+    ukraine: "🇺🇦",
+    romania: "🇷🇴",
+    macedonia: "🇲🇰",
+    greece: "🇬🇷",
   };
- 
-  if( flags[team] ) {
+
+  if (flags[team]) {
     return flags[team];
-  }  else {
+  } else {
     return "🇪🇺";
   }
 }

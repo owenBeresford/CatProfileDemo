@@ -10,10 +10,12 @@ export interface ButtonProps {
 
 // NB: push is a CB, not a call to Array.push
 const BooleanButton: React.FC<ButtonProps> = (props: ButtonProps) => {
-	if(!props || !props.text) { return (<></>); }
-	const trigger=():void => {
-		props.push(props.text);
-  	};
+  if (!props || !props.text) {
+    return <></>;
+  }
+  const trigger = (): void => {
+    props.push(props.text);
+  };
 
   const nom = props.text.replace(/ /g, "_");
   return (
@@ -30,4 +32,3 @@ const BooleanButton: React.FC<ButtonProps> = (props: ButtonProps) => {
 };
 
 export default BooleanButton;
-

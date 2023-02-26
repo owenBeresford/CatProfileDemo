@@ -8,7 +8,6 @@ import { DEFAULT_BIRTH_DATE } from "../types/Cat";
 import { usePopper } from "react-popper";
 import FocusTrap from "focus-trap-react";
 
-
 interface DateProps {
   passback: ChangeTab;
   initialVal: number;
