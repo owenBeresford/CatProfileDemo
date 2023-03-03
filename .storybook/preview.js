@@ -1,3 +1,4 @@
+import "../node_modules/foundation-sites/dist/css/foundation.min.css";
 import "../src/client/App.css";
 
 export const parameters = {
