@@ -23,7 +23,7 @@ I have not built:
 - A professional level webpack
 - Any security on APIs or HTTPS etc
 - CSS a tied to each component, as this project isn't large enough to need that organisation
-- add CSS to webpack, add minify to the CSS
+- add CSS to webpack, add minify to the CSS, UPDATE: FIXED
 - any tests; but code does compile to JS. UPDATE: cough cough.
 - support for older browsers yet; for a product I would transpile to a more generic version of JS
 - correct types to compile Mongoose + lean() + typescript. I spent 4h trying to solve that mess. I could dodge by making that class a JS file
