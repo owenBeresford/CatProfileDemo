@@ -1,5 +1,5 @@
-@import "../../node_modules/foundation-sites/dist/css/foundation.min.css";
-@import "../../node_modules/react-day-picker/dist/style.css";
+@import "../../../node_modules/foundation-sites/dist/css/foundation.min.css";
+@import "../../../node_modules/react-day-picker/dist/style.css";
 
 .App {
   text-align: center;
