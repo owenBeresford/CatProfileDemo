@@ -1,53 +1,71 @@
-import React from "react";
+import React  from "react";
 import { NavLink } from "react-router-dom";
-import { Cat, storeCats, storeACat } from "../types/Cat";
+import { Cat } from "../types/Cat";
+import {accessCurrentCats, listenHandler } from '../types/CatState';
+import PropTypes from 'prop-types';
+
 
 interface ListCatProps {
-  currentCats: Array<Cat>;
-  updateCats: storeCats;
-  updateCat: storeACat;
+  currentCats: accessCurrentCats;
+  changeCat: (a:HTMLElement) => void;
+  listenToState: listenHandler;
+  aKey: string;
 }
 
-const ListCats: React.FC<ListCatProps> = function (
-  props: ListCatProps
-): React.ReactElement<ListCatProps> {
-  const changeCat = function (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  ): void {
-    let dom = e!.currentTarget as HTMLElement;
-    while (!dom.getAttribute("data-id") && dom.parentNode !== dom) {
-      if (dom.parentNode) {
-        dom = dom.parentNode as HTMLElement;
-      }
-    }
-    const id: string | null = dom.getAttribute("data-id");
-    if (typeof id !== "string") {
-      return;
-    }
+class ListCats extends React.Component<ListCatProps>  {
+  private lastUpdate:Date;
 
-    if (parseInt(id, 10) < props.currentCats.length) {
-      props.updateCats(props.currentCats[id]);
-    }
+  constructor(props:ListCatProps) {
+    super(props);
+    this.lastUpdate=new Date((new Date()).getTime()-3000);
+   
+    this.updateMe=this.updateMe.bind(this);
+    props.listenToState( this.updateMe, "ListCats"); 
+  }
+
+  static CatListPropTypes = {
+    currentCats: PropTypes.func.isRequired,
+    changeCat: PropTypes.func.isRequired,
+    listenToState: PropTypes.func.isRequired,
+    aKey: PropTypes.string.isRequired,
   };
 
-  return (
-    <div className="cats">
+  shouldComponentUpdate(nextProps:ListCatProps):boolean {
+     if( this.props.aKey !== nextProps.aKey ) {
+      console.warn("IOIO I //should// update ListCat");
+      return true;    
+    }
+    return false;
+  }
+
+  updateMe( ):void {
+    if( ((new Date()).getTime() - this.lastUpdate.getTime())/1000 >0.2 ) {
+      this.forceUpdate();
+      this.lastUpdate= new Date((new Date()).getTime() +500);
+    }
+    console.warn("IOIO Executed update state event "+this.props.aKey, (new Date()).getTime(), 
+        this.lastUpdate.getTime(), ((new Date()).getTime() - this.lastUpdate.getTime())/1000 );
+  }
+ 
+  render(): React.ReactElement<ListCatProps> {
+    return (
+    <div className="cats" key={this.props.aKey}>
       <ul className="aList">
         <li
-          key="new"
+          key={"aList"+this.props.aKey+"new"}
           title={"Signup and create a new profile"}
           className="button"
         >
           <NavLink to="/signup/"> Signup</NavLink>
         </li>
-        {props.currentCats.map((ath, i) => {
+        {this.props.currentCats().map((ath:Cat, i:number) => {
           return (
             <li
-              key={i}
-              title={"Display " + ath.name + "'s profile "}
+              key={"aList"+this.props.aKey+"_"+ath.ID}
+              title={"Display " + ath.name + "'s profile."}
               data-id={i}
             >
-              <NavLink to={"/profile/" + i} onClick={changeCat}>
+              <NavLink to={"/profile/" + i} onClick={(e)=> { this.props.changeCat(e!.currentTarget as HTMLElement)} }>
                 {ath.name}
               </NavLink>
             </li>
@@ -55,7 +73,9 @@ const ListCats: React.FC<ListCatProps> = function (
         })}
       </ul>
     </div>
-  ) as React.ReactElement<ListCatProps>;
-};
+    ) as React.ReactElement<ListCatProps>;
+  }
+
+}
 
 export default ListCats;

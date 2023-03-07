@@ -14,6 +14,10 @@ export function getPreferredLanguage(): string {
 export const LANG_UK = "en-gb";
 const DEFAULT_NAME = "Default cat";
 
+export function noop() {
+    return;
+}
+
 // this is too small to be its own component
 // yes there are some libraries that offer features like this;
 // but the code to set them up is about the same volume as below
@@ -56,6 +60,20 @@ export function defaultCat(cur: Cat | null, nextID: number): Cat {
   } as Cat;
 }
 
+export function TESTdefaultCat() {
+  return {
+    name: DEFAULT_NAME,
+    dob: new Date(),
+    team: "",
+    gender: "",
+    sports: ["American Football"],
+    about: "",
+    interests: "",
+    image: null,
+    ID: 1,
+  } as Cat;
+}
+
 export function getFlag(team: string): string {
   // Flag chars have been manually extracted from
   // http://xahlee.info/comp/unicode_flags.html
@@ -68,6 +86,9 @@ export function getFlag(team: string): string {
     finland: "🇫🇮",
     sweden: "🇸🇪",
     "united kingdom": "🇬🇧",
+    "uk": "🇬🇧",
+    "england": "🇬🇧",
+    "britain": "🇬🇧",
     ireland: "🇮🇪",
     netherlands: "🇳🇱",
     belgium: "🇧🇪",
@@ -97,6 +118,7 @@ export function getFlag(team: string): string {
   if (flags[team]) {
     return flags[team];
   } else {
+    console.warn("Country '"+team+"' not known to this platform.  Using default");
     return "🇪🇺";
   }
 }

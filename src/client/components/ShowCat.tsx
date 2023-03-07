@@ -1,131 +1,184 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import { NavLink } from "react-router-dom";
-import { Cat, storeACat } from "../types/Cat";
+import { useParams, NavLink } from "react-router-dom";
+import { Cat, storeACat, removeableCat } from "../types/Cat";
 import { renderDate, getDefaultSelfie, getFlag } from "../services/util";
+import { accessACat, listenHandler } from '../types/CatState'
+import PropTypes from 'prop-types';
 
 export interface ShowCatProps {
-  current: Cat | null;
+  current: accessACat;
   isChild: boolean;
-  removeCat: storeACat;
+  removeCat: removeableCat;
+  listenToState: listenHandler;
+  aKey:string;
 }
 
-const ShowCat: React.FC<ShowCatProps> = (props: ShowCatProps) => {
-  // short name isn't great, but confusing a type and variable is worse
-  const { ID } = useParams();
-  const [errMsg, setErrorMessage] = useState<string>("");
-  if (!props.current || parseInt(ID || "", 10) !== props.current.ID) {
-    //   if (!ID || (props.current && !props.current.ID)) {
-    setErrorMessage("no ID and no data; pls talk to a dev.");
-    return (
-      <div className="error popup">
-        Data loading.. no ID and no data; pls talk to a dev.
-      </div>
-    );
-    //   }
+export interface InnerShowCatProps extends ShowCatProps {
+  ID:string;
+}
+
+export class ShowCatInner extends React.Component<InnerShowCatProps> {
+  private lastUpdate:Date;
+  private errMsg:string;
+
+  constructor(props:InnerShowCatProps) {
+    super(props);
+    this.lastUpdate=new Date((new Date()).getTime()-3000);
+    this.errMsg="";
+   
+    this.updateMe=this.updateMe.bind(this);
+    props.listenToState( this.updateMe, "ShowCat"); 
   }
 
-  // this component only knows about 1 cat, so there is no need to select the correct cat.
-  function deleteCat(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void {
-    if (!props.current) {
-      return;
-    } // this button should be disabled if no cat
-    props.removeCat(props.current);
+  static InnerShowCatPropTypes = {
+    current: PropTypes.func.isRequired,
+    removeCat: PropTypes.func.isRequired,
+    listenToState: PropTypes.func.isRequired,
+    isChild: PropTypes.bool.isRequired,
+    aKey: PropTypes.string.isRequired,
+    ID: PropTypes.string.isRequired,
+  };
+
+  shouldComponentUpdate(nextProps:ShowCatProps):boolean {
+     if( this.props.aKey !== nextProps.aKey) {
+      console.warn("IOIO I //should// update ShowCat");
+      return true;    
+    }
+    return false;
   }
+
+  updateMe( ):void {
+    if( ((new Date()).getTime() - this.lastUpdate.getTime())/1000 >0.2 ) {
+      this.forceUpdate();
+      this.lastUpdate= new Date((new Date()).getTime() +500);
+    
+      console.warn("IOIO Executed update state event "+this.props.aKey, (new Date()).getTime(), 
+        this.lastUpdate.getTime(), ((new Date()).getTime() - this.lastUpdate.getTime())/1000 );
+    }
+  }
+
+  render(): React.ReactElement<InnerShowCatProps> {
+console.log("DEBUG ", JSON.stringify(this.props.current())); 
+    const CC=this.props.current();  
+    let tt:string | number=this.props.ID ?? "";
+    tt=parseInt(tt, 10);
+    if (!CC || !Number.isInteger(CC.ID) || tt !== CC.ID) {
+    //   if (!ID || (props.current && !props.current.ID)) {
+         this.errMsg="no ID and no data; pls talk to a dev.";
+        return (
+      <div className="error popup">
+        Data loading.. no ID and no data; pls talk to a dev. 
+        <textarea defaultValue={JSON.stringify( CC)+"   :"+this.props.ID+":  :"+CC.ID+":   "+parseInt(this.props.ID || "", 10)+
+        "   "+(typeof this.props.ID) +"  code thinks IDs match?"+ (parseInt(this.props.ID || "", 10) === CC.ID?"MATCH":"FAIL")
+        +"    "+(typeof CC.ID)+"   "+tt +"   isInteger "+Number.isInteger(this.props.ID) }>
+        </textarea>
+      </div>
+        );
+    //   }
+    }
+console.log("DEBUG ", JSON.stringify(CC));    
 
   // can also use &#9998; as an edit symbol
   // benefits from  .edit-icon { display: inline-block; transform: rotateZ(90deg); font-size:200%; }
-  if (!props.current || !props.current.dob) {
-    return <div className="error popup">Data loading.. {errMsg}</div>;
+    if (!CC.dob) {
+    return (<div className="error popup">Data loading... {this.errMsg}</div>);
   }
-  const flag = getFlag(props.current.team);
+  const flag = getFlag(CC.team);
   const age: string =
     new Date().getUTCFullYear() -
-    props.current.dob.getUTCFullYear() +
+    CC.dob.getUTCFullYear() +
     " years old";
+
+console.log("DEBUG ", JSON.stringify(CC));    
   return (
-    <div className="cat popup">
-      <dl>
-        {errMsg ? (
+    <div className="cat popup" key={this.props.aKey}>
+      <dl key={this.props.aKey+"dl"}>
+        {this.errMsg ? (
           <>
             <dt></dt>
-            <dd className="error">{errMsg}</dd>
+            <dd className="error">{this.errMsg}</dd>
           </>
         ) : (
           <></>
         )}
         <dt>
           Cat name
-          {props.isChild ? (
+          <span className="goBack">
+            <NavLink className="button bigger" to="/"> ⇐ </NavLink>
+          </span>
+          {this.props.isChild ? (
             <></>
           ) : (
             <>
               <span className="goBack">
-                <NavLink to={"/signup/" + ID}>✍ </NavLink>
+                <NavLink className="button bigger" to={ "/signup/" + this.props.ID }> ✍ </NavLink>
               </span>
               <span className="goBack">
-                <NavLink to={"/"} onClick={deleteCat}>
-                  {" "}
-                  &#9249;{" "}
+                <NavLink className="button awkward" to={"/"} onClick={() => { return this.props.removeCat(null); }}>
+                  {" "}❌{" "}
                 </NavLink>
               </span>
             </>
           )}
-          <span className="goBack">
-            <NavLink to="/">❌</NavLink>
-          </span>
+
         </dt>
         <dd>
-          {props.current.image === null ? (
+          {CC.image === null ? (
             <img
               src={getDefaultSelfie()}
               width="100"
               height="150"
-              alt="Fake face until there is funding."
+              alt="A fake face until there is funding."
             />
           ) : (
             <img
-              src={props.current.image}
+              src={CC.image}
               width="100"
               height="150"
               alt="The professional sporting-cats face"
             />
           )}
-          <p className="inset"> {props.current.name} </p>
+          <p className="inset"> {CC.name} </p>
         </dd>
         <dt>Expressed Gender </dt>
-        <dd>{props.current.gender}</dd>
+        <dd>{CC.gender}</dd>
         <dt>Date of birth </dt>
         <dd>
-          <time dateTime={props.current.dob.toString()}>
-            {renderDate(props.current.dob)}/ {age}
+          <time dateTime={CC.dob.toString()}>
+            {renderDate(CC.dob)}/ {age}
           </time>
         </dd>
         <dt>About me </dt>
-        <dd>{props.current.about}</dd>
+        <dd>{CC.about}</dd>
         <dt>Team </dt>
         <dd className="superLarge">
-          {props.current.team} <span>{flag}</span>
+          {CC.team} <span>{flag}</span>
         </dd>
         <dt>Sports </dt>
         <dd>
-          {" "}
           <ul className="ticks">
-            {props.current.sports.map((val, i) => {
+            {CC.sports.map((val, i) => {
               return (
                 <li key={i} title={"A " + val + " sport "}>
                   {" "}
                   {val}
                 </li>
               );
-            })}{" "}
-          </ul>{" "}
+            })}
+          </ul>
         </dd>
         <dt>Other interests </dt>
-        <dd>{props.current.interests}</dd>
+        <dd>{CC.interests}</dd>
       </dl>
     </div>
   );
+}
+}
+
+export const ShowCat:React.FC<ShowCatProps> =(props) => {
+  let { ID } = useParams();
+  if(!ID) { ID=""; }
+  return <ShowCatInner {...props} ID={ID} /> as React.ReactElement<ShowCatProps>;
 };
 
-export default ShowCat;
+export default ShowCat ;

@@ -121,7 +121,7 @@ const DateBlock: React.FC<DateProps> = (props: DateProps) => {
               mode="single"
               defaultMonth={dob}
               selected={dob}
-              /* eslint-disable react/jsx-no-bind */
+              /* eslint-disable-next-line react/jsx-no-bind */
               onSelect={handleDaySelect}
             />
           </div>
