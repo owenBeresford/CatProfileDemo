@@ -2,7 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import CatRoutes from "./client/components/Routes";
-import "./client/App.css";
+import "./client/asset/App.css";
  
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
