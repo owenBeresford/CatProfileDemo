@@ -12,7 +12,7 @@
     "lint": "./node_modules/.bin/eslint --exit-on-fatal-error --fix --no-cache 'src/**/*.ts' ; ./node_modules/.bin/eslint --exit-on-fatal-error --fix --no-cache 'src/**/*.tsx' ; prettier --write . ; ",
     "build:client": "react-scripts build;",
     "build:server": "webpack --config webpack.config.server.js;",
-    "build:app": "react-scripts build; webpack  --config webpack.config.server.js; cp ./src/client/asset/default-face.svg build/; node src/build-tools/build.mjs ",
+    "build:app": "react-scripts build && webpack --config webpack.config.server.js && node src/build-tools/build.mjs",
 	"#build:css":"cat node_modules/foundation-sites/dist/css/foundation.min.css node_modules/react-day-picker/dist/style.css src/client/asset/App.css >./build/app.css", 
     "start:storybook": "start-storybook -p 6006 -s public --disable-telemetry --modern --loglevel 3 --no-version-updates ",
     "build:storybook": "build-storybook -s public --disable-telemetry --modern --loglevel 3 "
