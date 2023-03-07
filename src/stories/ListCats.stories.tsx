@@ -1,22 +1,23 @@
 import React from "react";
 import ListCats from "../client/components/ListCats";
 import { BrowserRouter } from "react-router-dom";
-import { Cat, storeCats, storeACat } from "../client/types/Cat";
+import { Cat } from "../client/types/Cat";
 // import { actions, action } from "@storybook/addon-actions";
 import { AllCats } from "./Cats.fixture";
 
-const store: storeACat = (i: Cat): void => {
+const store  = (i: HTMLElement): void => {
   return;
 };
 
-const storeMany: storeCats = (i: Array<Cat>): void => {
-  return;
-};
+const stateChange=(a:()=>void ):void =>{
+  return
+}
 
 const argTypes = {
   currentCats: { type: { name: "Array<Cat>", required: true } },
-  updateCats: { type: { name: "storeCats", required: true } },
-  updateCat: { type: { name: "storeACat", required: true } },
+  changeCat: { type: { name: "(i: HTMLElement): void", required: true } },
+  stateChange: { type: { name: "(a:()=>void )=>void ", required: true } },
+  
 };
 
 export default {
@@ -29,9 +30,10 @@ export const STEP0 = () => {
   return (
     <BrowserRouter>
       <ListCats
-        currentCats={AllCats}
-        updateCats={storeMany}
-        updateCat={store}
+        currentCats={() => {return AllCats}}
+        changeCat={store}
+        listenToState={stateChange}
+        aKey={"SSSS"}
       />
     </BrowserRouter>
   );
