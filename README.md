@@ -1,6 +1,6 @@
 # CatProfileDemo
 
-This is not a product.
+This is not a product, this is a tech test.
 
 Objective
 - use storybook, or cypress as I couldn't use mocha, jasmine or jest for component testing easily 
