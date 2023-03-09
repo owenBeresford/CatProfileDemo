@@ -4,7 +4,7 @@ This is not a product.
 
 I am showing:
 
-- About 600 standardised LOC that is not tests, CSS or libraries
+- About 2000 standardised LOC that is not tests, CSS or libraries
 - I can use Enum (feels weird outside of SQL)
 - I can use interfaces and types
 - I can use basic React 18
@@ -21,7 +21,6 @@ I am showing:
 I have not built:
 
 - A professional level webpack (imported it)
-- Any security on APIs or HTTPS etc
 - CSS a tied to each component, as this project isn't large enough to need that organisation
 - support for older browsers yet; for a product I would transpile to a more generic version of JS.  
 - correct types to compile Mongoose + lean() + typescript.  I spent 4h trying to solve that mess. I could dodge by making that class a JS file
@@ -37,5 +36,6 @@ I have not built:
 - Interaction: as this UI is designed in layers, add a big vague-focus cat in the background
 - hygiene: add HTTPS
 - hygiene: set HTTP headers
-- Add complete code for the nation flags. UPDATE: the EU is supported now, and common synomyms for the UK
+- Add complete code for the nation flags. UPDATE: the EU is supported now, and common synonyms for the UK
 - My props for components are passing stateless impure functions, which only modify things in Redux State.
+

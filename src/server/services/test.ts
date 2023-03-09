@@ -1,5 +1,4 @@
 import { Request, Response, Application } from "express";
-// import { Cat, KeysOfCat, isCat } from '../types/Cat';
 import { isCat } from "../types/Cat";
 import path from "path";
 import { readFile } from "fs/promises";
