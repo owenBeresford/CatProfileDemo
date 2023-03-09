@@ -1,4 +1,3 @@
-
 import { readFile, writeFile, mkdir, copyFile } from "fs/promises";
 import { constants, lstatSync, createWriteStream } from "fs";
 import path from "path";
@@ -41,4 +40,3 @@ await copyFile(
 }); // add abort?
 
 console.log("Copied fixtures");
-

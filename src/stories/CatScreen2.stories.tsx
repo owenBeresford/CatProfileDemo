@@ -13,11 +13,9 @@ const changeTab: ChangeTab = (i: number): void => {
 const changeCat: storeACat = (a: Cat): void => {
   return;
 };
-const update:removeableCat= (i: Cat|null): void => {
+const update: removeableCat = (i: Cat | null): void => {
   return;
 };
-
-
 
 const argTypes = {
   build: { type: { name: "Cat", required: true } },

@@ -15,7 +15,7 @@ export const LANG_UK = "en-gb";
 const DEFAULT_NAME = "Default cat";
 
 export function noop() {
-    return;
+  return;
 }
 
 // this is too small to be its own component
@@ -86,9 +86,9 @@ export function getFlag(team: string): string {
     finland: "🇫🇮",
     sweden: "🇸🇪",
     "united kingdom": "🇬🇧",
-    "uk": "🇬🇧",
-    "england": "🇬🇧",
-    "britain": "🇬🇧",
+    uk: "🇬🇧",
+    england: "🇬🇧",
+    britain: "🇬🇧",
     ireland: "🇮🇪",
     netherlands: "🇳🇱",
     belgium: "🇧🇪",
@@ -118,7 +118,9 @@ export function getFlag(team: string): string {
   if (flags[team]) {
     return flags[team];
   } else {
-    console.warn("Country '"+team+"' not known to this platform.  Using default");
+    console.warn(
+      "Country '" + team + "' not known to this platform.  Using default"
+    );
     return "🇪🇺";
   }
 }

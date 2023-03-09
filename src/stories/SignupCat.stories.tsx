@@ -1,15 +1,15 @@
 import React from "react";
-import SignupCat, {InnerSignupCat} from "../client/components/SignupCat";
+import SignupCat, { InnerSignupCat } from "../client/components/SignupCat";
 import { BrowserRouter } from "react-router-dom";
 // import { actions, action } from "@storybook/addon-actions";
 import { AllCats, smolCat } from "./Cats.fixture";
 import { Cat, storeACat, removeableCat } from "../client/types/Cat";
-import { TESTdefaultCat } from '../client/services/util';
+import { TESTdefaultCat } from "../client/services/util";
 
 const store: storeACat = (i: Cat): void => {
   return;
 };
-const update:removeableCat= (i: Cat|null): void => {
+const update: removeableCat = (i: Cat | null): void => {
   return;
 };
 
@@ -31,9 +31,15 @@ export default {
   //	}
 };
 
-const f1=():Array<Cat> => { return AllCats; };
-const f2=():Cat => { return smolCat; };
-const f3=():Cat => { return AllCats[1]; };
+const f1 = (): Array<Cat> => {
+  return AllCats;
+};
+const f2 = (): Cat => {
+  return smolCat;
+};
+const f3 = (): Cat => {
+  return AllCats[1];
+};
 
 // likely state for a new signup
 export const STEP0 = () => {
@@ -59,7 +65,7 @@ export const STEP1 = () => {
         current={f2}
         updateCat={store}
         removeCat={update}
-        ID={""+(Math.floor(Number.MIN_SAFE_INTEGER /2) +100) }
+        ID={"" + (Math.floor(Number.MIN_SAFE_INTEGER / 2) + 100)}
       />
     </BrowserRouter>
   );
@@ -74,9 +80,8 @@ export const STEP2 = () => {
         current={f3}
         updateCat={store}
         removeCat={update}
-        ID={""+(Math.floor(Number.MIN_SAFE_INTEGER /2) +101) }
+        ID={"" + (Math.floor(Number.MIN_SAFE_INTEGER / 2) + 101)}
       />
     </BrowserRouter>
   );
 };
-

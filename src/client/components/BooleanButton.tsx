@@ -11,7 +11,7 @@ export interface ButtonProps {
 // NB: push is a CB, not a call to Array.push
 const BooleanButton: React.FC<ButtonProps> = (props: ButtonProps) => {
   if (!props || !props.text) {
-    return (<></>);
+    return <></>;
   }
   const trigger = (): void => {
     props.push(props.text);

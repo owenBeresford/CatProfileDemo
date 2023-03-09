@@ -3,8 +3,7 @@ OB NOTES
 * To comply to GDPR, please only enter test data
 * We want to trash data in heruko every 24h as a security measure
 * We have no access constraints on the app
-* Due to the request for speed, I may the mongo in passwordless mode (this is the first time in my life I have done that )
-* My working knowledge of angular1 (2015) would would fight with anything using JS modules, typescript, es2020 etc
+* Due to the request for speed, I may run the Mongo in passwordless mode (this is the first time in my life I have done that )
 * I plan to say "this is very simple code", I will avoid spotting the issues that typescript is good for, by not writing them
 * I really do not want to argue with webpack, babel or other build tools, not enough time
 * oss-test-2022-08 https://git.heroku.com/oss-test-2022-08.git   maintenance is ON
@@ -12,17 +11,17 @@ OB NOTES
 * mongo "mongodb+srv://cluster0.4phrrdq.mongodb.net/myFirstDatabase" --username test
 * git@github.com:owenBeresford/OSStest.git
 * The default face was taken from https://www.reshot.com/free-svg-icons/face/
-* Interaction: I should spend more time on gender input.  In order to work with all theoretical options I am leaving this as a free text 
-* Interaction: I should implement the images, think about best image size on mobile, maybe add team-logo-as-background feature
-* User story: Ability to edit profiles isn't asked for retrospectively, I will skip it for now due to budget
-* NOTE https://twitter.com/StackStatus #leSigh
-* Interaction: Add the "arrow buttons" css, like on my site
-* Interaction: Make the day picker nicer to use.
-* interaction: Improve logo, maybe your company one 
-* interaction: Make a better form validation, rather than that 2min "is it null" filter
-* Interaction: as this UI is designed in layers, add a big vague-focus sport-image in the background
-* hygiene: add HTTPS
-* hygiene: set HTTP headers 
+* After that date, I have added more type files, Storybook tests, a Jest API test, added some international alphabet char tests.
+* I have improved the UI /design; I need to improve the RWD/ grid layouts aspects
+* I have improved the SIP and code isolation.  The FP architecture of React18 is easy to make messy.
+
+RETROSPECTIVE:
+If I did that again: I would copy the storybook config, focus on //design// CSS rather than accrete CSS, Add panels/ component design as mentioned in the design notes see https://www.npmjs.com/package/react-foundation.  Get a better solution to accreting data in forms, whilst FP/ react18. Code was added quickly, I prefer to design interactions first, look at components stacked by z-index
+I did do:  minimal small screen design, required features, import specific UI-widgets, data cleanlyness (i.e. GDPR), use a new app-starter
+First piece of work with no comp or sketch in ages; due to short timescales, poor design practice
+Building component tests via Storybook is a much better experience than hand-builds. I am retiring Mocha for unit tests, whilst writing ES6 or greater; I am now using Jest for API tests; I am using import and modules in node API, so I only use 1 edition of JS.  
+
+to learn: component design tools
 
 
 * IOIO https://devcenter.heroku.com/articles/getting-started-with-nodejs?singlepage=true

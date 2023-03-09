@@ -1,6 +1,6 @@
 # OSStest
 
-This is not a product.  
+This is not a product.
 
 I am showing:
 
@@ -22,8 +22,8 @@ I have not built:
 
 - A professional level webpack (imported it)
 - CSS a tied to each component, as this project isn't large enough to need that organisation
-- support for older browsers yet; for a product I would transpile to a more generic version of JS.  
-- correct types to compile Mongoose + lean() + typescript.  I spent 4h trying to solve that mess. I could dodge by making that class a JS file
+- support for older browsers yet; for a product I would transpile to a more generic version of JS.
+- correct types to compile Mongoose + lean() + typescript. I spent 4h trying to solve that mess. I could dodge by making that class a JS file
 - There are clearly documented omissions, tagged with TODO in the files
 - Transform useEffect to useTransform; when I am writing really fast I cannot use the newest API with unknown side-effects
 - The libraries that I choose claim to want react16; they are running with react18. This isn't a business critical situation
@@ -38,4 +38,3 @@ I have not built:
 - hygiene: set HTTP headers
 - Add complete code for the nation flags. UPDATE: the EU is supported now, and common synonyms for the UK
 - My props for components are passing stateless impure functions, which only modify things in Redux State.
-

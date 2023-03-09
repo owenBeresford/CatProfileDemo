@@ -28,7 +28,12 @@ export default {
 export const STEP0 = () => {
   return (
     <BrowserRouter>
-      <CatScreen1 build={smolCat} returnCat={store} incTab={changeTab}  aKey={"WWW2"} />
+      <CatScreen1
+        build={smolCat}
+        returnCat={store}
+        incTab={changeTab}
+        aKey={"WWW2"}
+      />
     </BrowserRouter>
   );
 };

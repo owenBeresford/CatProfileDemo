@@ -56,4 +56,3 @@ const port = process.env.SERVICE_PORT;
 app.listen(port, () => {
   console.log(`Server [pid ${process.pid}] now listening on port: ${port} `);
 });
-

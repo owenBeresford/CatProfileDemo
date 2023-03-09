@@ -9,7 +9,9 @@
     "strict": true,
     "target": "esnext",
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false
   },
   "exclude": ["./build", "./client"],
   "include": ["."]

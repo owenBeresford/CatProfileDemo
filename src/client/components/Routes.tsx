@@ -6,7 +6,7 @@ import SignupCat from "./SignupCat";
 import ListCats from "./ListCats";
 import { CatState } from "../services/CatState";
 
-const STATE=new CatState();
+const STATE = new CatState();
 
 const CatRoutes = () => {
   return (
@@ -19,7 +19,7 @@ const CatRoutes = () => {
               currentCats={STATE.currentCats}
               changeCat={STATE.changeCat}
               listenToState={STATE.listen}
-              aKey={ STATE.key }
+              aKey={STATE.key}
             />
           }
         />
@@ -62,7 +62,13 @@ const CatRoutes = () => {
         <Route
           path="/profile/:ID"
           element={
-            <ShowCat current={STATE.current} isChild={false} removeCat={STATE.removeCat} listenToState={STATE.listen} aKey={STATE.key} />
+            <ShowCat
+              current={STATE.current}
+              isChild={false}
+              removeCat={STATE.removeCat}
+              listenToState={STATE.listen}
+              aKey={STATE.key}
+            />
           }
           key="profile"
         />

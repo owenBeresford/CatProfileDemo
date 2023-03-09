@@ -9,7 +9,7 @@ const smolCat: Cat = {
   about: "(short data) a a",
   interests: "a a",
   image: null,
-  ID: Math.floor(Number.MIN_SAFE_INTEGER /2) +100,
+  ID: Math.floor(Number.MIN_SAFE_INTEGER / 2) + 100,
 } as Cat;
 
 const bigCat: Cat = {
@@ -73,7 +73,7 @@ const bigCat: Cat = {
   interests:
     "LA;EKRJGL;KA GALKGH IAD SDIOUG AHGDSIG ;kljg adlgj ;dlfgj aodjgopisdpoghijego opidghjsd;lig ;sdlk sdlk;oer odfjb;lsrjut y0 wjg;lzdmnfg [9ei t0 qrglwotu 10tja;elkrgw]- i7yia;kugt riuhb;sdkj5 iu ertjh uipwry qorgh]ro6pu-2gh asfiwu3y 5r[4 kylkabn;kajwehrt47uy eljsldmgnq34opi6u3]-5uo rs;tmgn;kwje t -2]7u er;tmhbweklh r0=92y734lk hasn f   2-895 294hkmfsdjbni096ukfnjwe r3i y 0[ptyh;ljkwhelksrty u3yq87r i6bmedhy07850 igh[oi45091    uj54 t91tqpoh209yi [qgh    u92ti24 lkbndmlgwp4]5o ty0981 gip me;rlg j2-0yu03 g;rtmhpj3 k-y93qu0=t2pqjy i 2o-jqh 1-9 uiq kh-ti -qjh=b0 1ui39t ù0g`0=it 1ug=10i  fg0= 9rio   23fp`1ti t -9iqopgq 34opit hqerojh q34o[igj qoigjq [pgujq34giu[q45j gaelrngopeark g[oiq4w3 jug-243 gq -g090w=9eg opergj0=qw e]o jfg iqeroiq3 4jhoearglkhq349ofg`fghwisuf 3pif hwqipufh9qwefu9-w 8fqw9jf 92qjf    fo20f 9-28f 9- 2hf-9   -8ef h9-    ehjf    pof h-9 2 -whfow[qif",
   image: null,
-  ID: Math.floor(Number.MIN_SAFE_INTEGER /2) +101,
+  ID: Math.floor(Number.MIN_SAFE_INTEGER / 2) + 101,
 } as Cat;
 
 // these are text-charactor rendering test; I have no persona for these profiles
@@ -88,7 +88,7 @@ const genericAsiaCat: Cat = {
     "(mandarin utf8 plane) 床前明月光， 疑是地上霜。 举头望明月，低头思故乡",
   interests: "谁知盘中餐，粒粒皆辛苦",
   image: null,
-  ID: Math.floor(Number.MIN_SAFE_INTEGER /2) +102,
+  ID: Math.floor(Number.MIN_SAFE_INTEGER / 2) + 102,
 } as Cat;
 
 const genericArabCat: Cat = {
@@ -102,7 +102,7 @@ const genericArabCat: Cat = {
   interests:
     " ويشار إلى هذا المفهوم في الشعر العربي باسم الوقفة على-الأطلال (الوقوف على الأطلال / وقوفه إلى جانب الأنقاض) لأن الشاعر غالبا ما يبدأ قصيدته بالقول انه يقف على أطلال حبيبته. بل هو نوع من الحنين إلى الماضى والحسرة على ما فات. بعض شعراء الجاهلية الشهيرين:  عدي بن ربيعة الزير أبو ليلى المه",
   image: null,
-  ID: Math.floor(Number.MIN_SAFE_INTEGER /2) +103,
+  ID: Math.floor(Number.MIN_SAFE_INTEGER / 2) + 103,
 } as Cat;
 
 const AllCats: Array<Cat> = [smolCat, bigCat, genericAsiaCat, genericArabCat];

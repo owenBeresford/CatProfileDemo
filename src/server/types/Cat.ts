@@ -28,7 +28,7 @@ export const KeysOfCat = [
   "about",
   "interests",
   "image",
-  "ID"
+  "ID",
 ];
 
 // This is a runtime process, not type washing

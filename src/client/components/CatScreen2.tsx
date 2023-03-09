@@ -1,18 +1,18 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import ShowCat, { ShowCatInner } from "./ShowCat";
+import { ShowCatInner } from "./ShowCat";
 import { Cat, ShippingCat, storeACat, removeableCat } from "../types/Cat";
 import { UseTransport } from "../services/Transport";
 import { Transport } from "../types/Transport";
 import { ChangeTab } from "../types/ChangeTab";
-import { noop } from '../services/util';
+import { noop } from "../services/util";
 
 export interface Screen2Props {
   build: Cat;
   incTab: ChangeTab;
   updateCat: storeACat;
   removeCat: removeableCat;
-  aKey:string;
+  aKey: string;
 }
 
 const CatScreen2: React.FC<Screen2Props> = (props: Screen2Props) => {
@@ -37,23 +37,25 @@ const CatScreen2: React.FC<Screen2Props> = (props: Screen2Props) => {
     return false;
   }
 
-  const localCat=():Cat => { return props.build as Cat; }; 
+  const localCat = (): Cat => {
+    return props.build as Cat;
+  };
   // this view has no update requirement, so listenToState is void
 
-// <!-- add supersize CSS and an ⇐ to before content  to -->
+  // <!-- add supersize CSS and an ⇐ to before content  to -->
   return (
     <div className="aScreen popup" key={props.aKey}>
       <ShowCatInner
         current={localCat}
         isChild={true}
         removeCat={props.removeCat}
-        aKey={props.aKey+"localCat"}
+        aKey={props.aKey + "localCat"}
         listenToState={noop}
-        ID={""+props.build.ID}
+        ID={"" + props.build.ID}
       />
 
-      <div className="buttonBar" key={props.aKey+"btns"}>
-        <input 
+      <div className="buttonBar" key={props.aKey + "btns"}>
+        <input
           id="sendP3back"
           className="goBack button"
           type="button"
@@ -67,7 +69,7 @@ const CatScreen2: React.FC<Screen2Props> = (props: Screen2Props) => {
           className="button"
           type="button"
           value="Save my profile"
-           /* eslint-disable-next-line react/jsx-no-bind */
+          /* eslint-disable-next-line react/jsx-no-bind */
           onClick={next}
         />
       </div>

@@ -12,7 +12,7 @@ export interface Screen0Props {
   build: Cat;
   returnCat: storeACat;
   incTab: ChangeTab;
-  aKey:string;
+  aKey: string;
 }
 
 const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
@@ -59,7 +59,13 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
       setErrmsg(
         "All cats must enter their name, gender, sports and date of birth"
       );
-      console.log("Test Signup: Screen0: Error absent data, dying early.", dob, name, gender, sports );
+      console.log(
+        "Test Signup: Screen0: Error absent data, dying early.",
+        dob,
+        name,
+        gender,
+        sports
+      );
       return false;
     }
 
@@ -68,7 +74,6 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
     props.build.dob = new Date(dob);
     props.build.sports = [...sports];
     props.incTab(1);
-    console.log("Signup: Screen0: jump to next tab",  );
     props.returnCat(props.build);
     return false;
   }
@@ -92,11 +97,11 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
   );
 
   const BITS = KnownSportsValues.map((name: KnownSports) => {
-  return (
+    return (
       <BooleanButton
-        key={"athSport"+name}
+        key={"athSport" + name}
         text={name}
-          /* eslint-disable-next-line react/jsx-no-bind */
+        /* eslint-disable-next-line react/jsx-no-bind */
         push={chooseSport}
         active={includesWithBetterTyping(CURRENT_SPORTS, name)}
       />
@@ -118,7 +123,7 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
           name="athName"
           value={name}
           placeholder="Your name"
-          autoFocus={lastInput==="athName" }
+          autoFocus={lastInput === "athName"}
           onBlur={(e: React.ChangeEvent<HTMLInputElement>): void => {
             setName(e.target.value);
           }}
@@ -126,7 +131,6 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
             setLastInput("athName");
             setName(e.target.value);
           }}
-
         />
         <label htmlFor="athGender" className="shortLegend">
           Gender: {gender}{" "}
@@ -137,7 +141,7 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
           name="athGender"
           value={gender}
           placeholder="Describe yourself"
-          autoFocus={lastInput==="athGender" }
+          autoFocus={lastInput === "athGender"}
           onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
             setLastInput("athGender");
             setGender(e.target.value);
@@ -161,7 +165,7 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
             id="sendP1"
             type="button"
             value="Next "
-              /* eslint-disable-next-line react/jsx-no-bind */
+            /* eslint-disable-next-line react/jsx-no-bind */
             onClick={next}
           />
         </div>

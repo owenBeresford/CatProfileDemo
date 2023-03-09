@@ -8,7 +8,7 @@ export interface Screen1Props {
   build: Cat;
   returnCat: storeACat;
   incTab: ChangeTab;
-  aKey:string;
+  aKey: string;
 }
 
 const CatScreen1: React.FC<Screen1Props> = (props: Screen1Props) => {
@@ -47,52 +47,52 @@ const CatScreen1: React.FC<Screen1Props> = (props: Screen1Props) => {
       <form>
         <label htmlFor="athAbout">Describe yourself: </label>
         <textarea
-          key={"athAbout"+about.replace(new RegExp('[ \\t\'"]', 'g'), '_')}
+          key={"athAbout" + about.replace(new RegExp("[ \\t'\"]", "g"), "_")}
           id="athAbout"
           name="athAbout"
           placeholder="Describe qualifications, ambitions etc"
           cols={50}
           rows={5}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>): void => {
-          setLastInput("athAbout");
+            setLastInput("athAbout");
             setAbout(e.target.value);
           }}
-          autoFocus={lastInput==="athAbout" }
+          autoFocus={lastInput === "athAbout"}
           value={about}
-        >
-        </textarea>
+        ></textarea>
         <label htmlFor="athInterests">Your interests: </label>
         <textarea
-          key={"athInterests"+interests.replace(new RegExp('[ \\t\'"]', 'g'), '_')}
+          key={
+            "athInterests" +
+            interests.replace(new RegExp("[ \\t'\"]", "g"), "_")
+          }
           id="athInterests"
           name="athInterests"
           placeholder="Describe yourself"
           cols={50}
           rows={5}
-          autoFocus={lastInput==="athInterests" }
+          autoFocus={lastInput === "athInterests"}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>): void => {
             setLastInput("athInterests");
             setInterests(e.target.value);
           }}
           value={interests}
-        >
-        </textarea>
+        ></textarea>
         <label htmlFor="athTeam">Your team: </label>
         <input
-          key={"athTeam"+team.replace(new RegExp('[ \\t\'"]', 'g'), '_')}
+          key={"athTeam" + team.replace(new RegExp("[ \\t'\"]", "g"), "_")}
           id="athTeam"
           name="athTeam"
           value={team}
           placeholder="Real Madrid"
-          autoFocus={lastInput==="athTeam" }
+          autoFocus={lastInput === "athTeam"}
           onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
             setLastInput("athTeam");
             setTeam(e.target.value);
           }}
         />
 
-        <div className="buttonBar" key={props.aKey+"btns"}
->
+        <div className="buttonBar" key={props.aKey + "btns"}>
           <NavLink to="/">
             <span className="goBack button"> Cancel</span>
           </NavLink>
@@ -102,7 +102,7 @@ const CatScreen1: React.FC<Screen1Props> = (props: Screen1Props) => {
             id="sendP2"
             type="button"
             value="Next to review"
-              /* eslint-disable-next-line react/jsx-no-bind */
+            /* eslint-disable-next-line react/jsx-no-bind */
             onClick={next}
           />
         </div>

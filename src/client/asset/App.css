@@ -86,14 +86,42 @@ dt .goBack:nth-child(2) {
   font-size: 200%;
 }
 
-.buttonBar .goBack.button:first-child:before { content:" ⇐ "; font-size:2em; margin-top:0px; 
-  margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:0.7; } 
-.buttonBar .goBack.button:first-child { padding-top:0.75em; }
+.buttonBar .goBack.button:first-child:before {
+  content: " ⇐ ";
+  font-size: 2em;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  line-height: 0.7;
+}
+.buttonBar .goBack.button:first-child {
+  padding-top: 0.75em;
+}
 
-div.cat.popup a.button.bigger { font-size:1.2em; margin-top:0px; margin-bottom:0px; padding-top: 0.20em;
-padding-bottom: 0.10em; vertical-align: middle; padding-right: 0.3em; padding-left: 0.3em; line-height:1; display:inline-block; width:100px; }
-div.cat.popup a.button.awkward { font-size:1.2em; vertical-align:baseline; padding-top: 1em; padding-bottom: 0.85em;
- padding-left:1.5em; padding-right:1.5em; display:inline-block; width:100px; }
+div.cat.popup a.button.bigger {
+  font-size: 1.2em;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0.2em;
+  padding-bottom: 0.1em;
+  vertical-align: middle;
+  padding-right: 0.3em;
+  padding-left: 0.3em;
+  line-height: 1;
+  display: inline-block;
+  width: 100px;
+}
+div.cat.popup a.button.awkward {
+  font-size: 1.2em;
+  vertical-align: baseline;
+  padding-top: 1em;
+  padding-bottom: 0.85em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  display: inline-block;
+  width: 100px;
+}
 
 .normal {
   display: inline-block;

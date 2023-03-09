@@ -27,7 +27,7 @@ export interface ShippingCat {
 }
 
 export type storeACat = (a: Cat) => void;
-export type removeableCat = (a:Cat|null ) => void;
+export type removeableCat = (a: Cat | null) => void;
 export type storeCats = (a: Array<Cat>) => void;
 
 const KeysOfCat = [
