@@ -1,9 +1,13 @@
-# OSStest
+# CatProfileDemo
 
 This is not a product.
 
-I am showing:
+Objective
+- use storybook, or cypress as I couldn't use mocha, jasmine or jest for component testing easily 
+- look at traditional JS test + ES6 as I loose time there too
+- use react18 in a low-pace, code-first environment (see end); and reduce hacky use of useEffect
 
+I am showing:
 - About 2000 standardised LOC that is not tests, CSS or libraries
 - I can use Enum (feels weird outside of SQL)
 - I can use interfaces and types
@@ -39,3 +43,9 @@ I have not built:
 - hygiene: set HTTP headers
 - Add complete code for the nation flags. UPDATE: the EU is supported now, and common synonyms for the UK
 - My props for components are passing stateless impure functions, which only modify things in Redux State.
+
+Urgent need:
+- Better way to manage state in multi text-input item (I have followed what the blogs say, but this is too many re-renders )
+- I want to change CSS approach to have namespaces and be done in modular CSS style (most CSS here was just maximum rush speed)
+- Maybe try to get Mongoose TS types setup now
+
