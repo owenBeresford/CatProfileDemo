@@ -4,7 +4,7 @@ This is not a product, this is a tech test.
 
 Objective
 - use storybook, or cypress as I couldn't use mocha, jasmine or jest for component testing easily 
-- look at traditional JS test + ES6 as I loose time there too
+- look at traditional JS unit-tests when using ES6 or JS modules as I loose time there too
 - use react18 in a low-pace, code-first environment (see end); and reduce hacky use of useEffect
 
 I am showing:
