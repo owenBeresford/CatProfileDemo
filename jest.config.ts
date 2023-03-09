@@ -42,10 +42,7 @@ export default {
   ],
   //	testRegex:["**/src/test/*.jest.js"],
   testMatch: [
-    "**/src/client/tests/*.jest*js",
     "**/src/server/tests/*.jest*js",
-    "**/src/client/tests/*.jest.ts",
-    "**/src/client/tests/*.jest.tsx",
   ],
 
   globals: {
