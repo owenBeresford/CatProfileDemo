@@ -16,7 +16,7 @@ I am showing:
 - I extended to include a _test API_, which manipulates static JSON, NB: low concurrency
 - Some basic behavioural UI niceties added
 - The default Cat face was taken from https://www.reshot.com/free-svg-icons/face/
-- Make UI tests in Storybook & Male API test in Jest
+- Make UI tests in Storybook & Make API test in Jest
 - ADDED: Profiles can be edited before they are saved
 - ADDED: Reduced useEffect for networking down to 1 call; cats-in-browser now have global IDs so this works.
 - ADDED: Ability to delete cats
@@ -45,7 +45,7 @@ I have not built:
 - My props for components are passing stateless impure functions, which only modify things in Redux State.
 
 Urgent need:
-- Better way to manage state in multi text-input item (I have followed what the blogs say, but this is too many re-renders )
-- I want to change CSS approach to have namespaces and be done in modular CSS style (most CSS here was just maximum rush speed)
-- Maybe try to get Mongoose TS types setup now
-
+- Better way to manage state in multi text-input item (I have followed what the blogs say, but this is too many re-renders ); I guesstimate 2-3 days
+- I want to change CSS approach to have namespaces and be done in modular CSS style (most CSS here was just maximum rush speed); I guess this is a days work.
+- Maybe try to get Mongoose TS types setup now; cant guesstimate
+- I would like to add cypress test suite too.
