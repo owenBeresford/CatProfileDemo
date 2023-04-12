@@ -63,7 +63,7 @@ async function getSingle(req: Request, res: Response) {
 
   console.log("recieved GET single cat data with id " + req.params.ID);
   if (Math.random() > 0.9) {
-    res.status(404).send("The 10% random fail hit this request");
+    res.status(404).send("Text to a human: The 10% random fail hit this request");
     return;
   }
 
@@ -93,7 +93,7 @@ function postSingle(req: Request, res: Response) {
     return;
   }
   if (!req.body.data) {
-    res.status(400).send("Bad data for a cat");
+    res.status(400).send("Text to a human: Bad data for a cat ");
     return;
   }
   // i do not know why this Express library cannot unpack these
@@ -106,13 +106,13 @@ function postSingle(req: Request, res: Response) {
   tt = JSON.parse(tt);
   if (isCat(tt)) {
     if (Math.random() > 0.9) {
-      res.status(500).send("The 10% random fail hit this request");
+      res.status(500).send("Text to a human: The 10% random fail hit this request");
       return;
     } else {
-      res.status(204).send("Made new Cat.");
+      res.status(204).send("Text to a human: Made new Cat.");
     }
   } else {
-    res.status(400).send("Bad data for a cat");
+    res.status(400).send("Text to a human: Bad data for a cat " );
   }
 }
 
@@ -136,15 +136,15 @@ function patchSingle(req: Request, res: Response) {
     const tt = JSON.parse(req.body as string);
     if (isCat(tt)) {
       if (Math.random() > 0.9) {
-        res.status(500).send("The 10% random fail hit this request");
+        res.status(500).send("Text to a human: The 10% random fail hit this request");
         return;
       } else {
-        res.status(202).send("Updated Cat.");
+        res.status(202).send("Text to a human: Updated Cat.");
       }
     } else {
-      res.status(400).send("Bad data for a cat");
+      res.status(400).send("Text to a human: Bad data for a cat");
     }
   } catch (e) {
-    res.status(400).send("Bad data for a cat");
+    res.status(400).send("Text to a human: Bad data for a cat");
   }
 }
