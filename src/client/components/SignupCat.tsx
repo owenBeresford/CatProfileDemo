@@ -35,6 +35,13 @@ export class InnerSignupCat extends React.Component<InnerSignupProps> {
     } else {
       this.builder = defaultCat(null, props.currentCats.length);
     }
+
+// if have some sort of imported cat, that is not a complete one, it will have no id
+// the variable will capture data fron the user to become complete
+	if( props.current()["ID"]===0 && props.ID==="") {
+		this.builder.ID= props.currentCats.length;
+	}
+
     this.incTab = this.incTab.bind(this);
     this.updateBuildingCat = this.updateBuildingCat.bind(this);
   }
@@ -57,9 +64,9 @@ export class InnerSignupCat extends React.Component<InnerSignupProps> {
     this.builder = a;
   }
 
-  failMsg(str = "no ID and no data; pls talk to a dev."): React.ReactElement {
+  failMsg(str = "no ID and no data; pls talk to a dev."):React.ReactElement {
     this.errMsg = str;
-    return <div className="error popup">{str}</div>;
+    return (<div className="error popup">{str}</div>);
   }
 
   render(): React.ReactElement<SignupProps> {
@@ -83,7 +90,8 @@ export class InnerSignupCat extends React.Component<InnerSignupProps> {
     } else if (this.props.current()["ID"] > 0 && !this.props.ID) {
       this.props.updateCat(defaultCat(null, this.props.currentCats().length));
     }
-    // OR new Cat requested; it will be applied a the end
+    // OR new Cat requested; it will be applied to the list at the end
+
      return (
       <div className="signupContainer " key={this.screenNo}>
         <>
@@ -139,6 +147,7 @@ export class InnerSignupCat extends React.Component<InnerSignupProps> {
   }
 }
 
+// this is a recommended hack to have my functional 'cake' and also eat it
 export const SignupCat: React.FC<SignupProps> = (props) => {
   let { ID } = useParams();
   if (!ID) {
@@ -150,3 +159,4 @@ export const SignupCat: React.FC<SignupProps> = (props) => {
 };
 
 export default SignupCat;
+

@@ -200,6 +200,9 @@ li.button a {
   line-height: 1;
 }
 
+textarea.rc-textarea { width:80%; max-width:80%; display:inline-block; }
+.rc-textarea-clear-icon { padding:1em; display:inline-block; transform:translateY(-50%);  }
+
 input[type="checkbox"] + label::before {
   left: 4px;
 }
