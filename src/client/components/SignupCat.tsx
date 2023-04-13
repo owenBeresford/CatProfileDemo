@@ -32,15 +32,20 @@ export class InnerSignupCat extends React.Component<InnerSignupProps> {
     this.errMsg = "";
     if (props.current()) {
       this.builder = props.current();
-    } else {
-      this.builder = defaultCat(null, props.currentCats.length);
+    }
+    if (this.props.ID) {
+      this.props.updateCat(
+        this.props.currentCats()[parseInt(this.props.ID, 10)]
+      );
+      this.builder = this.props.currentCats()[parseInt(this.props.ID, 10)];
     }
 
-// if have some sort of imported cat, that is not a complete one, it will have no id
-// the variable will capture data fron the user to become complete
-	if( props.current()["ID"]===0 && props.ID==="") {
-		this.builder.ID= props.currentCats.length;
-	}
+    // if have some sort of imported cat, that is not a complete one, it will have no id
+    // the variable will capture data from the user to become complete
+    if (this.builder.ID === 0 && props.ID === "" && this.screenNo === 0) {
+      this.builder.ID = props.currentCats().length;
+      props.updateCat(this.builder);
+    }
 
     this.incTab = this.incTab.bind(this);
     this.updateBuildingCat = this.updateBuildingCat.bind(this);
@@ -64,35 +69,35 @@ export class InnerSignupCat extends React.Component<InnerSignupProps> {
     this.builder = a;
   }
 
-  failMsg(str = "no ID and no data; pls talk to a dev."):React.ReactElement {
+  failMsg(str = "no ID and no data; pls talk to a dev."): React.ReactElement {
     this.errMsg = str;
-    return (<div className="error popup">{str}</div>);
+    return <div className="error popup">{str}</div>;
   }
 
   render(): React.ReactElement<SignupProps> {
-     // no data & no id
     if (
+      // no Cat and no ID is an empty page, so an ERROR
       !this.builder &&
       (this.props.ID === null || this.props.ID.length === 0)
     ) {
       return this.failMsg();
     }
-    // OR wrong cat for ID
-    else if (this.props.ID && this.builder.ID !== parseInt(this.props.ID, 10)) {
+
+    // wrong cat for ID
+    if (this.props.ID && this.builder.ID !== parseInt(this.props.ID, 10)) {
       if (parseInt(this.props.ID, 10) > this.props.currentCats().length) {
         // this shouldn't happen, its logic failure elsewhere
+        // I haven't seen it happen, but i'm coding defensively.
         return this.failMsg();
-      } else if (this.props.ID) {
-        this.props.updateCat(
-          this.props.currentCats()[parseInt(this.props.ID, 10)]
-        );
       }
-    } else if (this.props.current()["ID"] > 0 && !this.props.ID) {
-      this.props.updateCat(defaultCat(null, this.props.currentCats().length));
     }
     // OR new Cat requested; it will be applied to the list at the end
+    if (this.builder.ID == 0 && this.props.ID === "" && this.screenNo === 0) {
+      this.builder.ID = this.props.currentCats().length;
+      this.props.updateCat(this.builder);
+    }
 
-     return (
+    return (
       <div className="signupContainer " key={this.screenNo}>
         <>
           {this.errMsg ? <p className="error">{this.errMsg}</p> : <></>}
@@ -147,7 +152,7 @@ export class InnerSignupCat extends React.Component<InnerSignupProps> {
   }
 }
 
-// this is a recommended hack to have my functional 'cake' and also eat it
+// this is a recommended hack to have my functional design and components-that-have-state 'cake' and also eat the cake
 export const SignupCat: React.FC<SignupProps> = (props) => {
   let { ID } = useParams();
   if (!ID) {
@@ -159,4 +164,3 @@ export const SignupCat: React.FC<SignupProps> = (props) => {
 };
 
 export default SignupCat;
-

@@ -39,10 +39,10 @@ export function isCat(o: any): o is Cat {
 
   KeysOfCat.map((val: string /* , i:number */): number => {
     if (val in o) {
-      if (val === "dob" && typeof o[val] === "number" && o[val]>1000000) {
+      if (val === "dob" && typeof o[val] === "number" && o[val] > 1000000) {
         good--;
-      } else if (val === "ID" && typeof o[val] === "number" && o[val]>0) {
-        good--;	
+      } else if (val === "ID" && typeof o[val] === "number" && o[val] > 0) {
+        good--;
       } else if (val === "image") {
         good--;
       } else if (o[val].length > 0) {

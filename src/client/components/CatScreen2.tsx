@@ -42,7 +42,6 @@ const CatScreen2: React.FC<Screen2Props> = (props: Screen2Props) => {
   };
   // this view has no update requirement, so listenToState is void
 
-  // <!-- add supersize CSS and an ⇐ to before content  to -->
   return (
     <div className="aScreen popup" key={props.aKey}>
       <ShowCatInner

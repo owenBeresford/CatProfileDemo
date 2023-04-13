@@ -94,6 +94,12 @@ export class ShowCatInner extends React.Component<InnerShowCatProps> {
       return <div className="error popup">Data loading... {this.errMsg}</div>;
     }
     const flag = getFlag(CC.team);
+    if (flag === getFlag("unknown")) {
+      this.errMsg =
+        "Country '" +
+        CC.team +
+        "' not known to this platform.  Using default flag";
+    }
     const age: string =
       new Date().getUTCFullYear() - CC.dob.getUTCFullYear() + " years old";
 

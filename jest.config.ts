@@ -41,9 +41,7 @@ export default {
     //   "clover"
   ],
   //	testRegex:["**/src/test/*.jest.js"],
-  testMatch: [
-    "**/src/server/tests/*.jest*js",
-  ],
+  testMatch: ["**/src/server/tests/*.jest*js"],
 
   globals: {
     "ts-jest": {

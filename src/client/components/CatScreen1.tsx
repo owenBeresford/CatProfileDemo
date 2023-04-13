@@ -3,7 +3,7 @@ import { Cat, storeACat } from "../types/Cat";
 import { ChangeTab } from "../types/ChangeTab";
 import { mapInitialValue } from "../services/util";
 import { NavLink } from "react-router-dom";
-import Textarea from 'rc-textarea';
+import Textarea from "rc-textarea";
 
 export interface Screen1Props {
   build: Cat;
@@ -42,13 +42,13 @@ const CatScreen1: React.FC<Screen1Props> = (props: Screen1Props) => {
     return false;
   }
 
-  function onChange1(e:React.ChangeEvent<HTMLTextAreaElement>):void {
-	// possibly need to make local copy of this var, original demo did
-	setAbout( e.target.value );
+  function onChange1(e: React.ChangeEvent<HTMLTextAreaElement>): void {
+    // possibly need to make local copy of this var, original demo did
+    setAbout(e.target.value);
   }
-  function onChange2(e:React.ChangeEvent<HTMLTextAreaElement>):void {
-	// possibly need to make local copy of this var, original demo did
-	setInterests( e.target.value );
+  function onChange2(e: React.ChangeEvent<HTMLTextAreaElement>): void {
+    // possibly need to make local copy of this var, original demo did
+    setInterests(e.target.value);
   }
 
   return (
@@ -56,14 +56,22 @@ const CatScreen1: React.FC<Screen1Props> = (props: Screen1Props) => {
       {errMsg.length > 0 ? <p className="error">{errMsg}</p> : <></>}
       <form>
         <label htmlFor="athAbout">Describe yourself: </label>
-		<Textarea autoSize={true} allowClear value={about} 
-        /* eslint-disable-next-line react/jsx-no-bind */
-		onChange={onChange1} />
+        <Textarea
+          autoSize={true}
+          allowClear
+          value={about}
+          /* eslint-disable-next-line react/jsx-no-bind */
+          onChange={onChange1}
+        />
 
         <label htmlFor="athInterests">Your interests: </label>
-		<Textarea autoSize={true} allowClear value={interests} 
-        /* eslint-disable-next-line react/jsx-no-bind */
-		onChange={onChange2} />
+        <Textarea
+          autoSize={true}
+          allowClear
+          value={interests}
+          /* eslint-disable-next-line react/jsx-no-bind */
+          onChange={onChange2}
+        />
 
         <label htmlFor="athTeam">Your team: </label>
         <input
@@ -75,7 +83,7 @@ const CatScreen1: React.FC<Screen1Props> = (props: Screen1Props) => {
           autoFocus={lastInput === "athTeam"}
           onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
             setLastInput("athTeam");
-            setTeam(e.target.value);	
+            setTeam(e.target.value);
           }}
         />
 

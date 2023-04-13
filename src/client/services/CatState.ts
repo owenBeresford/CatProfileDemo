@@ -121,13 +121,12 @@ export class CatState implements KnowACat {
       throw new Error(
         "Cats must have an ID code, how did it gets it's label off?"
       );
-      //return;
     }
+    // you are allowed to set a new cat on cats.length on purpose
     if (a.ID < 0 || a.ID > this.currentCats().length) {
       throw new Error(
         "This cat doesn't seem to be a local. Where did it come from?"
       );
-      //return;
     }
     this.store.dispatch({ type: SET_A_CAT, single: a as Cat });
     const ttt = this.currentCats();

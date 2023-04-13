@@ -63,9 +63,10 @@ p.inset {
 }
 .popup {
   z-index: 1;
-  max-width: 100%;
-  min-width: 40em;
-  margin: 1.5em;
+  min-width: 30em;
+  max-width: 50em;
+  margin: 1.5em auto;
+  white-space: nowrap;
 }
 .goBack {
   text-align: right;
@@ -84,6 +85,16 @@ dt .goBack:nth-child(1) {
 }
 dt .goBack:nth-child(2) {
   font-size: 200%;
+}
+textarea.rc-textarea {
+  width: 80%;
+  max-width: 80%;
+  display: inline-block;
+}
+.rc-textarea-clear-icon {
+  padding: 1em;
+  display: inline-block;
+  transform: translateY(-50%);
 }
 
 .buttonBar .goBack.button:first-child:before {
@@ -163,6 +174,15 @@ span.react-toggle {
     margin-right: inherit;
     max-width: 100%;
   }
+  .popup {
+    max-width: 100%;
+    min-width: 30em;
+    margin: 1.5em;
+  }
+  textarea.rc-textarea {
+    width: 90%;
+    max-width: 90%;
+  }
 }
 @media screen and (max-width: 400px) {
   .appCols {
@@ -199,9 +219,6 @@ li.button a {
 .superLarge {
   line-height: 1;
 }
-
-textarea.rc-textarea { width:80%; max-width:80%; display:inline-block; }
-.rc-textarea-clear-icon { padding:1em; display:inline-block; transform:translateY(-50%);  }
 
 input[type="checkbox"] + label::before {
   left: 4px;
