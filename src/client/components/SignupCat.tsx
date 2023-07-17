@@ -43,6 +43,11 @@ export class InnerSignupCat extends React.Component<InnerSignupProps> {
       this.builder = defaultCat(null, this.props.currentCats().length);
       this.props.updateCat(this.builder);
     }
+    if (!this.builder) {
+      console.error("I think you are running a unit-test with insuffient data");
+      this.builder = defaultCat(null, this.props.currentCats().length);
+      this.props.updateCat(this.builder);
+    }
 
     // if have some sort of imported cat, that is not a complete one, it will have no id
     // the variable will capture data from the user to become complete

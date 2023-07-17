@@ -83,13 +83,14 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
     } else {
       setSports([...sports, WHICH as KnownSports]);
     }
+    setLastInput("nobody,idontneednobody");
     return false;
   }
   const DEFAULT_DOB = DEFAULT_BIRTH_DATE.getTime();
   const CURRENT_SPORTS = mapInitialValue<Array<KnownSports>>(
     props.build,
     props.build.sports,
-    []
+    props.build.sports
   );
 
   const BITS = KnownSportsValues.map((name: KnownSports) => {
@@ -136,8 +137,9 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
           ref={name}
           placeholder="Your name"
           autoFocus={lastInput === "athName"}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
+          onBlur={(e: React.ChangeEvent<HTMLInputElement>): void => {
             setLastInput("athName");
+            props.build.name = e.target.value;
           }}
         />
         <label htmlFor="athGender" className="shortLegend">
@@ -155,8 +157,9 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
           )}
           placeholder="Describe yourself"
           autoFocus={lastInput === "athGender"}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
+          onBlur={(e: React.ChangeEvent<HTMLInputElement>): void => {
             setLastInput("athGender");
+            props.build.gender = e.target.value;
           }}
         />
         <label htmlFor="athDob" className="shortLegend">

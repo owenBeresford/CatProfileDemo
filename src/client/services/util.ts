@@ -25,10 +25,14 @@ export function noop() {
 export function renderDate(d: Date): string {
   const lang = getPreferredLanguage();
   if (lang === LANG_UK) {
-    return d.getUTCFullYear() + "-" + d.getUTCMonth() + "-" + d.getUTCDate();
+    return (
+      d.getUTCFullYear() + "-" + (d.getUTCMonth() + 1) + "-" + d.getUTCDate()
+    );
   }
   if (lang === "en-us") {
-    return d.getUTCMonth() + "-" + d.getUTCDate() + "-" + d.getUTCFullYear();
+    return (
+      d.getUTCMonth() + 1 + "-" + d.getUTCDate() + "-" + d.getUTCFullYear()
+    );
   } else {
     // add more code here
     return d.toString();

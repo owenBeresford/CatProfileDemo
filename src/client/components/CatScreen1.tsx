@@ -53,13 +53,13 @@ const CatScreen1: React.FC<Screen1Props> = (props: Screen1Props) => {
           allowClear */
           ref={about}
           autoFocus={lastInput === "athAbout"}
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+          onBlur={(e: React.ChangeEvent<HTMLTextAreaElement>): void => {
             setLastInput("athAbout");
           }}
           defaultValue={mapInitialValue<string>(
             props.build,
             expandRef(about),
-            ""
+            props.build.about
           )}
         />
 
@@ -69,13 +69,13 @@ const CatScreen1: React.FC<Screen1Props> = (props: Screen1Props) => {
           allowClear */
           ref={interests}
           autoFocus={lastInput === "athInterests"}
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+          onBlur={(e: React.ChangeEvent<HTMLTextAreaElement>): void => {
             setLastInput("athInterests");
           }}
           defaultValue={mapInitialValue<string>(
             props.build,
             expandRef(interests),
-            ""
+            props.build.interests
           )}
         />
 
@@ -87,13 +87,14 @@ const CatScreen1: React.FC<Screen1Props> = (props: Screen1Props) => {
           ref={team}
           placeholder="Portugal"
           autoFocus={lastInput === "athTeam"}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
+          onBlur={(e: React.ChangeEvent<HTMLInputElement>): void => {
             setLastInput("athTeam");
+            props.build.team = e.target.value;
           }}
           defaultValue={mapInitialValue<string>(
             props.build,
             expandRef(team),
-            ""
+            props.build.team
           )}
         />
 

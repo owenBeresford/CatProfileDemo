@@ -2,6 +2,7 @@ import React, { useState, useRef, ChangeEventHandler, useEffect } from "react";
 import { DayPicker } from "react-day-picker";
 import { format, isValid, parse } from "date-fns";
 import { ChangeTab } from "../types/ChangeTab";
+import { renderDate } from "../services/util";
 import { DEFAULT_BIRTH_DATE } from "../types/Cat";
 // react-popper/typings/react-popper.d.ts
 /// <reference types="react-popper" />
@@ -23,22 +24,14 @@ const DateBlock: React.FC<DateProps> = (props: DateProps) => {
   // we have just assigned it
   /* eslint-disable-next-line @typescript-eslint/no-non-null-assertion  */
   const [inputValue, setInputValue] = useState<string>(
-    dob
-      ? dob.getUTCFullYear() + "-" + dob.getUTCMonth() + "-" + dob.getUTCDay()
-      : DEFAULT_BIRTH_DATE.getUTCFullYear() +
-          "-" +
-          DEFAULT_BIRTH_DATE.getUTCMonth() +
-          "-" +
-          DEFAULT_BIRTH_DATE.getUTCDay()
+    dob ? renderDate(dob) : renderDate(DEFAULT_BIRTH_DATE)
   );
   const [isPopperOpen, setIsPopperOpen] = useState(false);
 
   useEffect(() => {
     const ddd = new Date(props.initialVal);
     setDOB(ddd);
-    setInputValue(
-      ddd.getUTCFullYear() + "-" + ddd.getUTCMonth() + "-" + ddd.getUTCDay()
-    );
+    setInputValue(renderDate(ddd));
   }, [props.initialVal, setDOB, setInputValue]);
 
   const popperRef = useRef<HTMLDivElement>(null);
@@ -81,7 +74,7 @@ const DateBlock: React.FC<DateProps> = (props: DateProps) => {
   return (
     <div ref={popperRef} className="dateBlock">
       <input
-        placeholder={format(new Date(), "y-MM-dd")}
+        placeholder={renderDate(new Date())}
         value={inputValue}
         onChange={handleInputChange}
         className="normal"
