@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; // RefObject
+import React, { useState, useEffect, useRef, MutableRefObject } from "react";
 import DateBlock from "./DateBlock";
 import BooleanButton from "./BooleanButton";
 import { NavLink } from "react-router-dom";
@@ -6,7 +6,11 @@ import { NavLink } from "react-router-dom";
 import { ChangeTab } from "../types/ChangeTab";
 import { Cat, DEFAULT_BIRTH_DATE, storeACat } from "../types/Cat";
 import { KnownSports, KnownSportsValues } from "../types/KnownSports";
-import { mapInitialValue, includesWithBetterTyping } from "../services/util";
+import {
+  mapInitialValue,
+  includesWithBetterTyping,
+  expandRef,
+} from "../services/util";
 
 export interface Screen0Props {
   build: Cat;
@@ -32,24 +36,16 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
       DEFAULT_BIRTH_DATE.getTime()
     )
   );
-  const [name, setName] = useState<string>(
-    mapInitialValue<string>(props.build, props.build.name, "")
-  );
-  const [gender, setGender] = useState<string>(
-    mapInitialValue<string>(props.build, props.build.gender, "")
-  );
+  const name = useRef<HTMLInputElement>(
+    null
+  ) as MutableRefObject<HTMLInputElement>;
+  const gender = useRef<HTMLInputElement>(
+    null
+  ) as MutableRefObject<HTMLInputElement>;
+
   const [errMsg, setErrmsg] = useState<string>("");
   const [lastInput, setLastInput] = useState<string>("athName");
 
-  useEffect(() => {
-    setGender(props.build.gender);
-  }, [props.build, setGender]);
-  useEffect(() => {
-    setName(props.build.name);
-  }, [props.build, setName]);
-  useEffect(() => {
-    setDOB(props.build.dob.getTime());
-  }, [props.build, setDOB]);
   useEffect(() => {
     setSports(props.build.sports);
   }, [props.build, setSports]);
@@ -69,8 +65,8 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
       return false;
     }
 
-    props.build.gender = gender;
-    props.build.name = name;
+    props.build.gender = expandRef(gender);
+    props.build.name = expandRef(name);
     props.build.dob = new Date(dob);
     props.build.sports = [...sports];
     props.incTab(1);
@@ -107,8 +103,19 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
       />
     );
   });
+  const currentDob = mapInitialValue<number>(
+    props.build,
+    dob,
+    props.build.dob.getTime()
+  );
 
-  // IOIO pull out the date widget wrapper
+  console.log(
+    "WWWWWWWWWWWW ",
+    props.build,
+    name,
+    expandRef(name),
+    mapInitialValue<string>(props.build, expandRef(name), props.build.name)
+  );
   return (
     <div className="aScreen popup" key={props.aKey}>
       <form>
@@ -118,39 +125,44 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
           Your name:{" "}
         </label>
         <input
-          key={"athName" + name}
+          key={"athName" + expandRef(name, true)}
           id="athName"
           name="athName"
-          value={name}
+          defaultValue={mapInitialValue<string>(
+            props.build,
+            expandRef(name),
+            props.build.name
+          )}
+          ref={name}
           placeholder="Your name"
           autoFocus={lastInput === "athName"}
-          onBlur={(e: React.ChangeEvent<HTMLInputElement>): void => {
-            setName(e.target.value);
-          }}
           onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
             setLastInput("athName");
-            setName(e.target.value);
           }}
         />
         <label htmlFor="athGender" className="shortLegend">
-          Gender: {gender}{" "}
+          Gender: {expandRef(gender)}{" "}
         </label>
         <input
-          key={"athGender" + gender}
+          key={"athGender" + expandRef(gender, true)}
           id="athGender"
           name="athGender"
-          value={gender}
+          ref={gender}
+          defaultValue={mapInitialValue<string>(
+            props.build,
+            expandRef(gender),
+            props.build.gender
+          )}
           placeholder="Describe yourself"
           autoFocus={lastInput === "athGender"}
           onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
             setLastInput("athGender");
-            setGender(e.target.value);
           }}
         />
         <label htmlFor="athDob" className="shortLegend">
           Birth date:{" "}
         </label>
-        <DateBlock passback={setDOB} initialVal={dob || DEFAULT_DOB} />
+        <DateBlock passback={setDOB} initialVal={currentDob || DEFAULT_DOB} />
 
         <label htmlFor="athSports">Sports: </label>
         <div className="appCols">{BITS}</div>

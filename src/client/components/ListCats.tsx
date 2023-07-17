@@ -64,7 +64,10 @@ class ListCats extends React.Component<ListCatProps> {
                 <NavLink
                   to={"/profile/" + i}
                   onClick={(e) => {
-                    this.props.changeCat(e!.currentTarget as HTMLElement);
+                    if (!e.currentTarget) {
+                      return;
+                    }
+                    this.props.changeCat(e.currentTarget as HTMLElement);
                   }}
                 >
                   {ath.name}

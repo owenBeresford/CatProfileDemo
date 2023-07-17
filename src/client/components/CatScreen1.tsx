@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef, MutableRefObject } from "react";
 import { Cat, storeACat } from "../types/Cat";
 import { ChangeTab } from "../types/ChangeTab";
-import { mapInitialValue } from "../services/util";
+import { mapInitialValue, expandRef } from "../services/util";
 import { NavLink } from "react-router-dom";
-import Textarea from "rc-textarea";
+//import {textarea } from 'react-dom';
+//import Textarea, { ResizableTextAreaRef, TextAreaRef }  from "rc-textarea";
 
 export interface Screen1Props {
   build: Cat;
@@ -13,16 +14,16 @@ export interface Screen1Props {
 }
 
 const CatScreen1: React.FC<Screen1Props> = (props: Screen1Props) => {
-  /* eslint-disable-next-line react/jsx-no-bind */
-  const [about, setAbout] = useState<string>(
-    mapInitialValue<string>(props.build, props.build.about, "")
-  );
-  const [interests, setInterests] = useState<string>(
-    mapInitialValue<string>(props.build, props.build.interests, "")
-  );
-  const [team, setTeam] = useState<string>(
-    mapInitialValue<string>(props.build, props.build.team, "")
-  );
+  const about = useRef<HTMLTextAreaElement>(
+    null
+  ) as MutableRefObject<HTMLTextAreaElement>;
+  const interests = useRef<HTMLTextAreaElement>(
+    null
+  ) as MutableRefObject<HTMLTextAreaElement>;
+  const team = useRef<HTMLInputElement>(
+    null
+  ) as MutableRefObject<HTMLInputElement>;
+
   const [errMsg, setErrmsg] = useState<string>("");
   const [lastInput, setLastInput] = useState<string>("athAbout");
 
@@ -34,21 +35,12 @@ const CatScreen1: React.FC<Screen1Props> = (props: Screen1Props) => {
       return false;
     }
 
-    props.build.about = about;
-    props.build.interests = interests;
-    props.build.team = team;
+    props.build.about = expandRef(about);
+    props.build.interests = expandRef(interests);
+    props.build.team = expandRef(team);
     props.incTab(2);
     props.returnCat(props.build);
     return false;
-  }
-
-  function onChange1(e: React.ChangeEvent<HTMLTextAreaElement>): void {
-    // possibly need to make local copy of this var, original demo did
-    setAbout(e.target.value);
-  }
-  function onChange2(e: React.ChangeEvent<HTMLTextAreaElement>): void {
-    // possibly need to make local copy of this var, original demo did
-    setInterests(e.target.value);
   }
 
   return (
@@ -56,35 +48,53 @@ const CatScreen1: React.FC<Screen1Props> = (props: Screen1Props) => {
       {errMsg.length > 0 ? <p className="error">{errMsg}</p> : <></>}
       <form>
         <label htmlFor="athAbout">Describe yourself: </label>
-        <Textarea
-          autoSize={true}
-          allowClear
-          value={about}
-          /* eslint-disable-next-line react/jsx-no-bind */
-          onChange={onChange1}
+        <textarea
+          /* autoSize={true}
+          allowClear */
+          ref={about}
+          autoFocus={lastInput === "athAbout"}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+            setLastInput("athAbout");
+          }}
+          defaultValue={mapInitialValue<string>(
+            props.build,
+            expandRef(about),
+            ""
+          )}
         />
 
         <label htmlFor="athInterests">Your interests: </label>
-        <Textarea
-          autoSize={true}
-          allowClear
-          value={interests}
-          /* eslint-disable-next-line react/jsx-no-bind */
-          onChange={onChange2}
+        <textarea
+          /* autoSize={true}
+          allowClear */
+          ref={interests}
+          autoFocus={lastInput === "athInterests"}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+            setLastInput("athInterests");
+          }}
+          defaultValue={mapInitialValue<string>(
+            props.build,
+            expandRef(interests),
+            ""
+          )}
         />
 
         <label htmlFor="athTeam">Your team: </label>
         <input
-          key={"athTeam" + team.replace(new RegExp("[ \\t'\"]", "g"), "_")}
+          key={"athTeam" + expandRef(team, true)}
           id="athTeam"
           name="athTeam"
-          value={team}
+          ref={team}
           placeholder="Portugal"
           autoFocus={lastInput === "athTeam"}
           onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
             setLastInput("athTeam");
-            setTeam(e.target.value);
           }}
+          defaultValue={mapInitialValue<string>(
+            props.build,
+            expandRef(team),
+            ""
+          )}
         />
 
         <div className="buttonBar" key={props.aKey + "btns"}>

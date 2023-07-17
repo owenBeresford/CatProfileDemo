@@ -1,10 +1,11 @@
 import React, { ReactElement } from "react";
 import { useParams } from "react-router-dom";
 import { Cat, storeACat, removeableCat } from "../types/Cat";
-import { defaultCat } from "../services/util";
+// import { defaultCat } from "../services/util";
 import { accessCurrentCats, accessACat } from "../types/CatState";
 import PropTypes from "prop-types";
 
+import ErrorMsg from "./ErrorMsg";
 import CatScreen0 from "./CatScreen0";
 import CatScreen1 from "./CatScreen1";
 import CatScreen2 from "./CatScreen2";
@@ -71,7 +72,7 @@ export class InnerSignupCat extends React.Component<InnerSignupProps> {
 
   failMsg(str = "no ID and no data; pls talk to a dev."): React.ReactElement {
     this.errMsg = str;
-    return <div className="error popup">{str}</div>;
+    return <ErrorMsg lead="Data loading..." err={str} />;
   }
 
   render(): React.ReactElement<SignupProps> {
@@ -92,7 +93,7 @@ export class InnerSignupCat extends React.Component<InnerSignupProps> {
       }
     }
     // OR new Cat requested; it will be applied to the list at the end
-    if (this.builder.ID == 0 && this.props.ID === "" && this.screenNo === 0) {
+    if (this.builder.ID === 0 && this.props.ID === "" && this.screenNo === 0) {
       this.builder.ID = this.props.currentCats().length;
       this.props.updateCat(this.builder);
     }

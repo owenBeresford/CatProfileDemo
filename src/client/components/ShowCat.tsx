@@ -4,6 +4,7 @@ import { removeableCat } from "../types/Cat";
 import { renderDate, getDefaultSelfie, getFlag } from "../services/util";
 import { accessACat, listenHandler } from "../types/CatState";
 import PropTypes from "prop-types";
+import ErrorMsg from "./ErrorMsg";
 
 export interface ShowCatProps {
   current: accessACat;
@@ -61,37 +62,34 @@ export class ShowCatInner extends React.Component<InnerShowCatProps> {
     if (!CC || !Number.isInteger(CC.ID) || tt !== CC.ID) {
       this.errMsg = "no ID and no data; pls talk to a dev.";
       return (
-        <div className="error popup">
-          Data loading.. no ID and no data; pls talk to a dev.
-          <textarea
-            defaultValue={
-              JSON.stringify(CC) +
-              "   :" +
-              this.props.ID +
-              ":  :" +
-              CC.ID +
-              ":   " +
-              parseInt(this.props.ID || "", 10) +
-              "   " +
-              typeof this.props.ID +
-              "  code thinks IDs match?" +
-              (parseInt(this.props.ID || "", 10) === CC.ID ? "MATCH" : "FAIL") +
-              "    " +
-              typeof CC.ID +
-              "   " +
-              tt +
-              "   isInteger " +
-              Number.isInteger(this.props.ID)
-            }
-          ></textarea>
-        </div>
+        <ErrorMsg
+          lead="Data loading.. no ID and no data; pls talk to a dev."
+          err={
+            JSON.stringify(CC) +
+            "   :" +
+            this.props.ID +
+            ":  :" +
+            CC.ID +
+            ":   " +
+            parseInt(this.props.ID || "", 10) +
+            "   " +
+            typeof this.props.ID +
+            "  code thinks IDs match?" +
+            (parseInt(this.props.ID || "", 10) === CC.ID ? "MATCH" : "FAIL") +
+            "    " +
+            typeof CC.ID +
+            "   " +
+            tt +
+            "   isInteger " +
+            Number.isInteger(this.props.ID)
+          }
+        />
       );
-      //   }
     }
     // can also use &#9998; as an edit symbol
     // benefits from  .edit-icon { display: inline-block; transform: rotateZ(90deg); font-size:200%; }
     if (!CC.dob) {
-      return <div className="error popup">Data loading... {this.errMsg}</div>;
+      return <ErrorMsg lead="Data loading..." err={this.errMsg} />;
     }
     const flag = getFlag(CC.team);
     if (flag === getFlag("unknown")) {
@@ -116,7 +114,7 @@ export class ShowCatInner extends React.Component<InnerShowCatProps> {
           )}
           <dt>
             Cat name
-            <span className="goBack">
+            <span className="goBack" title="Return to the list of cats">
               <NavLink className="button bigger" to="/">
                 {" "}
                 ⇐{" "}
@@ -126,7 +124,10 @@ export class ShowCatInner extends React.Component<InnerShowCatProps> {
               <></>
             ) : (
               <>
-                <span className="goBack">
+                <span
+                  className="goBack"
+                  title={"Edit the Cat called '" + CC.name + "'."}
+                >
                   <NavLink
                     className="button bigger"
                     to={"/signup/" + this.props.ID}
@@ -135,7 +136,10 @@ export class ShowCatInner extends React.Component<InnerShowCatProps> {
                     ✍{" "}
                   </NavLink>
                 </span>
-                <span className="goBack">
+                <span
+                  className="goBack"
+                  title={"Delete the Cat called '" + CC.name + "'."}
+                >
                   <NavLink
                     className="button awkward"
                     to={"/"}
@@ -173,7 +177,7 @@ export class ShowCatInner extends React.Component<InnerShowCatProps> {
           <dt>Date of birth </dt>
           <dd>
             <time dateTime={CC.dob.toString()}>
-              {renderDate(CC.dob)}/ {age}
+              {renderDate(CC.dob)}/ <strong> {age} </strong>
             </time>
           </dd>
           <dt>About me </dt>

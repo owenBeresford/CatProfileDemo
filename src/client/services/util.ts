@@ -1,5 +1,6 @@
 import { Cat } from "../types/Cat";
 import { KnownSports } from "../types/KnownSports";
+import { MutableRefObject } from "react";
 
 export function getPreferredLanguage(): string {
   if (!("language" in navigator) || navigator.language.length === 0) {
@@ -34,6 +35,19 @@ export function renderDate(d: Date): string {
   }
 }
 
+/* eslint-disable-next-line  @typescript-eslint/no-explicit-any */
+export function expandRef(val: MutableRefObject<any>, trim = false): string {
+  if (val.current) {
+    if (trim) {
+      return val.current.value.replace(new RegExp("[ \\t'\"]", "g"), "_");
+    } else {
+      return val.current.value;
+    }
+  } else {
+    return "";
+  }
+}
+
 export function getDefaultSelfie(): string {
   return "/default-face.svg";
 }
@@ -60,7 +74,7 @@ export function defaultCat(cur: Cat | null, nextID: number): Cat {
   } as Cat;
 }
 
-export function TESTdefaultCat() {
+export function TESTdefaultCat(): Cat {
   return {
     name: DEFAULT_NAME,
     dob: new Date(),
