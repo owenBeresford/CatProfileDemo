@@ -1,9 +1,9 @@
 import React, { ReactElement } from "react";
 import { useParams } from "react-router-dom";
 import { Cat, storeACat, removeableCat } from "../types/Cat";
-// import { defaultCat } from "../services/util";
 import { accessCurrentCats, accessACat } from "../types/CatState";
 import PropTypes from "prop-types";
+import { defaultCat } from "../services/util";
 
 import ErrorMsg from "./ErrorMsg";
 import CatScreen0 from "./CatScreen0";
@@ -39,6 +39,9 @@ export class InnerSignupCat extends React.Component<InnerSignupProps> {
         this.props.currentCats()[parseInt(this.props.ID, 10)]
       );
       this.builder = this.props.currentCats()[parseInt(this.props.ID, 10)];
+    } else {
+      this.builder = defaultCat(null, this.props.currentCats().length);
+      this.props.updateCat(this.builder);
     }
 
     // if have some sort of imported cat, that is not a complete one, it will have no id

@@ -2,7 +2,7 @@ import { Cat } from "../types/Cat";
 import { defaultCat } from "./util";
 import { Transport, AxiosResponse } from "../types/Transport";
 import { UseTransport } from "../services/Transport";
-import { Store  } from "redux";
+import { Store } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 import {
   SET_CATS,
