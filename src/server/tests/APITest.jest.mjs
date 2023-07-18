@@ -212,7 +212,7 @@ test("POST a particular Cat (TEST API)", (done) => {
 
   let XXX = {
     ID: 1,
-    name: "test2 test3",
+    name: "test2 test3 XXX",
     dob: 1663340872204,
     team: "poland",
     gender: "f",
@@ -223,7 +223,7 @@ test("POST a particular Cat (TEST API)", (done) => {
       "Modern Pentathlon",
     ],
     about:
-      "dfggdfgdfgdfg dfgdf gdfg dgd fgdfgdfg dfgdg dfgdgdf gdgdfgd g dzgd gdgdfgdzf gzdfh fhzfg gcmhukfxj sfj xfgjh f",
+      "dfggdfgdfgdfg XXX XXX dfgdf gdfg dgd fgdfgdfg dfgdg dfgdgdf gdgdfgd g dzgd gdgdfgdzf gzdfh fhzfg gcmhukfxj sfj xfgjh f",
     interests:
       "sdfs dfsfs dfsdfs dfsfs fsfsdfsdfas gdg dzdf gzdfghfgh zfgjdfhjxfghj dfgjhnxfzjhd fjnfszrys hj sry sgh",
     image: null,
