@@ -3,6 +3,17 @@ import { KnownSports } from "../types/KnownSports";
 import { MutableRefObject } from "react";
 
 export function getPreferredLanguage(): string {
+  // ie running inside Node
+  if( process && process.env && 'LANG' in process.env) {
+      const LANG=process.env['LANG'].toLowerCase();
+      if( LANG.includes('en_gb') ) {
+        return LANG_UK;
+      }
+      if( LANG.includes('en') ) {
+        return "en-us";
+      } 
+  } 
+
   if (!("language" in navigator) || navigator.language.length === 0) {
     return LANG_UK; // I understand a US company may disagree with this
   }
