@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Cat } from "../types/Cat";
 import { accessCurrentCats, listenHandler } from "../types/CatState";
 import PropTypes from "prop-types";
+import { nextId } from "../services/util";
 
 interface ListCatProps {
   currentCats: accessCurrentCats;
@@ -45,7 +46,7 @@ class ListCats extends React.Component<ListCatProps> {
 
   render(): React.ReactElement<ListCatProps> {
     return (
-      <div className="cats" key={this.props.aKey}>
+      <div className="cats" key={this.props.aKey} data-testid={nextId()}>
         <ul className="aList">
           <li
             key={"aList" + this.props.aKey + "new"}

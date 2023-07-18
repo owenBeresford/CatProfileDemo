@@ -2,17 +2,28 @@ import { Cat } from "../types/Cat";
 import { KnownSports } from "../types/KnownSports";
 import { MutableRefObject } from "react";
 
+let ID_OFFSET = 0;
+// assuming only one copy of this file is compiled, this should lead to globally uniqiue ids
+export function nextId(): string {
+  ID_OFFSET++;
+  return "obj" + ID_OFFSET;
+}
+export function resetId(): string {
+  ID_OFFSET = 1;
+  return "obj" + ID_OFFSET;
+}
+
 export function getPreferredLanguage(): string {
   // ie running inside Node
-  if( process && process.env && 'LANG' in process.env) {
-      const LANG=process.env['LANG'].toLowerCase();
-      if( LANG.includes('en_gb') ) {
-        return LANG_UK;
-      }
-      if( LANG.includes('en') ) {
-        return "en-us";
-      } 
-  } 
+  if (process && process.env && "LANG" in process.env) {
+    const LANG = process.env["LANG"].toLowerCase();
+    if (LANG.includes("en_gb")) {
+      return LANG_UK;
+    }
+    if (LANG.includes("en")) {
+      return "en-us";
+    }
+  }
 
   if (!("language" in navigator) || navigator.language.length === 0) {
     return LANG_UK; // I understand a US company may disagree with this

@@ -2,7 +2,7 @@ import React, { useState, useRef, ChangeEventHandler, useEffect } from "react";
 import { DayPicker } from "react-day-picker";
 import { format, isValid, parse } from "date-fns";
 import { ChangeTab } from "../types/ChangeTab";
-import { renderDate } from "../services/util";
+import { renderDate, nextId } from "../services/util";
 import { DEFAULT_BIRTH_DATE } from "../types/Cat";
 // react-popper/typings/react-popper.d.ts
 /// <reference types="react-popper" />
@@ -72,7 +72,7 @@ const DateBlock: React.FC<DateProps> = (props: DateProps) => {
   };
 
   return (
-    <div ref={popperRef} className="dateBlock">
+    <div ref={popperRef} className="dateBlock" data-testid={nextId()}>
       <input
         placeholder={renderDate(new Date())}
         value={inputValue}

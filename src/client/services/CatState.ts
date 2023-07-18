@@ -19,6 +19,9 @@ const API: Transport<Array<Cat>, string> = UseTransport() as Transport<
   string
 >;
 
+// https://github.com/reduxjs/redux/issues/303
+// https://stackoverflow.com/questions/36212860/subscribe-to-single-property-change-in-store-in-redux
+// An idea for possible revisions
 export class CatState implements KnowACat {
   store: Store;
   public key: string;

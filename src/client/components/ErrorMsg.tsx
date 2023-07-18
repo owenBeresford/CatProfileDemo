@@ -1,18 +1,21 @@
 import React from "react";
 
+import { nextId } from "../services/util";
+
 export interface ErrorMsgProps {
   err: string;
-  lead: string;
+  lead: string | null;
 }
 
 const ErrorMsg: React.FC<ErrorMsgProps> = (props: ErrorMsgProps) => {
-  const _lead = props.lead ?? "Error:";
+  const _lead = props.lead ? props.lead : "Error:";
 
   return (
-    <div className="error popup">
+    <div className="error popup" data-testid={nextId()}>
       {_lead}
-      <textarea defaultValue={props.err}></textarea>
+      <textarea readOnly defaultValue={props.err}></textarea>
     </div>
   );
 };
+
 export default ErrorMsg;
