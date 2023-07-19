@@ -23,8 +23,6 @@ describe("Reference test, but own code", () => {
     const point3 = new Date("2023-05-06T23:00:00+11:00");
     assert.equal(renderDate(point3), "2023-5-6", "have i renderd date? #3");
 
-    //    expect(1 + 1).eq(2)
-    //    expect({ foo: 'bar' }).toMatchSnapshot()
   });
 
   it("looking at mapping on expandRef", () => {
@@ -47,7 +45,6 @@ describe("Reference test, but own code", () => {
   });
 
   it("looking at mapping on mapInitialValue", () => {
-    // mapInitialValue<T>(shared: Cat, field: T, defaultVal: T): T
     const tt = {
       name: "out1",
       dob: new Date(),
@@ -68,7 +65,6 @@ describe("Reference test, but own code", () => {
   });
 
   it("looking at getFlag", () => {
-    // getFlag(team: string): string
     assert.equal(getFlag("poland"), "🇵🇱", "test 1");
     assert.equal(getFlag("united kingdom"), "🇬🇧", "test 2");
     assert.equal(getFlag("uk"), "🇬🇧", "test 3");

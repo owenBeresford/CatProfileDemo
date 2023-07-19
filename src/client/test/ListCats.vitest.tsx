@@ -6,10 +6,10 @@ import { render, cleanup, screen, fireEvent } from "@testing-library/react";
 import ListCats, { ListCatsProps } from "../components/ListCats";
 
 const TEST1 = (i: HTMLElement) => {
-  console.log("next tab, ... GO!");
+  console.log("FAKE CB: next tab, ... GO!");
 };
 const TEST2 = (a: () => void, b: string) => {
-  console.log("Updating state");
+  console.log("FAKE CB: Updating state");
 };
 const TEST_listcats1 = () => {
   return [

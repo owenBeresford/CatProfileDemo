@@ -1,6 +1,6 @@
 import { assert, describe, it } from "vitest";
 import React from "react";
-import { render, cleanup } from "@testing-library/react";
+import { render, cleanup, screen, fireEvent } from "@testing-library/react";
 
 import DateBlock, { DateBlockProps } from "../components/DateBlock";
 

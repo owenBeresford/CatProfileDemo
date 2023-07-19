@@ -110,13 +110,7 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
     props.build.dob.getTime()
   );
 
-  console.log(
-    "WWWWWWWWWWWW ",
-    props.build,
-    name,
-    expandRef(name),
-    mapInitialValue<string>(props.build, expandRef(name), props.build.name)
-  );
+ 
   return (
     <div className="aScreen popup" key={props.aKey}>
       <form>

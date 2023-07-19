@@ -45,6 +45,10 @@ class ListCats extends React.Component<ListCatProps> {
   }
 
   render(): React.ReactElement<ListCatProps> {
+    function createKey(ath:Cat):string {
+      return "aList" + this.props.aKey + "_" + ath.ID;
+    }
+
     return (
       <div className="cats" key={this.props.aKey} data-testid={nextId()}>
         <ul className="aList">
@@ -58,7 +62,7 @@ class ListCats extends React.Component<ListCatProps> {
           {this.props.currentCats().map((ath: Cat, i: number) => {
             return (
               <li
-                key={"aList" + this.props.aKey + "_" + ath.ID}
+                key={ createKey( ath)}
                 title={"Display " + ath.name + "'s profile."}
                 data-id={i}
               >

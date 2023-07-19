@@ -22,7 +22,6 @@ interface InnerSignupProps extends SignupProps {
 }
 
 export class InnerSignupCat extends React.Component<InnerSignupProps> {
-  //  private lastUpdate:Date;
   private errMsg: string;
   private screenNo: number;
   private builder: Cat;

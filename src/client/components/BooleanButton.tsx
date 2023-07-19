@@ -17,11 +17,15 @@ const BooleanButton: React.FC<ButtonProps> = (props: ButtonProps) => {
     props.push(props.text);
   };
 
+  function createKey(nom:string):string {
+    return "tag" + nom + (props.active ? "T" : "F");
+  }
+
   const nom = props.text.replace(/ /g, "_");
   return (
     <label id={"lbl" + nom} className="buttons" htmlFor={"tog" + nom}>
       <Toggle
-        key={"tag" + nom + (props.active ? "T" : "F")}
+        key={ createKey(nom)}
         name={"tog" + nom}
         onToggle={trigger}
         checked={props.active}
