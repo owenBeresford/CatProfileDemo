@@ -2,7 +2,7 @@ import { Cat } from "../types/Cat";
 import { defaultCat } from "./util";
 import { Transport, AxiosResponse } from "../types/Transport";
 import { UseTransport } from "../services/Transport";
-import { Store, Action } from "redux";
+import { Store } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 import {
   SET_CATS,
@@ -19,6 +19,9 @@ const API: Transport<Array<Cat>, string> = UseTransport() as Transport<
   string
 >;
 
+// https://github.com/reduxjs/redux/issues/303
+// https://stackoverflow.com/questions/36212860/subscribe-to-single-property-change-in-store-in-redux
+// An idea for possible revisions
 export class CatState implements KnowACat {
   store: Store;
   public key: string;

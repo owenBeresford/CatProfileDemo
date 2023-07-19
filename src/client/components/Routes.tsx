@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-//import { Cat } from "../types/Cat";
 import ShowCat from "./ShowCat";
 import SignupCat from "./SignupCat";
 import ListCats from "./ListCats";

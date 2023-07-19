@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Cat } from "../types/Cat";
 import { accessCurrentCats, listenHandler } from "../types/CatState";
 import PropTypes from "prop-types";
+import { nextId } from "../services/util";
 
 interface ListCatProps {
   currentCats: accessCurrentCats;
@@ -44,8 +45,12 @@ class ListCats extends React.Component<ListCatProps> {
   }
 
   render(): React.ReactElement<ListCatProps> {
+    function createKey(ath:Cat):string {
+      return "aList" + this.props.aKey + "_" + ath.ID;
+    }
+
     return (
-      <div className="cats" key={this.props.aKey}>
+      <div className="cats" key={this.props.aKey} data-testid={nextId()}>
         <ul className="aList">
           <li
             key={"aList" + this.props.aKey + "new"}
@@ -57,14 +62,17 @@ class ListCats extends React.Component<ListCatProps> {
           {this.props.currentCats().map((ath: Cat, i: number) => {
             return (
               <li
-                key={"aList" + this.props.aKey + "_" + ath.ID}
+                key={ createKey( ath)}
                 title={"Display " + ath.name + "'s profile."}
                 data-id={i}
               >
                 <NavLink
                   to={"/profile/" + i}
                   onClick={(e) => {
-                    this.props.changeCat(e!.currentTarget as HTMLElement);
+                    if (!e.currentTarget) {
+                      return;
+                    }
+                    this.props.changeCat(e.currentTarget as HTMLElement);
                   }}
                 >
                   {ath.name}

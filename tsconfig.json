@@ -11,7 +11,8 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "strictPropertyInitialization": false,
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "types": ["vitest/globals"]
   },
   "exclude": ["./build", "./client"],
   "include": ["."]

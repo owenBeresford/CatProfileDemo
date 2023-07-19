@@ -24,7 +24,7 @@ I am showing:
 - ADDED: Profiles can be edited before they are saved
 - ADDED: Reduced useEffect for networking down to 1 call; cats-in-browser now have global IDs so this works.
 - ADDED: Ability to delete cats
-- ADDED: more UI niceties 
+- ADDED: more UI niceties
 - Ensured scripts accessed via npm are correct & complete
 
 I have not built:
@@ -50,7 +50,7 @@ I have not built:
 - Better way to manage state in multi text-input item (I have followed what the blogs say, but this is too many re-renders ); UPDATE: I swapped a component, this works fine now; it took 4hours of looking at options
 
 Urgent need:
+
 - I want to change CSS approach to have namespaces and be done in modular CSS style (most CSS here was just maximum rush speed); I guess this is a days work.
 - Maybe try to get Mongoose TS types setup now; can't guesstimate. Maybe swap to TypeORM or Prisma if easier?
 - I would like to add cypress test suite too. Can't guesstimate from here
-

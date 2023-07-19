@@ -5,6 +5,8 @@
   "description": "See requirements.  Written for node 18, react 18, express.  Works correctly on Linux, probably correctly on Mac OSX.  Will not work on OS that do not include Bash, like win3.1, Netware etc",
   "main": "build/server.js",
   "scripts": {
+    "vitest": "vitest",
+    "test:ui": "vitest --ui",
     "app": "node ./build/server.js &",
     "stayup:start": "node_modules/.bin/nodemon ./build/server.js &",
     "lint": "./node_modules/.bin/eslint --exit-on-fatal-error --fix --no-cache 'src/**/*.ts' ; ./node_modules/.bin/eslint --exit-on-fatal-error --fix --no-cache 'src/**/*.tsx'; ./node_modules/.bin/eslint --exit-on-fatal-error --fix --no-cache 'src/**/*.js'; prettier --write . ; ",
@@ -18,7 +20,8 @@
     "start": "node ./build/server.js &",
     "#build                     ": "react-scripts build",
     "#eject                     ": "react-scripts eject",
-    "#test                      ": "react-scripts test"
+    "#test                      ": "react-scripts test",
+    "#coverage                  ": "vitest run --coverage"
   },
   "author": "Owen Beresford",
   "license": "ISC",
@@ -26,7 +29,6 @@
     "@popperjs/core": "^2.11.5",
     "@reach/utils": "^0.17.0",
     "@reduxjs/toolkit": "^1.9.3",
-    "@storybook/cli": "^6.5.16",
     "axios": "^0.27.2",
     "axios-es6-class": "^6.0.1",
     "body-parser": "^1.20.0",
@@ -79,6 +81,7 @@
     "@storybook/addon-interactions": "^6.5.16",
     "@storybook/addon-links": "^6.5.16",
     "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/cli": "^6.5.16",
     "@storybook/core": "^6.5.16",
     "@storybook/jest": "0.0.10",
     "@storybook/manager-webpack5": "^6.5.16",
@@ -105,6 +108,8 @@
     "@types/react-test-renderer": "^18.0.0",
     "@types/react-toggle": "^4.0.3",
     "@types/supertest": "^2.0.12",
+    "@vitejs/plugin-react": "^4.0.3",
+    "@vitest/ui": "^0.33.0",
     "babel-jest": "^29.0.3",
     "babel-plugin-named-exports-order": "^0.0.2",
     "e": "^0.2.2",
@@ -129,6 +134,7 @@
     "ts-loader": "^9.3.1",
     "ts-node": "^10.9.1",
     "typescript": "^4.7.4",
+    "vitest": "^0.33.0",
     "webpack": "^5.75.0",
     "webpack-cli": "^4.10.0",
     "webpack-node-externals": "^3.0.0"
