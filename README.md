@@ -5,7 +5,6 @@ This is not a product, this is a tech test.
 Objectives
 
 - use storybook, or cypress and vitest as I couldn't use mocha, jasmine or jest for component testing easily
-- look at traditional JS unit-tests when using ES6 or JS modules as I loose time there too
 - use react18 in a low-pace, code-first environment (see end); and reduce hacky use of useEffect
 
 I wrote a "simple demo to match blogs" very quickly, in 4days. Since then I added testing; I have improved the software architecture; I intend to replace the CSS as modules and get a real DB involved.
