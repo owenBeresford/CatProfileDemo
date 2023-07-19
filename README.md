@@ -24,7 +24,7 @@ I am showing:
 - Make UI tests in Storybook & Make more tests in vitest & Make API test in Jest
 - ADDED: Profiles can be edited before they are saved
 - ADDED: cats-in-browser now have global IDs; Components have unique global ids (for the testscripts).
-- ADDED: "cat catalogue" is transferred to client as 1 API request; I should add periodic updates
+- ADDED: "cat catalogue" is transferred to client as 1 API request; I should add periodic polls for any updates. As each "cat"/ account is supposed by only used by 1 person, there should be entirely minor effects from concurrent editing.
 - ADDED: Ability to delete cats
 - ADDED: more UI niceties
 - Ensured scripts accessed via npm are correct & complete
