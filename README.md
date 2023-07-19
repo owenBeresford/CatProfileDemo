@@ -18,7 +18,7 @@ I am showing:
 - I have a reason to use a generic type (not been in a situation where those would help previously)
 - I extended to include a _test API_, which manipulates static JSON, NB: low concurrency
 - Some basic behavioural UI niceties added
-- Understanding the tradeoff between useState() and usRefs(); Have a centralised repo type class for state
+- Understanding the tradeoff between useState() and useRefs(); Have a centralised repo type class for state
 - The default Cat face was taken from https://www.reshot.com/free-svg-icons/face/
 - Make UI tests in Storybook & Make more tests in vitest & Make API test in Jest
 - ADDED: Profiles can be edited before they are saved
