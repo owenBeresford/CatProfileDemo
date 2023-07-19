@@ -19,10 +19,11 @@ describe("Simple component test 1", () => {
       true,
       "we find out intro (no markup)"
     );
+    const tmp:HTMLTextAreaElement= screen.queryByText("this is the the error") as HTMLTextAreaElement; 
     assert.equal(
-      screen.queryByText("this is the the error").readOnly,
+      tmp.readOnly,
       true,
-      "main error is RO (I hope this doesnt move with each version of react)"
+      "main error is RO (I hope this var doesnt move with each version of react)"
     );
 
     const BLOB2 = render(<ErrorMsg {...args} />);

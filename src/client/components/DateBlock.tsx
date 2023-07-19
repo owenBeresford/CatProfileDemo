@@ -9,7 +9,7 @@ import { DEFAULT_BIRTH_DATE } from "../types/Cat";
 import { usePopper } from "react-popper";
 import FocusTrap from "focus-trap-react";
 
-interface DateProps {
+export interface DateProps {
   passback: ChangeTab;
   initialVal: number;
 }
@@ -18,6 +18,8 @@ interface DateProps {
  DateBlock, a component to isolate issues relating to date entry
  input date is usable except for Safari
  this UI should be better interaction in any case 
+
+ WARN: this component does double the number of redraws that you expect.
  */
 const DateBlock: React.FC<DateProps> = (props: DateProps) => {
   const [dob, setDOB] = useState<Date | undefined>(new Date(props.initialVal));

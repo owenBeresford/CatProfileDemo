@@ -24,7 +24,7 @@ I am showing:
 - Make UI tests in Storybook & Make more tests in vitest & Make API test in Jest
 - ADDED: Profiles can be edited before they are saved
 - ADDED: cats-in-browser now have global IDs; Components have unique global ids (for the testscripts).
-- ADDED: "cat catalogue" is transfered to client as 1 API request; I should add periodic updates
+- ADDED: "cat catalogue" is transferred to client as 1 API request; I should add periodic updates
 - ADDED: Ability to delete cats
 - ADDED: more UI niceties
 - Ensured scripts accessed via npm are correct & complete
@@ -40,7 +40,6 @@ I have not built:
 - correct types to compile Mongoose + lean() + typescript. I spent 4h trying to solve that mess. I could dodge by making that class a JS file
 - Interaction: I should spend a lot more time on gender input. In order to work with all theoretical options I am leaving this as a free text.
 - Interaction: I should implement the images, think about best image size on mobile, maybe add logo-or-banner-as-background feature.
-- Interaction: Add the "arrow buttons" css, like on my site
 - Interaction: Make the day picker nicer to use.
 - Interaction: Improve logo and brand packs
 - Interaction: Make a better form validation, rather than that 2min "is it null" filter
@@ -49,6 +48,7 @@ I have not built:
 - hygiene: set HTTP headers
 - Add complete code for the nation flags. UPDATE: the EU is supported now, and common synonyms for the UK
 - My props for components are passing stateless impure functions, which only modify things in Redux State.
+- Add rest of component tests to vitest.
 
 Urgent need:
 

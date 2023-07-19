@@ -3,7 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { assert, describe, expect, it, vi } from "vitest";
 import { render, cleanup, screen, fireEvent } from "@testing-library/react";
 
-import ListCats, { ListCatsProps } from "../components/ListCats";
+import { Cat } from '../types/Cat'
+import ListCats, { ListCatProps } from "../components/ListCats";
 
 const TEST1 = (i: HTMLElement) => {
   console.log("FAKE CB: next tab, ... GO!");
@@ -150,7 +151,7 @@ describe("Simple component test 3", () => {
       changeCat: TEST1,
       listenToState: TEST2,
       aKey: "qwerty",
-    } as ListCatsProps;
+    } as ListCatProps;
 
     const BLOB = render(
       <BrowserRouter>
@@ -174,7 +175,7 @@ describe("Simple component test 3", () => {
       changeCat: TEST1,
       listenToState: TEST2,
       aKey: "qwerty",
-    } as ListCatsProps;
+    } as ListCatProps;
 
     const BLOB = render(
       <BrowserRouter>
@@ -183,8 +184,8 @@ describe("Simple component test 3", () => {
         </Routes>
       </BrowserRouter>
     );
-    assert.notEqual(BLOB.getByTestId("obj1"), null, "we have a component");
-    assert.notEqual(BLOB.getByTestId("obj1"), undefined, "we have a component");
+    assert.notEqual(BLOB.getByTestId("obj2"), null, "we have a component");
+    assert.notEqual(BLOB.getByTestId("obj2"), undefined, "we have a component");
 
     const cat2 = screen.getByText(/cat2/i);
     const logSpy = vi.spyOn(console, "log");
@@ -198,7 +199,7 @@ describe("Simple component test 3", () => {
       changeCat: TEST1,
       listenToState: TEST2,
       aKey: "qwerty",
-    } as ListCatsProps;
+    } as ListCatProps;
 
     const BLOB = render(
       <BrowserRouter>
@@ -207,8 +208,8 @@ describe("Simple component test 3", () => {
         </Routes>
       </BrowserRouter>
     );
-    assert.notEqual(BLOB.getByTestId("obj1"), null, "we have a component");
-    assert.notEqual(BLOB.getByTestId("obj1"), undefined, "we have a component");
+    assert.notEqual(BLOB.getByTestId("obj3"), null, "we have a component");
+    assert.notEqual(BLOB.getByTestId("obj3"), undefined, "we have a component");
   });
 
   cleanup();

@@ -5,7 +5,7 @@ import { accessCurrentCats, listenHandler } from "../types/CatState";
 import PropTypes from "prop-types";
 import { nextId } from "../services/util";
 
-interface ListCatProps {
+export interface ListCatProps {
   currentCats: accessCurrentCats;
   changeCat: (a: HTMLElement) => void;
   listenToState: listenHandler;
@@ -43,14 +43,14 @@ class ListCats extends React.Component<ListCatProps> {
       this.lastUpdate = new Date(new Date().getTime() + 500);
     }
   }
+  
+   createKey(ath:Cat):string {
+      return "aList" + this.props.aKey + "_" + ath.ID;
+   }
 
   render(): React.ReactElement<ListCatProps> {
-    function createKey(ath:Cat):string {
-      return "aList" + this.props.aKey + "_" + ath.ID;
-    }
-
-    return (
-      <div className="cats" key={this.props.aKey} data-testid={nextId()}>
+     return (
+      <div className="cats" key={this.props.aKey} data-testid={ nextId()}>
         <ul className="aList">
           <li
             key={"aList" + this.props.aKey + "new"}
@@ -62,7 +62,7 @@ class ListCats extends React.Component<ListCatProps> {
           {this.props.currentCats().map((ath: Cat, i: number) => {
             return (
               <li
-                key={ createKey( ath)}
+                key={ this.createKey( ath)}
                 title={"Display " + ath.name + "'s profile."}
                 data-id={i}
               >
