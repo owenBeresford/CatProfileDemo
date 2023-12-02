@@ -5,8 +5,8 @@
   "description": "See requirements.  Written for node 18, react 18, express.  Works correctly on Linux, probably correctly on Mac OSX.  Will not work on OS that do not include Bash, like win3.1, Netware etc",
   "main": "build/server.js",
   "scripts": {
-    "vitest": "node_modules/.bin/vitest --run --isolate",
-    "vitest:ui": "node_modules/.bin/vitest --ui",
+    "vitest": "node node_modules/.bin/vitest --run --isolate",
+    "vitest:ui": "node node_modules/.bin/vitest --ui",
     "app": "node ./build/server.js &",
     "#ignore-this-line2": "This simple service is not known to crash. ",
     "stayup:start": "node_modules/.bin/nodemon ./build/server.js &",
