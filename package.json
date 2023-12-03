@@ -20,7 +20,7 @@
     "test:app": "node ./build/server.js & MYPID=$! ; node --experimental-vm-modules ./node_modules/.bin/jest src/server/tests/*jest.mjs; npx vitest --run --isolate; kill $MYPID; reset ; start-storybook -p 6006 -s public --disable-telemetry --modern --loglevel 3 --no-version-updates",
     "build:storybook": "build-storybook -s public --disable-telemetry --modern --loglevel 3 ",
     "start": "node ./build/server.js &",
-    "build:docs":"node node_modules/.bin/jsdoc -c tsdoc.json ./src",
+    "build:docs":"node node_modules/.bin/jsdoc -c tsdoc.json -r ./src",
     "#ignore-this-line3": "Edit values in this simple script if you have local security policy",
     "run:docs":"node ./src/doc-server.mjs &",
 
