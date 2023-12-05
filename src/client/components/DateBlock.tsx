@@ -9,17 +9,23 @@ import { DEFAULT_BIRTH_DATE } from "../types/Cat";
 import { usePopper } from "react-popper";
 import FocusTrap from "focus-trap-react";
 
+/**
+ * The data that is required to drive the Date Block Component
+ *  @typedef DateProps
+ */
 export interface DateProps {
   passback: ChangeTab;
   initialVal: number;
 }
 
 /**
- DateBlock, a component to isolate issues relating to date entry
- input date is usable except for Safari
- this UI should be better interaction in any case 
+ * DateBlock, a component to isolate issues relating to date-entry. 
+ * HTML input date is usable except for Safari.
+ * This UI should be better interaction in any case.
 
- WARN: this component does double the number of redraws that you expect.
+  WARN: this component does double the number of redraws that you expect.
+ * @param {DateProps} props 
+ * @return { React.FC<DateProps> }
  */
 const DateBlock: React.FC<DateProps> = (props: DateProps) => {
   const [dob, setDOB] = useState<Date | undefined>(new Date(props.initialVal));
@@ -28,7 +34,7 @@ const DateBlock: React.FC<DateProps> = (props: DateProps) => {
   const [inputValue, setInputValue] = useState<string>(
     dob ? renderDate(dob) : renderDate(DEFAULT_BIRTH_DATE)
   );
-  const [isPopperOpen, setIsPopperOpen] = useState(false);
+  const [isPopperOpen, setIsPopperOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const ddd = new Date(props.initialVal);
@@ -48,6 +54,13 @@ const DateBlock: React.FC<DateProps> = (props: DateProps) => {
     setIsPopperOpen(false);
     buttonRef?.current?.focus();
   };
+
+  /**
+   * handleDaySelect
+   * Hidden function, acts as a done() event for date inputs
+ 
+   * @param {Date | undefined} date 
+   */
   function handleDaySelect(date: Date | undefined) {
     if (date) {
       setDOB(date);
@@ -63,6 +76,12 @@ const DateBlock: React.FC<DateProps> = (props: DateProps) => {
     setIsPopperOpen(true);
   };
 
+ /**
+   * handleInputChange
+   * Hidden function, acts as a data() event for date inputs
+ 
+   * @param {Date | undefined} date 
+   */
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setInputValue(e.currentTarget.value);
     const date = parse(e.currentTarget.value, "y-MM-dd", new Date());

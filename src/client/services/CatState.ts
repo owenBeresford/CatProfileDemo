@@ -13,7 +13,13 @@ import {
   KnowACat,
 } from "../types/CatState";
 
-// Treating HTTP as atomic, this class is stateless.  You cannot mutate it.
+
+
+/** Variable, API, used to access the remote Cat REST API  
+ * @access Global singleton, isolated to module
+ *
+ * Treating HTTP(S) transactions as atomic, means this class is stateless.  You cannot mutate it.
+ */
 const API: Transport<Array<Cat>, string> = UseTransport() as Transport<
   Array<Cat>,
   string
@@ -22,10 +28,20 @@ const API: Transport<Array<Cat>, string> = UseTransport() as Transport<
 // https://github.com/reduxjs/redux/issues/303
 // https://stackoverflow.com/questions/36212860/subscribe-to-single-property-change-in-store-in-redux
 // An idea for possible revisions
+
+/** Class to hold the local Cat population (local to RAM)
+ * @type KnowACat
+ * @public
+ */
 export class CatState implements KnowACat {
   store: Store;
   public key: string;
 
+  /**
+   * Just a con'tor
+   * @constructor 
+   * @access public
+   */
   public constructor() {
     this.key = "0aList";
     /* eslint-disable-next-line @typescript-eslint/no-this-alias */
@@ -80,27 +96,64 @@ export class CatState implements KnowACat {
     // TODO: Add feature to refil local state after an amount of time; as other clients may have made/ changed a cat
   }
 
+  /**
+   * updateCats
+   * Alter all cats held locally (will propogate)
+ 
+   * @param {Array<Cat>} a ~ the new Cat list 
+   * @access public
+   * @return void
+   */
   public updateCats(a: Array<Cat>): void {
     this.key = parseInt(this.key, 10) + 1 + "aList";
     this.store.dispatch({ type: SET_CATS, collection: a });
   }
 
+  /**
+   * setCat
+   * Alter a single local cat (will propogate)
+ 
+   * @param {Cat} a 
+   * @access public
+   * @return void
+   */
   public setCat(a: Cat): void {
     this.key = parseInt(this.key, 10) + 1 + "aList";
     this.store.dispatch({ type: SET_A_CAT, single: a });
   }
 
+  /**
+   * currentCats
+   * Access the current local cats
+ 
+   * @access public
+   * @return Array<Cat>
+   */
   public currentCats(): Array<Cat> {
     const ttt = this.store.getState();
     return ttt.allCats ?? [];
   }
 
+  /**
+   * current
+   * Access the currently active Cat
+ 
+   * @access public
+   * @return Cat
+   */
   public current(): Cat {
     const ttt = this.store.getState();
     return ttt.cat;
   }
 
-  isCatGood(a: Cat): void {
+  /**
+   * isCatGood
+   * Type washing function
+ 
+   * @param a: Cat
+   * @throws Error in case of bad data 
+   */
+  protected isCatGood(a: Cat): void {
     if (a.ID === null) {
       throw new Error(
         "Cats must have an ID code, how did it gets it's label off?"
@@ -113,11 +166,28 @@ export class CatState implements KnowACat {
     }
   }
 
+  /**
+   * listen
+   * Register an event handler, to know about changes to the Cat population
+ 
+   * @param {function} updateMe
+   * @param {string}  nom
+   * @access public
+   * @return dunno 
+   */
   public listen(updateMe: () => void, nom: string) {
     console.log("Add listener for " + nom + " changes");
     return this.store.subscribe(updateMe);
   }
 
+  /**
+   * updateCat
+   * Edit a Cat in the local list by replacing the image
+ 
+   * @param {Cat} a
+   * @access public
+   * @return void
+   */
   public updateCat(a: Cat): void {
     this.key = parseInt(this.key, 10) + 1 + "aList";
     if (a === null || a.ID === null) {
@@ -137,6 +207,14 @@ export class CatState implements KnowACat {
     this.store.dispatch({ type: SET_CATS, collection: ttt as Array<Cat> });
   }
 
+  /**
+   * removeCat
+   * Delete a Cat from local RAM
+ 
+   * @param {Cat | null} a 
+   * @access public
+   * @return void
+   */
   public removeCat(a: Cat | null): void {
     if (!a) {
       a = this.current();
@@ -166,6 +244,14 @@ export class CatState implements KnowACat {
     }
   }
 
+  /**
+   * changeCat
+   * Set which cat is active
+ 
+   * @param { HTMLElement} dom
+   * @access public
+   * @return void
+   */
   public changeCat(dom: HTMLElement): void {
     this.key = parseInt(this.key, 10) + 1 + "aList";
     while (!dom.getAttribute("data-id") && dom.parentNode !== dom) {
