@@ -1,5 +1,10 @@
 import { Axios, AxiosRequestConfig, AxiosResponse } from "axios";
 
+/**
+ * A generic object for remote API, 
+ * this feels like SOAP
+ * @interfacce
+*/
 export interface Transport<T, B> {
   get<T, R = AxiosResponse<T>>(
     ID: string,
