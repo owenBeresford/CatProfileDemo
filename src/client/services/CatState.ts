@@ -15,7 +15,8 @@ import {
 
 
 
-/** Variable, API, used to access the remote Cat REST API  
+/** 
+ * Variable, API, used to access the remote Cat REST API  
  * @access Global singleton, isolated to module
  *
  * Treating HTTP(S) transactions as atomic, means this class is stateless.  You cannot mutate it.
@@ -98,11 +99,10 @@ export class CatState implements KnowACat {
 
   /**
    * updateCats
-   * Alter all cats held locally (will propogate)
+   * Alter all cats held locally (will propagate)
  
    * @param {Array<Cat>} a ~ the new Cat list 
-   * @access public
-   * @return void
+   * @public
    */
   public updateCats(a: Array<Cat>): void {
     this.key = parseInt(this.key, 10) + 1 + "aList";
@@ -111,11 +111,10 @@ export class CatState implements KnowACat {
 
   /**
    * setCat
-   * Alter a single local cat (will propogate)
+   * Alter a single local cat (will propagate)
  
-   * @param {Cat} a 
-   * @access public
-   * @return void
+   * @param {Cat} a - the current Cat to be used in the mini-app 
+   * @public
    */
   public setCat(a: Cat): void {
     this.key = parseInt(this.key, 10) + 1 + "aList";
@@ -126,7 +125,7 @@ export class CatState implements KnowACat {
    * currentCats
    * Access the current local cats
  
-   * @access public
+   * @public
    * @return Array<Cat>
    */
   public currentCats(): Array<Cat> {
@@ -138,7 +137,7 @@ export class CatState implements KnowACat {
    * current
    * Access the currently active Cat
  
-   * @access public
+   * @public
    * @return Cat
    */
   public current(): Cat {
@@ -150,7 +149,7 @@ export class CatState implements KnowACat {
    * isCatGood
    * Type washing function
  
-   * @param a: Cat
+   * @param {Cat} a 
    * @throws Error in case of bad data 
    */
   protected isCatGood(a: Cat): void {
@@ -172,7 +171,7 @@ export class CatState implements KnowACat {
  
    * @param {function} updateMe
    * @param {string}  nom
-   * @access public
+   * @public
    * @return dunno 
    */
   public listen(updateMe: () => void, nom: string) {
@@ -185,8 +184,7 @@ export class CatState implements KnowACat {
    * Edit a Cat in the local list by replacing the image
  
    * @param {Cat} a
-   * @access public
-   * @return void
+   * @public
    */
   public updateCat(a: Cat): void {
     this.key = parseInt(this.key, 10) + 1 + "aList";
@@ -212,8 +210,7 @@ export class CatState implements KnowACat {
    * Delete a Cat from local RAM
  
    * @param {Cat | null} a 
-   * @access public
-   * @return void
+   * @public
    */
   public removeCat(a: Cat | null): void {
     if (!a) {

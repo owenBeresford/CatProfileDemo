@@ -7,7 +7,7 @@ import path from "path";
 import { setUp as testAPI } from "./services/test";
 
 /**
- * A bootstrap file to run a node API
+ * @comment A bootstrap file to run a node API
  * Most work is delegated to ./services/* modules to make this easier to read
  */
 
