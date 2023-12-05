@@ -9,7 +9,7 @@ const __dirname = dirname(__filename);
 // this is the octal map for r in each octet and x on each octet
 // written in base10, for my ease
 // i am asking for read mask in each case as the person checking out the source may not be the person executing it
-// NOTE: masks may exist in Node source already
+// NOTE: mask values may exist in Node source already
 const UNIX_FILE_ALL_READ_EXEC = 365; 
 const UNIX_FILE_MASK_RX=parseInt('555', 8); // ie r-xr-xr-x
 
@@ -30,7 +30,7 @@ try {
 	const app = express();
 	app.use('/', express.static(staticPath));
 	app.listen(PORT, ACCESSIBLE_IP);
-	console.log("SUCCESS: Docs service should be accessible as http://"+ACCESSIBLE_IP+":"+PORT+"/");
+	console.log("SUCCESS: Docs service should be accessible as http://"+ACCESSIBLE_IP+":"+PORT+"/ with a local PID of "+process.pid );
 	console.log("Someone should add HTTPS, but this is the local IP.");
 } catch(e) {
 	console.error("FAIL "+e.toString());
