@@ -82,7 +82,7 @@ export function isCat(o: any): o is Cat {
 }
 
 /**
- * Type validation filter, for ShippingCat.
+ * Type validation filter, for ShippingCat.   
  * Note similar but different to above function.
  */ 
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any
@@ -103,4 +103,7 @@ export function isShippingCat(o: any): o is ShippingCat {
   return good === 0;
 }
 
+/**
+ * A default value for the age field in a Cat
+ */ 
 export const DEFAULT_BIRTH_DATE = new Date("2019-07-01");

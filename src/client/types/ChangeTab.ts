@@ -1,5 +1,5 @@
 /**
- * A method description for eveent hasndler that would enable changing tab
+ * A method description for event handler that would enable changing tab
  * @event
  */ 
 export type ChangeTab = (i: number) => void;
