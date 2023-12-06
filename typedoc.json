@@ -6,6 +6,7 @@
 	"excludeExternals":true,
 	"htmlLang":"en-GB",
 	"skipErrorChecking":true,
-	"searchInComments":true
+	"searchInComments":true,
+	"plugin":["typedoc-plugin-missing-exports"]
 
 }
