@@ -35,6 +35,7 @@ const BooleanButton: React.FC<ButtonProps> = (props: ButtonProps) => {
  
    * @param {string} nom
    * @return {string}
+   * @internal 
    */
   function createKey(nom:string):string {
     return "tag" + nom + (props.active ? "T" : "F");
