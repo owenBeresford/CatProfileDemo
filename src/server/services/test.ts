@@ -24,7 +24,7 @@ export function setUp(app: Application) {
  * 
  * @param {Request} req 
  * @param {Response} res
- * @protected 
+ * @internal 
  */
 async function getAll(req: Request, res: Response) {
   if (process.env.NODE_ENV !== "development") {
@@ -49,7 +49,7 @@ async function getAll(req: Request, res: Response) {
  *
  * @param {Request} req 
  * @param {Response} res
- * @protected 
+ * @internal 
  */
 async function getSingle(req: Request, res: Response) {
   if (process.env.NODE_ENV !== "development") {
@@ -82,7 +82,7 @@ async function getSingle(req: Request, res: Response) {
  *
  * @param {Request} req 
  * @param {Response} res
- * @protected 
+ * @internal 
  */
 function postSingle(req: Request, res: Response) {
   if (process.env.NODE_ENV !== "development") {
@@ -121,7 +121,7 @@ function postSingle(req: Request, res: Response) {
  *
  * @param {Request} req 
  * @param {Response} res
- * @protected 
+ * @internal
  */
 function patchSingle(req: Request, res: Response) {
   if (process.env.NODE_ENV !== "development") {
