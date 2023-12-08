@@ -18,14 +18,21 @@ describe("Simple component test 2", () => {
     const BLOB = render(
       <DateBlock passback={args.passback} initialVal={args.initialVal} />
     );
-	try {
-	    assert.notEqual(BLOB.getByTestId("obj1"), null, "we have a component");
-	    assert.notEqual(BLOB.getByTestId("obj1"), undefined, "we have a component");
-	} catch(e) {
-	    assert.notEqual(BLOB.getByTestId("obj2"), null, "we have a component");
-	    assert.notEqual(BLOB.getByTestId("obj2"), undefined, "we have a component");
-		
-	}
+    try {
+      assert.notEqual(BLOB.getByTestId("obj1"), null, "we have a component");
+      assert.notEqual(
+        BLOB.getByTestId("obj1"),
+        undefined,
+        "we have a component"
+      );
+    } catch (e) {
+      assert.notEqual(BLOB.getByTestId("obj2"), null, "we have a component");
+      assert.notEqual(
+        BLOB.getByTestId("obj2"),
+        undefined,
+        "we have a component"
+      );
+    }
 
     // need to create code to look at events...
   });

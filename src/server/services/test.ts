@@ -21,10 +21,10 @@ export function setUp(app: Application) {
 /**
  * getAll
  * API to return the current cats
- * 
- * @param {Request} req 
+ *
+ * @param {Request} req
  * @param {Response} res
- * @internal 
+ * @internal
  */
 async function getAll(req: Request, res: Response) {
   if (process.env.NODE_ENV !== "development") {
@@ -47,9 +47,9 @@ async function getAll(req: Request, res: Response) {
  * asyncgetSingle
  * API to return a singular profile.  As this is for testing, it includes a 10% chance of failure
  *
- * @param {Request} req 
+ * @param {Request} req
  * @param {Response} res
- * @internal 
+ * @internal
  */
 async function getSingle(req: Request, res: Response) {
   if (process.env.NODE_ENV !== "development") {
@@ -80,9 +80,9 @@ async function getSingle(req: Request, res: Response) {
  * postSingle
  * API to store a profile. Nothing actually written to disk.  As this is for testing, it includes a 10% chance of failure
  *
- * @param {Request} req 
+ * @param {Request} req
  * @param {Response} res
- * @internal 
+ * @internal
  */
 function postSingle(req: Request, res: Response) {
   if (process.env.NODE_ENV !== "development") {
@@ -119,7 +119,7 @@ function postSingle(req: Request, res: Response) {
  * patchSingle
  * API to modify a profile. Nothing written to disk.  As this is for testing, it includes a 10% chance of failure
  *
- * @param {Request} req 
+ * @param {Request} req
  * @param {Response} res
  * @internal
  */
@@ -148,4 +148,3 @@ function patchSingle(req: Request, res: Response) {
     res.status(400).send("Text to a human: Bad data for a cat");
   }
 }
-

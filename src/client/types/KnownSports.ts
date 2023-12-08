@@ -1,6 +1,6 @@
 /**
- * An array of the known sport values, used when you need to iterate 
- *  
+ * An array of the known sport values, used when you need to iterate
+ *
  */
 export const KnownSportsValues = [
   "Golf",

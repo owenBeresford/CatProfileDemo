@@ -8,8 +8,8 @@ interface CatWindow extends Window {
 declare let window: CatWindow;
 
 /**
- * Transport_b1<T, B> 
- * A class to pull data to the client side, wrapping Axios 
+ * Transport_b1<T, B>
+ * A class to pull data to the client side, wrapping [Axios](https://www.npmjs.com/package/axios)
  *
  * @implements Transport<T, B>
  * @access public
@@ -39,24 +39,26 @@ export class Transport_b1<T, B> implements Transport<T, B> {
         return status >= 200 && status < 300;
       },
 
-  /**
-   * transformResponse array of handlers
-   * This does generai parsing of API responses, 
-   * I intenstionally erase the default handler, so I can look at all the data to emit correct error mesages on failure.  
-   *   I cant see Axios + typescript notes
-   * 
-   * @param {any} data - I think this is a node http/ServerResponse
-   * @param {any} headers - a hash
-   * @return parsed data OR throw Exception
-   * @throws Error as Promise.reject
-   * @internal
-   */
+      /**
+       * transformResponse array of handlers
+       * This does generai parsing of API responses,
+       * I intenstionally erase the default handler, so I can look at all the data to emit correct error mesages on failure.
+       *   I cant see Axios + typescript notes
+       *
+       * @param {any} data - I think this is a node http/ServerResponse
+       * @param {any} headers - a hash
+       * @return parsed data OR throw Exception
+       * @throws Error as Promise.reject
+       * @internal
+       */
       transformResponse: [
         // headers here are complex
         (data, headers) => {
-          if (data === ""  || 
-            ( Array.isArray(data) && data.length===0) ||
-             Object.keys(data).length===0)  {
+          if (
+            data === "" ||
+            (Array.isArray(data) && data.length === 0) ||
+            Object.keys(data).length === 0
+          ) {
             console.log(
               "Assert this is a HTTP204 or possibly a HTTP5*; no data"
             );
@@ -75,8 +77,8 @@ export class Transport_b1<T, B> implements Transport<T, B> {
           }
 
           try {
-          // I have erased the defauilt parser, so I can add the extra error reporting above here  
-            if(typeof data === "string") {
+            // I have erased the defauilt parser, so I can add the extra error reporting above here
+            if (typeof data === "string") {
               data = JSON.parse(data);
             }
           } catch (e) {
@@ -113,7 +115,7 @@ export class Transport_b1<T, B> implements Transport<T, B> {
     this.ax.defaults.baseURL = u;
   }
 
- /**
+  /**
    * get
    * Fixed request to GET a single Cat, method exists for type assertion
    *
@@ -130,10 +132,10 @@ export class Transport_b1<T, B> implements Transport<T, B> {
     return this.ax.get(this.ax.defaults.baseURL + "cat/" + ID, config);
   }
 
- /**
+  /**
    * getAll
    * Fixed request to GET all the Cats, method exists for type assertion
-   * 
+   *
    * @param {AxiosRequestConfig | undefined} config
    * @access public
    * @return Promise<R>
@@ -145,7 +147,7 @@ export class Transport_b1<T, B> implements Transport<T, B> {
     return this.ax.get(this.ax.defaults.baseURL + "cat/all", config);
   }
 
- /**
+  /**
    * post
    * Fixed request to POST the Cats, method exists for type assertion
    *
@@ -177,7 +179,7 @@ export class Transport_b1<T, B> implements Transport<T, B> {
     }
   }
 
- /**
+  /**
    * patch
    * Fixed request to PATCH the Cats, method exists for type assertion
    *
@@ -186,7 +188,7 @@ export class Transport_b1<T, B> implements Transport<T, B> {
    * @param {AxiosRequestConfig | undefined} config
    * @access public
    * @return Promise<R>
-   */ 
+   */
   public patch<T, B, R = AxiosResponse<T>>(
     ID: string,
     data: B,
@@ -212,7 +214,6 @@ export class Transport_b1<T, B> implements Transport<T, B> {
       );
     }
   }
-
 }
 
 /**

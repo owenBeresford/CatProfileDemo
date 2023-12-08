@@ -3,15 +3,15 @@ import { Cat } from "./Cat";
 
 /**
  * Three literals that are keys for state alteration events
- * @event 
- */ 
+ * @event
+ */
 export const SET_CATS = "SET_CATS";
 export const SET_A_CAT = "SET_A_CAT";
 export const SET_KEY = "aKey"; // I expect a React or Redux feature may use 'key' as a key.
 
 /**
- * The values to store in the state 
- */ 
+ * The values to store in the state
+ */
 export type CatStateType = {
   allCats: Array<Cat> | null;
   cat: Cat | null;
@@ -20,7 +20,7 @@ export type CatStateType = {
 
 /**
  * The values modelled as an Action for better integration with Redux
- */ 
+ */
 export type CatAction = Action & {
   collection: Array<Cat> | null;
   single: Cat | null;
@@ -29,7 +29,7 @@ export type CatAction = Action & {
 
 /**
  * Methods outside of the State that are used to manipulate Cats in the State
- */ 
+ */
 export interface KnowACat {
   key: string;
   updateCats(a: Array<Cat>): void;
@@ -43,16 +43,16 @@ export interface KnowACat {
 }
 
 /**
- * Three functions to pass state outputs into Components 
- */ 
+ * Three functions to pass state outputs into Components
+ */
 export type accessCurrentCats = () => Array<Cat>;
 
 /**
- * Three functions to pass state outputs into Components 
- */ 
+ * Three functions to pass state outputs into Components
+ */
 export type accessACat = () => Cat;
 
 /**
- * Three functions to pass state outputs into Components 
- */ 
+ * Three functions to pass state outputs into Components
+ */
 export type listenHandler = (a: () => void, b: string) => void;

@@ -10,6 +10,12 @@ import CatScreen0 from "./CatScreen0";
 import CatScreen1 from "./CatScreen1";
 import CatScreen2 from "./CatScreen2";
 
+/**
+ * SignupProps
+ * Interface for the properties on this Component
+ * @public
+ * @typedef SignupProps
+ */
 interface SignupProps {
   current: accessACat;
   currentCats: accessCurrentCats;
@@ -17,15 +23,35 @@ interface SignupProps {
   removeCat: removeableCat;
 }
 
+/**
+ * InnereSignupProps
+ * Interface for the properties
+ * @public
+ * @typedef InnerSignupProps
+ */
 interface InnerSignupProps extends SignupProps {
   ID: string;
 }
 
+/**
+ * InnerSignupCat
+ * The Component that renders a signup form, composed of several smaller forms
+ * This makes a  {@link Cat},
+ * @internal
+ * @public
+ */
 export class InnerSignupCat extends React.Component<InnerSignupProps> {
   private errMsg: string;
   private screenNo: number;
   private builder: Cat;
 
+  /**
+   * constructor
+   * A con'tor, populates local state as expected
+ 
+   * @param { InnerSignupProps} props
+   * @public
+   */
   constructor(props: InnerSignupProps) {
     super(props);
     this.screenNo = 0;
@@ -59,6 +85,13 @@ export class InnerSignupCat extends React.Component<InnerSignupProps> {
     this.updateBuildingCat = this.updateBuildingCat.bind(this);
   }
 
+  /**
+   * InnerSignupPropTypes
+   * The properties that need to be passed in  see [docs for dep](https://www.npmjs.com/package/prop-types)
+   * @static
+   * @protected
+   * @internal
+   */
   static InnerSignupPropTypes = {
     current: PropTypes.func.isRequired,
     currentCats: PropTypes.func.isRequired,
@@ -67,21 +100,47 @@ export class InnerSignupCat extends React.Component<InnerSignupProps> {
     ID: PropTypes.string.isRequired,
   };
 
+  /**
+   * incTab
+   * Event handler to move to next form section
+   * @protected
+   * @internal
+   */
   incTab(newVal: number): void {
     this.screenNo = newVal;
     // I think this is react17 vs react18 issue.
     this.forceUpdate();
   }
 
+  /**
+   * updateBuildingCat
+   * write back function
+   * @protected
+   * @internal
+   */
   updateBuildingCat(a: Cat): void {
     this.builder = a;
   }
 
+  /**
+   * failMsg
+   * Utility to make a ErrorMsg
+ 
+   * @param {string} [str = "no ID and no data; pls talk to a dev."]
+   * @private
+   * @internal
+   */
   failMsg(str = "no ID and no data; pls talk to a dev."): React.ReactElement {
     this.errMsg = str;
     return <ErrorMsg lead="Data loading..." err={str} />;
   }
 
+  /**
+   * render
+   * The render function on this component
+   *
+   * @public
+   */
   render(): React.ReactElement<SignupProps> {
     if (
       // no Cat and no ID is an empty page, so an ERROR
@@ -120,6 +179,15 @@ export class InnerSignupCat extends React.Component<InnerSignupProps> {
     );
   }
 
+  /**
+   * spread
+   * A function to isolate a switch statement, to make the above render function easier to read
+   * @private
+   * @param {Cat} buildCat - the Cat being assembled
+   * @param {storeACat} updateCat - callback to push data to parent form
+   * @param {removeableCat} removeCat - callback to delete it
+   * @throws Error when an unknown screen is requested
+   */
   private spread(
     buildCat: Cat,
     updateCat: storeACat,
@@ -160,7 +228,12 @@ export class InnerSignupCat extends React.Component<InnerSignupProps> {
   }
 }
 
-// this is a recommended hack to have my functional design and components-that-have-state 'cake' and also eat the cake
+/**
+ * SignupCat
+ * A wrapper Component that passes an ID off the URL
+ * This is a recommended hack to have my functional design and components-that-have-state 'cake' and also eat the cake
+ * @public
+ */
 export const SignupCat: React.FC<SignupProps> = (props) => {
   let { ID } = useParams();
   if (!ID) {

@@ -2,10 +2,10 @@ import React from "react";
 import { Toggle } from "react-toggle-component";
 import { KnownSports } from "../types/KnownSports";
 
-/** 
+/**
  * The data that is required to drive the Boolean Button component
  *   @typedef ButtonProps
- *  
+ *
  *   NB: push is a CB, not a call to Array.push
  */
 export interface ButtonProps {
@@ -14,11 +14,11 @@ export interface ButtonProps {
   active: boolean;
 }
 
-/** 
+/**
  * The runtime defined component BooleanButton
  *    NB: push is a CB, not a call to Array.push
- * 
- * @param {ButtonProps} props 
+ *
+ * @param {ButtonProps} props
  * @return { React.FC<ButtonProps> }
  */
 const BooleanButton: React.FC<ButtonProps> = (props: ButtonProps) => {
@@ -37,7 +37,7 @@ const BooleanButton: React.FC<ButtonProps> = (props: ButtonProps) => {
    * @return {string}
    * @internal 
    */
-  function createKey(nom:string):string {
+  function createKey(nom: string): string {
     return "tag" + nom + (props.active ? "T" : "F");
   }
 
@@ -45,7 +45,7 @@ const BooleanButton: React.FC<ButtonProps> = (props: ButtonProps) => {
   return (
     <label id={"lbl" + nom} className="buttons" htmlFor={"tog" + nom}>
       <Toggle
-        key={ createKey(nom)}
+        key={createKey(nom)}
         name={"tog" + nom}
         onToggle={trigger}
         checked={props.active}

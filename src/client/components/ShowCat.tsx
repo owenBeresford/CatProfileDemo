@@ -6,7 +6,13 @@ import { accessACat, listenHandler } from "../types/CatState";
 import PropTypes from "prop-types";
 import ErrorMsg from "./ErrorMsg";
 
-export interface ShowCatProps {
+/**
+ * ShowCatProps
+ * Interface for the properties that need to be passed to the wrapper component
+ * @public
+ * @typedef ShowCatProps
+ */
+interface ShowCatProps {
   current: accessACat;
   isChild: boolean;
   removeCat: removeableCat;
@@ -14,14 +20,35 @@ export interface ShowCatProps {
   aKey: string;
 }
 
-export interface InnerShowCatProps extends ShowCatProps {
+/**
+ * InnerShowCatProps
+ * Interface for the properties for the more useful component
+ * @public
+ * @typedef InnerShowCatProps
+ */
+interface InnerShowCatProps extends ShowCatProps {
   ID: string;
 }
 
+/**
+ * ShowCatInner
+ * A component to display Cat objects
+ *
+ * @param {InnerShowCatProps} props
+ * @public
+ * @internal
+ */
 export class ShowCatInner extends React.Component<InnerShowCatProps> {
   private lastUpdate: Date;
   private errMsg: string;
 
+  /**
+   * constructor
+   * Boring constructor for this Object
+ 
+   * @param { InnerShowCatProps} props
+   * @public
+   */
   constructor(props: InnerShowCatProps) {
     super(props);
     this.lastUpdate = new Date(new Date().getTime() - 3000);
@@ -31,6 +58,12 @@ export class ShowCatInner extends React.Component<InnerShowCatProps> {
     props.listenToState(this.updateMe, "ShowCat");
   }
 
+  /**
+   * InnerShowCatPropTypes
+   * Literal object of validation rules.  See [docs for dep](https://www.npmjs.com/package/prop-types)
+   * @static
+   * @internal
+   */
   static InnerShowCatPropTypes = {
     current: PropTypes.func.isRequired,
     removeCat: PropTypes.func.isRequired,
@@ -40,6 +73,13 @@ export class ShowCatInner extends React.Component<InnerShowCatProps> {
     ID: PropTypes.string.isRequired,
   };
 
+  /**
+   * shouldComponentUpdate
+   * Event handler
+ 
+   * @param { ShowCatProps } nextProps
+   * @public
+   */
   shouldComponentUpdate(nextProps: ShowCatProps): boolean {
     if (this.props.aKey !== nextProps.aKey) {
       console.warn("IOIO I //should// update ShowCat");
@@ -48,6 +88,12 @@ export class ShowCatInner extends React.Component<InnerShowCatProps> {
     return false;
   }
 
+  /**
+   * updateMe
+   * thing to reduce data refreshing rate
+   *
+   * @public
+   */
   updateMe(): void {
     if ((new Date().getTime() - this.lastUpdate.getTime()) / 1000 > 0.2) {
       this.forceUpdate();
@@ -55,6 +101,13 @@ export class ShowCatInner extends React.Component<InnerShowCatProps> {
     }
   }
 
+  /**
+   * render
+   * Function to put the component on screen
+ 
+   * @public
+   * @return {React.ReactElement<InnerShowCatProps>}
+   */
   render(): React.ReactElement<InnerShowCatProps> {
     const CC = this.props.current();
     let tt: string | number = this.props.ID ?? "";
@@ -207,14 +260,22 @@ export class ShowCatInner extends React.Component<InnerShowCatProps> {
   }
 }
 
-export const ShowCat: React.FC<ShowCatProps> = (props) => {
+/**
+ * ShowCat
+ * A component to display Cat objects
+ * This is a recommended hack to have my functional design and components-that-have-state 'cake' and also eat the cake
+ *
+ * @param {ShowCatProps} props
+ * @public
+ */
+export const ShowCat: React.FC<ShowCatProps> = (props: ShowCatProps) => {
   let { ID } = useParams();
   if (!ID) {
     ID = "";
   }
   return (
     <ShowCatInner {...props} ID={ID} />
-  ) as React.ReactElement<ShowCatProps>;
+  ) as React.ReactElement<InnerShowCatProps>;
 };
 
 export default ShowCat;

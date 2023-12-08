@@ -76,7 +76,7 @@ const DateBlock: React.FC<DateProps> = (props: DateProps) => {
     setIsPopperOpen(true);
   };
 
- /**
+  /**
    * handleInputChange
    * Hidden function, acts as a data() event for date inputs
  

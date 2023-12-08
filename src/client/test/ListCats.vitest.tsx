@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { assert, describe, expect, it, vi } from "vitest";
 import { render, cleanup, screen, fireEvent } from "@testing-library/react";
 
-import { Cat } from '../types/Cat'
+import { Cat } from "../types/Cat";
 import ListCats, { ListCatProps } from "../components/ListCats";
 
 const TEST1 = (i: HTMLElement) => {

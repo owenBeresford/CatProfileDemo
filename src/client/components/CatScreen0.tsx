@@ -12,6 +12,12 @@ import {
   expandRef,
 } from "../services/util";
 
+/**
+ * Screen0Props
+ * Interface for the properties on this Component see {@link storeACat}, {@link Cat}, {@link ChangeTab}
+ * @public
+ * @typedef Screen0Props
+ */
 export interface Screen0Props {
   build: Cat;
   returnCat: storeACat;
@@ -19,8 +25,14 @@ export interface Screen0Props {
   aKey: string;
 }
 
+/**
+ * CatScreen0
+ * A Component to input the first batch of form items
+ *
+ * @public
+ */
 const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
-  // I like the 'custom hooks' as described in https://react.school/ui/input; BUT it doesnt work efficiently with typescript
+  // I like the 'custom hooks' as described in https://react.school/ui/input; BUT it doesn't work efficiently with typescript
 
   const [sports, setSports] = useState<Array<KnownSports>>(
     mapInitialValue<Array<KnownSports>>(
@@ -50,6 +62,12 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
     setSports(props.build.sports);
   }, [props.build, setSports]);
 
+  /**
+   * next
+   * Event handler to write data back to the parent component
+ 
+   * @internal
+   */
   function next(): boolean {
     if (!dob || !name || !gender || sports.length === 0) {
       setErrmsg(
@@ -74,6 +92,12 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
     return false;
   }
 
+  /**
+   * chooseSport
+   * Event handler to correctly update sports, addition ans subtraction
+ 
+   * @internal
+   */
   function chooseSport(item: string): boolean {
     const WHICH: KnownSports = item as KnownSports;
     if (sports.includes(WHICH)) {
@@ -86,6 +110,7 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
     setLastInput("nobody,idontneednobody");
     return false;
   }
+
   const DEFAULT_DOB = DEFAULT_BIRTH_DATE.getTime();
   const CURRENT_SPORTS = mapInitialValue<Array<KnownSports>>(
     props.build,
@@ -110,7 +135,6 @@ const CatScreen0: React.FC<Screen0Props> = (props: Screen0Props) => {
     props.build.dob.getTime()
   );
 
- 
   return (
     <div className="aScreen popup" key={props.aKey}>
       <form>

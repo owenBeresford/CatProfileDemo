@@ -13,10 +13,8 @@ import {
   KnowACat,
 } from "../types/CatState";
 
-
-
-/** 
- * Variable, API, used to access the remote Cat REST API  
+/**
+ * Variable, API, used to access the remote Cat REST API
  * @access Global singleton, isolated to module
  *
  * Treating HTTP(S) transactions as atomic, means this class is stateless.  You cannot mutate it.
@@ -40,7 +38,7 @@ export class CatState implements KnowACat {
 
   /**
    * Just a con'tor
-   * @constructor 
+   * @constructor
    * @access public
    */
   public constructor() {

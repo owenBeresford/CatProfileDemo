@@ -19,7 +19,9 @@ describe("Simple component test 1", () => {
       true,
       "we find our intro (no markup)"
     );
-    const tmp:HTMLTextAreaElement= screen.queryByText("this is the the error") as HTMLTextAreaElement; 
+    const tmp: HTMLTextAreaElement = screen.queryByText(
+      "this is the the error"
+    ) as HTMLTextAreaElement;
     assert.equal(
       tmp.readOnly,
       true,

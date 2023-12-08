@@ -3,7 +3,7 @@ import { KnownSports } from "../types/KnownSports";
 import { MutableRefObject } from "react";
 
 /**
- * ID_OFFSET 
+ * ID_OFFSET
  * Counter for the below ID functions, scope limited to this module.
  */
 let ID_OFFSET = 0;
@@ -34,7 +34,7 @@ export function resetId(): string {
 /**
  * getPreferredLanguage
  * Pull data from the process and navigator objects to compute best UI language.
- * 
+ *
  * @access public
  */
 export function getPreferredLanguage(): string {
@@ -64,14 +64,13 @@ const DEFAULT_NAME = "Default cat";
 
 /**
  * noop
- * Do nothing as a service.  
- * 
+ * Do nothing as a service.
+ *
  * @public
  */
 export function noop() {
   return;
 }
-
 
 /**
  * renderDate
@@ -100,7 +99,6 @@ export function renderDate(d: Date): string {
   }
 }
 
-
 /**
  * expandRef
  * Convert a React ref() to string 
@@ -125,7 +123,7 @@ export function expandRef(val: MutableRefObject<any>, trim = false): string {
 /**
  * getDefaultSelfie
  * static data map
- * 
+ *
  * @public
  */
 export function getDefaultSelfie(): string {
@@ -264,16 +262,15 @@ export function mapInitialValue<T>(shared: Cat, field: T, defaultVal: T): T {
   }
 }
 
-
 /**
  * includesWithBetterTyping
  * Array.includes, but works better with TS types
  *
- * Snarl at whatever beaurocrat made types for Array.includes
+ * Snarl at whatever Bureaucrat made types for Array.includes
  * pour example https://stackoverflow.com/questions/71639989/typescript-why-array-includes-expects-searchelement-to-be-never-type
- * 
- * @param {Array<KnownSports>} ar 
- * @param { KnownSports} key 
+ *
+ * @param {Array<KnownSports>} ar
+ * @param { KnownSports} key
  * @public
  */
 export function includesWithBetterTyping(
@@ -289,4 +286,3 @@ export function includesWithBetterTyping(
   });
   return found;
 }
-

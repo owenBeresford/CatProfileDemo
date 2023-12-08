@@ -28,6 +28,7 @@ I am showing:
 - ADDED: Ability to delete cats
 - ADDED: more UI niceties
 - Ensured scripts accessed via npm are correct & complete
+- Note: some TS interfaces are pointlessly exported, because I use them in unit tests
 
 I have not built:
 
@@ -54,4 +55,4 @@ Urgent need:
 
 - I want to change CSS approach to have namespaces and be done in modular CSS style (most CSS here was just maximum rush speed); I guess this is a days work.
 - Maybe try to get Mongoose TS types setup now; can't guesstimate. Maybe swap to TypeORM or Prisma if easier?
-- I would like to add reference cypress test suite 
+- I would like to add reference cypress test suite
