@@ -1,6 +1,6 @@
 # CatProfileDemo
 
-This is not a product, this is a tech test.
+This is not a product, this is a **tech test.**
 
 Objectives
 
@@ -12,6 +12,11 @@ I wrote a "simple demo to match blogs" very quickly, in 4days. Since then I adde
 I am showing:
 
 - About 2000 standardised LOC that is not tests, CSS or libraries
+- Grownup use of docs & test tools, please browse package.json
+  - LINK https://owenberesford.me.uk/resource/storybook
+  - LINK https://owenberesford.me.uk/resource/vitest
+  - LINK TO COME [my site]/js-doc-tools
+  - LINK TO COME my conf project for some tool templates
 - I can use Enum (feels weird outside of SQL)
 - I can use interfaces and types
 - I can use basic React 18
@@ -50,7 +55,7 @@ I have not built:
 - My props for components are passing stateless impure functions, which only modify things in Redux State.
 - Add rest of component tests to vitest.
 
-Urgent need:
+Eventual need:
 
 - I want to change CSS approach to have namespaces and be done in modular CSS style (most CSS here was just maximum rush speed); I guess this is a days work.
 - Maybe try to get Mongoose TS types setup now; can't guesstimate. Maybe swap to TypeORM or Prisma if easier?
