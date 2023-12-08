@@ -4,14 +4,12 @@ import path from "path";
 import { readFile } from "fs/promises";
 
 /**
- * exportsetUp
- * This module is a test implementation of an API, so the FE code can be tested
- * Note: API points are inert when NODE_ENV isn't development 
+ * setUp()
+ * This module is a test implementation of an API, so the FE code can be tested.   
+ * Note: API points are inert when NODE_ENV isn't development. 
 
- * @author owen beresford
  * @param app type Application: the express engine to attach the API points to 
  * @access public, and exported
- * @return void
  */
 export function setUp(app: Application) {
   app.get("/test/cat/all", getAll);
@@ -23,11 +21,10 @@ export function setUp(app: Application) {
 /**
  * getAll
  * API to return the current cats
- 
- * @param req an Express Request
- * @param res an Express Response
- * @access module 
- * @return void
+ *
+ * @param {Request} req
+ * @param {Response} res
+ * @internal
  */
 async function getAll(req: Request, res: Response) {
   if (process.env.NODE_ENV !== "development") {
@@ -49,11 +46,10 @@ async function getAll(req: Request, res: Response) {
 /**
  * asyncgetSingle
  * API to return a singular profile.  As this is for testing, it includes a 10% chance of failure
- 
- * @param req an Express Request
- * @param res an Express Response
- * @access module
- * @return void
+ *
+ * @param {Request} req
+ * @param {Response} res
+ * @internal
  */
 async function getSingle(req: Request, res: Response) {
   if (process.env.NODE_ENV !== "development") {
@@ -84,10 +80,9 @@ async function getSingle(req: Request, res: Response) {
  * postSingle
  * API to store a profile. Nothing actually written to disk.  As this is for testing, it includes a 10% chance of failure
  *
- * @param req an Express Request
- * @param res an Express Response
- * @access module
- * @return void
+ * @param {Request} req
+ * @param {Response} res
+ * @internal
  */
 function postSingle(req: Request, res: Response) {
   if (process.env.NODE_ENV !== "development") {
@@ -98,7 +93,7 @@ function postSingle(req: Request, res: Response) {
     res.status(400).send("Text to a human: Bad data for a cat ");
     return;
   }
-  // i do not know why this Express library cannot unpack these
+  // I do not know why this Express library cannot unpack these
   // or why Node string lacks replaceAll until v15
   let tt = ("" + req.body.data)
     .replace(/\\"/g, '"')
@@ -124,10 +119,9 @@ function postSingle(req: Request, res: Response) {
  * patchSingle
  * API to modify a profile. Nothing written to disk.  As this is for testing, it includes a 10% chance of failure
  *
- * @param req an Express Request
- * @param res an Express Response
- * @access module
- * @return void
+ * @param {Request} req
+ * @param {Response} res
+ * @internal
  */
 function patchSingle(req: Request, res: Response) {
   if (process.env.NODE_ENV !== "development") {

@@ -1,6 +1,11 @@
 import { KnownSports } from "./KnownSports";
 import { Model, Document } from "mongoose";
 
+/**
+ * Data members to describe a Cat in RAM.
+ * This could be reduced to a type extend on the ID and dob
+ * @interface
+ */
 export interface Cat {
   ID: string | null;
   name: string;
@@ -14,11 +19,28 @@ export interface Cat {
   // want this to be a Blob
 }
 
-// this is Cat
+/**
+ * CatDocument ~ A conversion to Mongoose types
+ * @typeDef
+ */
 export interface CatDocument extends Cat, Document {}
+
+/**
+ * CatModel ~ A conversion to Mongoose types
+ * @typeDef
+ */
 export type CatModel = Model<CatDocument>;
+
+/**
+ * CatDump ~ An array of Cats, used in API results and serialisation
+ * @typeDef
+ */
 export type CatDump = Array<Cat>;
 
+/**
+ * Array of keys for enumeration.
+ * maybe replace with keyof.
+ */
 export const KeysOfCat = [
   "name",
   "dob",
@@ -31,8 +53,11 @@ export const KeysOfCat = [
   "ID",
 ];
 
-// This is a runtime process, not type washing
-// IOIO TODO adding a Schema would be a nice touch, but no time now
+/**
+ * Type validation filter, for a Cat.
+ * Note similar but different to below function.
+ * Adding a Schema would be a nice touch, but no time in initial version.
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isCat(o: any): o is Cat {
   let good = KeysOfCat.length;

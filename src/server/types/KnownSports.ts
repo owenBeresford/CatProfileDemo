@@ -1,3 +1,7 @@
+/**
+ * An array of the known sport values, used when you need to iterate
+ *
+ */
 export const KnownSportsValues = [
   "Golf",
   "Tennis",
@@ -50,4 +54,8 @@ export const KnownSportsValues = [
   "Track and Field",
 ] as const;
 
+/**
+ * The sports as an Enum
+ * @enum
+ */
 export type KnownSports = (typeof KnownSportsValues)[number];

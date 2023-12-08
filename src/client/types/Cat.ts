@@ -1,5 +1,10 @@
 import { KnownSports } from "./KnownSports";
 
+/**
+ * Data members to describe a Cat in RAM.
+ * This could be reduced to a type extend on the ID and dob
+ * @interface
+ */
 export interface Cat {
   name: string;
   dob: Date;
@@ -13,6 +18,11 @@ export interface Cat {
   // want this to be a Blob
 }
 
+/**
+ * Data members to describe a Cat in an API.
+ *
+ * @interface
+ */
 export interface ShippingCat {
   name: string;
   dob: number;
@@ -26,10 +36,17 @@ export interface ShippingCat {
   // want this to be a Blob
 }
 
+/**
+ * Three event handlers to adjust Cats.
+ */
 export type storeACat = (a: Cat) => void;
 export type removeableCat = (a: Cat | null) => void;
 export type storeCats = (a: Array<Cat>) => void;
 
+/**
+ * Array of keys for enumeration.
+ * maybe replace with keyof.
+ */
 const KeysOfCat = [
   "name",
   "dob",
@@ -41,8 +58,11 @@ const KeysOfCat = [
   "image",
 ];
 
-// this is a runtime process, not type washing
-// adding a Schema would be a nice touch, but no time now
+/**
+ * Type validation filter, for a Cat.
+ * Note similar but different to below function.
+ * Adding a Schema would be a nice touch, but no time in initial version.
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isCat(o: any): o is Cat {
   let good = KeysOfCat.length;
@@ -61,6 +81,10 @@ export function isCat(o: any): o is Cat {
   return good === 0;
 }
 
+/**
+ * Type validation filter, for ShippingCat.
+ * Note similar but different to above function.
+ */
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any
 export function isShippingCat(o: any): o is ShippingCat {
   let good = KeysOfCat.length;
@@ -79,4 +103,7 @@ export function isShippingCat(o: any): o is ShippingCat {
   return good === 0;
 }
 
+/**
+ * A default value for the age field in a Cat
+ */
 export const DEFAULT_BIRTH_DATE = new Date("2019-07-01");

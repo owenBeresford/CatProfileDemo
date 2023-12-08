@@ -17,13 +17,15 @@ describe("Simple component test 1", () => {
     assert.equal(
       BLOB.queryByText("this is the intro") instanceof HTMLDivElement,
       true,
-      "we find out intro (no markup)"
+      "we find our intro (no markup)"
     );
-    const tmp:HTMLTextAreaElement= screen.queryByText("this is the the error") as HTMLTextAreaElement; 
+    const tmp: HTMLTextAreaElement = screen.queryByText(
+      "this is the the error"
+    ) as HTMLTextAreaElement;
     assert.equal(
       tmp.readOnly,
       true,
-      "main error is RO (I hope this var doesnt move with each version of react)"
+      "the error text element is not RO (I hope this var doesnt move with each version of react)"
     );
 
     const BLOB2 = render(<ErrorMsg {...args} />);

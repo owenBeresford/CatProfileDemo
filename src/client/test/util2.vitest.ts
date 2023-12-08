@@ -1,7 +1,7 @@
 import { assert, describe, it } from "vitest";
 
 import { nextId } from "../services/util";
- 
+
 describe("nextId check", () => {
   it("id check", () => {
     let count = 1;

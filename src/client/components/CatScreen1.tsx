@@ -6,6 +6,12 @@ import { NavLink } from "react-router-dom";
 //import {textarea } from 'react-dom';
 //import Textarea, { ResizableTextAreaRef, TextAreaRef }  from "rc-textarea";
 
+/**
+ * Screen1Props
+ * Interface for the properties on this Component see {@link storeACat}, {@link Cat}, {@link ChangeTab}
+ * @public
+ * @typedef Screen1Props
+ */
 export interface Screen1Props {
   build: Cat;
   returnCat: storeACat;
@@ -13,6 +19,12 @@ export interface Screen1Props {
   aKey: string;
 }
 
+/**
+ * CatScreen1
+ * A Component to the second batch of data
+ *
+ * @public
+ */
 const CatScreen1: React.FC<Screen1Props> = (props: Screen1Props) => {
   const about = useRef<HTMLTextAreaElement>(
     null
@@ -27,6 +39,12 @@ const CatScreen1: React.FC<Screen1Props> = (props: Screen1Props) => {
   const [errMsg, setErrmsg] = useState<string>("");
   const [lastInput, setLastInput] = useState<string>("athAbout");
 
+  /**
+   * next
+   * Event handler to write data back to the parent component
+ 
+   * @internal
+   */
   function next(): boolean {
     if (!about || !interests || !team) {
       setErrmsg(

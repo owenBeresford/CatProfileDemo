@@ -1,12 +1,19 @@
 import { Transport } from "../types/Transport";
 import { isShippingCat, Cat, ShippingCat } from "../types/Cat";
-import { Axios, AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import { Axios, AxiosRequestConfig, AxiosResponse } from "axios";
 
 interface CatWindow extends Window {
   CAT_TESTING: number;
 }
 declare let window: CatWindow;
 
+/**
+ * Transport_b1<T, B>
+ * A class to pull data to the client side, wrapping [Axios](https://www.npmjs.com/package/axios)
+ *
+ * @implements Transport<T, B>
+ * @access public
+ */
 export class Transport_b1<T, B> implements Transport<T, B> {
   private ax: Axios;
 
@@ -31,9 +38,27 @@ export class Transport_b1<T, B> implements Transport<T, B> {
       validateStatus: function (status) {
         return status >= 200 && status < 300;
       },
+
+      /**
+       * transformResponse array of handlers
+       * This does generai parsing of API responses,
+       * I intenstionally erase the default handler, so I can look at all the data to emit correct error mesages on failure.
+       *   I cant see Axios + typescript notes
+       *
+       * @param {any} data - I think this is a node http/ServerResponse
+       * @param {any} headers - a hash
+       * @return parsed data OR throw Exception
+       * @throws Error as Promise.reject
+       * @internal
+       */
       transformResponse: [
+        // headers here are complex
         (data, headers) => {
-          if (data === "") {
+          if (
+            data === "" ||
+            (Array.isArray(data) && data.length === 0) ||
+            Object.keys(data).length === 0
+          ) {
             console.log(
               "Assert this is a HTTP204 or possibly a HTTP5*; no data"
             );
@@ -46,13 +71,16 @@ export class Transport_b1<T, B> implements Transport<T, B> {
             headers["content-type"].indexOf("application/json") === -1
           ) {
             Promise.reject(
-              new Error("Unexpected data format (think API fail)")
+              new Error("Unexpected data format (think API failed)")
             );
             return;
           }
 
           try {
-            data = JSON.parse(data);
+            // I have erased the defauilt parser, so I can add the extra error reporting above here
+            if (typeof data === "string") {
+              data = JSON.parse(data);
+            }
           } catch (e) {
             Promise.reject(new Error("Received bad data."));
           }
@@ -75,12 +103,27 @@ export class Transport_b1<T, B> implements Transport<T, B> {
     this.ax = new Axios(config);
   }
 
-  // this call exists, as the API has 1 URL
+  /**
+   * setUrl
+   * Assign the base URL, used in testing
+   *
+   * @param {string} u
+   * @access public
+   * @return void
+   */
   setUrl(u: string): void {
     this.ax.defaults.baseURL = u;
   }
-  // add API point to update default
 
+  /**
+   * get
+   * Fixed request to GET a single Cat, method exists for type assertion
+   *
+   * @param { string}  ID
+   * @param {AxiosRequestConfig | undefined} config
+   * @access public
+   * @return Promise<R>
+   */
   public get<T, R = AxiosResponse<T>>(
     ID: string,
     config: AxiosRequestConfig | undefined
@@ -89,13 +132,30 @@ export class Transport_b1<T, B> implements Transport<T, B> {
     return this.ax.get(this.ax.defaults.baseURL + "cat/" + ID, config);
   }
 
+  /**
+   * getAll
+   * Fixed request to GET all the Cats, method exists for type assertion
+   *
+   * @param {AxiosRequestConfig | undefined} config
+   * @access public
+   * @return Promise<R>
+   */
   public getAll<T, R = AxiosResponse<T>>(
     config: AxiosRequestConfig | undefined
   ): Promise<R> {
-    console.log("getall", this.ax.defaults.baseURL + "cat/all");
+    console.log("getAll", this.ax.defaults.baseURL + "cat/all");
     return this.ax.get(this.ax.defaults.baseURL + "cat/all", config);
   }
 
+  /**
+   * post
+   * Fixed request to POST the Cats, method exists for type assertion
+   *
+   * @param {<B>} data - Type set on Object creation
+   * @param {AxiosRequestConfig | undefined} config
+   * @access public
+   * @return Promise<R>
+   */
   public post<T, B, R = AxiosResponse<T>>(
     data: B,
     config: AxiosRequestConfig | undefined
@@ -119,6 +179,16 @@ export class Transport_b1<T, B> implements Transport<T, B> {
     }
   }
 
+  /**
+   * patch
+   * Fixed request to PATCH the Cats, method exists for type assertion
+   *
+   * @param { string}  ID
+   * @param {<B>} data - Type set on Object creation
+   * @param {AxiosRequestConfig | undefined} config
+   * @access public
+   * @return Promise<R>
+   */
   public patch<T, B, R = AxiosResponse<T>>(
     ID: string,
     data: B,
@@ -144,17 +214,11 @@ export class Transport_b1<T, B> implements Transport<T, B> {
       );
     }
   }
-
-  // probably not needed
-  public success<T>(response: AxiosResponse<T>): T {
-    return response.data;
-  }
-
-  public error<T>(error: AxiosError<T>): void {
-    throw error;
-  }
 }
 
+/**
+ * Function to access the object, and add casting/ typing
+ */
 export function UseTransport<T, B>(): Transport<T, B> {
   return new Transport_b1();
 }

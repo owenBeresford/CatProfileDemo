@@ -7,6 +7,12 @@ import { Transport } from "../types/Transport";
 import { ChangeTab } from "../types/ChangeTab";
 import { noop } from "../services/util";
 
+/**
+ * Screen2Props
+ * Interface for the properties on this Component see {@link storeACat}, {@link Cat}, {@link ChangeTab}
+ * @public
+ * @typedef Screen2Props
+ */
 export interface Screen2Props {
   build: Cat;
   incTab: ChangeTab;
@@ -15,6 +21,12 @@ export interface Screen2Props {
   aKey: string;
 }
 
+/**
+ * CatScreen2
+ * A Component to input the first batch of form items
+ *
+ * @public
+ */
 const CatScreen2: React.FC<Screen2Props> = (props: Screen2Props) => {
   const NAVIGATE = useNavigate();
 
@@ -23,6 +35,12 @@ const CatScreen2: React.FC<Screen2Props> = (props: Screen2Props) => {
     return false;
   }
 
+  /**
+   * next
+   * Event handler to write data back to the parent component
+ 
+   * @internal
+   */
   function next(): boolean {
     props.updateCat(props.build);
     const API: Transport<ShippingCat, string> = UseTransport();

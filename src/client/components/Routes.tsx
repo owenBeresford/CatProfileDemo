@@ -7,6 +7,9 @@ import { CatState } from "../services/CatState";
 
 const STATE = new CatState();
 
+/**
+ * A render func for Routes based component,  see [React Routes and BrowserRouter ](https://www.npmjs.com/package/react-router)
+ */
 const CatRoutes = () => {
   return (
     <BrowserRouter>

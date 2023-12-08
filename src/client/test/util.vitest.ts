@@ -22,7 +22,6 @@ describe("Reference test, but own code", () => {
     assert.equal(renderDate(point2), "2023-5-7", "have i renderd date? #2");
     const point3 = new Date("2023-05-06T23:00:00+11:00");
     assert.equal(renderDate(point3), "2023-5-6", "have i renderd date? #3");
-
   });
 
   it("looking at mapping on expandRef", () => {
