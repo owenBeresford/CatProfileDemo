@@ -1,3 +1,8 @@
 build/fixtures
+build/static/
 src/server/fixtures
+public/docs
+public/doc++s
+storybook-static/
+package-lock.json
 
