@@ -10,7 +10,7 @@ const text={
 	"build:client":{"cmd":"build:client", "english":"just builds the FE"},
 	"build:server":{"cmd":"build:server", "english":"just builds the BE"},
  
-    "lint":{"cmd":"eslint", "english":"Runs the standard tidy command, and standard reformatter" },
+    "lint":{"cmd":"lint", "english":"Runs the standard tidy command, and standard reformatter" },
     "build:docs":{"cmd":"build:docs", "english":"generates HTML docs from the source"}, 
     "docs":{"cmd":"docs", "english":"Runs a mininal webserver to host the docs on localhost"},
 
@@ -18,8 +18,8 @@ const text={
 	"vitest":{"cmd":"vitest", "english":"Run the tests written in vitest."},
 	"vitest:ui":{"cmd":"vitest:ui", "english":"Launch the vitest GUI (and run tests)."},
 	"jest":{"cmd":"jest", "english":"Runs tests written for Jest (API test mostly)"},
-	"storybook":{"cmd":"start:storybook", "english":"Runs tests written in Storybook"},
-	"  - ":{"cmd":"build:storybook", "english":"Builds tests (only when adding more storybook tests)"},
+	"storybook":{"cmd":"test:storybook", "english":"Runs tests written in Storybook"},
+	" -   ":{"cmd":"build:storybook", "english":"Builds tests (only when adding more storybook tests)"},
 
 
 };
