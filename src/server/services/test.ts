@@ -22,6 +22,7 @@ export function setUp(app: Application) {
  * getAll
  * API to return the current cats
  *
+ * This has no meaningfull return value.
  * @param {Request} req
  * @param {Response} res
  * @internal
@@ -47,6 +48,7 @@ async function getAll(req: Request, res: Response) {
  * asyncgetSingle
  * API to return a singular profile.  As this is for testing, it includes a 10% chance of failure
  *
+ * This has no meaningfull return value.
  * @param {Request} req
  * @param {Response} res
  * @internal
@@ -84,7 +86,7 @@ async function getSingle(req: Request, res: Response) {
  * @param {Response} res
  * @internal
  */
-function postSingle(req: Request, res: Response) {
+function postSingle(req: Request, res: Response):void {
   if (process.env.NODE_ENV !== "development") {
     res.status(404);
     return;
@@ -123,7 +125,7 @@ function postSingle(req: Request, res: Response) {
  * @param {Response} res
  * @internal
  */
-function patchSingle(req: Request, res: Response) {
+function patchSingle(req: Request, res: Response):void {
   if (process.env.NODE_ENV !== "development") {
     res.status(404);
     return;

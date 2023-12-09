@@ -2,7 +2,6 @@ import { KnownSports } from "./KnownSports";
 
 /**
  * Data members to describe a Cat in RAM.
- * This could be reduced to a type extend on the ID and dob
  * @interface
  */
 export interface Cat {
@@ -13,9 +12,8 @@ export interface Cat {
   sports: Array<KnownSports>;
   about: string;
   interests: string;
-  image: string | null;
+  image: string | null;   // want this to be a Blob
   ID: number | null;
-  // want this to be a Blob
 }
 
 /**
@@ -23,18 +21,7 @@ export interface Cat {
  *
  * @interface
  */
-export interface ShippingCat {
-  name: string;
-  dob: number;
-  team: string;
-  gender: string;
-  sports: Array<KnownSports>;
-  about: string;
-  interests: string;
-  image: string | null;
-  ID: number;
-  // want this to be a Blob
-}
+export interface ShippingCat extends Omit<Cat, 'dob'> { ID:number, dob:number, }
 
 /**
  * Three event handlers to adjust Cats.

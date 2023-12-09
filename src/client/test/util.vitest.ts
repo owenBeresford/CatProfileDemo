@@ -10,7 +10,7 @@ import {
   nextId,
 } from "../services/util";
 import { Cat } from "../types/Cat";
-// the utils file is the most algorithmically important file, and the least OO; fortunately these functions are isolated to testable
+// the utils file is the most algorithmically important file, and the least OO; fortunately these functions are isolated to be testable
 
 describe("Reference test, but own code", () => {
   it("whats this date?", () => {
@@ -34,13 +34,7 @@ describe("Reference test, but own code", () => {
     assert.equal(expandRef(point2, true), "__test___", "test 3");
     point2.current.value = '"  test  " ';
     assert.equal(expandRef(point2, true), "___test____", "test 4");
-    /*	try {
-    	const point1 = useRef<HTMLDivElement>(null) as MutableRefObject<HTMLDivElement>;
-    	assert.equal(expandRef(point1, false), "", "test 1");
-	} catch(e ) {
-		assert.equal(true, true, "iAs expected, Unable to use a React hook in a test");
-	}
-*/
+ 
   });
 
   it("looking at mapping on mapInitialValue", () => {
