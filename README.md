@@ -27,6 +27,8 @@ My mangling of a normal js repo header:
 - use storybook, and vitest, possibly cypress  as I couldn't use mocha, jasmine or jest for component testing easily
 - use react18 in a low-pace, code-first environment (see end); and reduce hacky use of useEffect
 
+### Achievements:
+
 I wrote a "simple demo to match blogs" very quickly, in 2days. 
 Since then I added testing; I have improved the software architecture; I intend to replace the CSS as modules and get a real DB involved.
 
