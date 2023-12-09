@@ -11,7 +11,7 @@ import { readFile } from "fs/promises";
  * @param app type Application: the express engine to attach the API points to 
  * @access public, and exported
  */
-export function setUp(app: Application) {
+export function setUp(app: Application):void {
   app.get("/test/cat/all", getAll);
   app.get("/test/cat/:ID", getSingle);
   app.post("/test/cat/", postSingle);
@@ -22,7 +22,7 @@ export function setUp(app: Application) {
  * getAll
  * API to return the current cats
  *
- * This has no meaningfull return value.
+ * This has no meaningfull return value, but is async.
  * @param {Request} req
  * @param {Response} res
  * @internal
@@ -48,7 +48,7 @@ async function getAll(req: Request, res: Response) {
  * asyncgetSingle
  * API to return a singular profile.  As this is for testing, it includes a 10% chance of failure
  *
- * This has no meaningfull return value.
+ * This has no meaningfull return value but is async.
  * @param {Request} req
  * @param {Response} res
  * @internal

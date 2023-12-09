@@ -5,6 +5,7 @@ import SignupCat from "./SignupCat";
 import ListCats from "./ListCats";
 import { CatState } from "../services/CatState";
 
+// possible alternate design, move data ownership to root SPA node (in this case CatState)
 const STATE = new CatState();
 
 /**

@@ -220,13 +220,11 @@ export class CatState implements KnowACat {
       throw new Error(
         "Cats must have an ID code, how did it gets it's label off?"
       );
-      //return;
     }
     if (a.ID < 0 || a.ID > this.currentCats().length) {
       throw new Error(
         "This cat doesn't seem to be a local. Where did it come from?"
       );
-      //return;
     }
     const tmp = this.currentCats();
     tmp.splice(a.ID, 1);

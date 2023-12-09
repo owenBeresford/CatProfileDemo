@@ -1,10 +1,10 @@
 import express, { Request, Response, Application } from "express";
 import bodyParser from "body-parser";
 import path from "path";
-// import { Cat, KeysOfCat, isCat } from './types/Cat';
 // IOIO TODO disabled as do not have time to argue with types now
 // import { setUp as realAPI } from './services/v1';
 import { setUp as testAPI } from "./services/test";
+import { setUp as assetAPI } from "./services/assets";
 
 /**
  * @comment A bootstrap file to run a node API
@@ -25,24 +25,7 @@ app.use(
     extended: true,
   })
 );
-
-// minimal handling for client side assets
-// TODO IOIO pullout static files into own module, like test.ts
-const buildDir = path.join(process.cwd() + "/build");
-app.use(express.static(buildDir));
-app.get("/", function (req: Request, res: Response) {
-  console.log("request for HTML", req.url);
-  res.sendFile(path.join(buildDir, "index.html"));
-});
-
-if (process.env.NODE_ENV !== "production") {
-  app.get("/test", function (req: Request, res: Response) {
-    console.log("request for HTML", req.url);
-    res.sendFile(path.join(buildDir, "test.html"));
-  });
-}
-
-// end
+assetAPI(app);
 
 if (process.env.NODE_ENV === "production") {
   // IOIO TODO this module is disabled as do not have time to argue with types now
