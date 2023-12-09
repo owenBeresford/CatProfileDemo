@@ -4,6 +4,22 @@ import path from "path";
 import { readFile } from "fs/promises";
 
 /**
+ * myURLs
+ * A function for testing that reports what this module 'does'/ is responsible for
+ * look at using actual URL objects, currently no need
+ * 
+ * @public
+ */
+export function myURLs():Array<string> {
+  return [
+    "/test/cat/all",
+    "/test/cat/:ID",
+    "/test/cat/", 
+    "/test/cat/:ID",
+    ];
+}
+
+/**
  * setUp()
  * This module is a test implementation of an API, so the FE code can be tested.   
  * Note: API points are inert when NODE_ENV isn't development. 
