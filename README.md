@@ -55,7 +55,7 @@ I am showing:
 ### Credits:
 
 - The default Cat face was taken from https://www.reshot.com/free-svg-icons/face/
-- Linked packages are the property of their named owners, please see all the packages.json in node_modules after installation
+- Linked packages are the property of their named owners, please see all the packages.json in node_modules after installation, or look them up in NPMJS
 
 ### Omissions:
 
@@ -83,6 +83,7 @@ I have not built:
 
 Eventual need:
 
-- I want to change CSS approach to have namespaces and be done in modular CSS style (most CSS here was just maximum rush speed); I guess this is a days work.
-- Maybe try to get Mongoose TS types setup now; can't guesstimate. Maybe swap to TypeORM or Prisma if easier?
-- I would like to add reference cypress test suite
+- I want to change CSS approach to have namespaces and be done in modular CSS style.  Most existing CSS here was just maximum rush speed. (guess a days work.)
+- Maybe try to get Mongoose TS types setup now; (can't guesstimate. Maybe swap to TypeORM or Prisma if easier? )
+- I would like to add reference cypress test suite (guesstimate over a week)
+- Remove auto-code directories "public" and "build" fronm repo, will requite an init step in packages for fresh machines (1-2 days)
