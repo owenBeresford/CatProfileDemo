@@ -39,7 +39,7 @@ export function resetId(): string {
  */
 export function getPreferredLanguage(): string {
   // ie running inside Node
-  if (process && process.env && "LANG" in process.env) {
+  if (typeof process !== "undefined" && process.env && "LANG" in process.env) {
     const LANG = process.env["LANG"].toLowerCase();
     if (LANG.includes("en_gb")) {
       return LANG_UK;

@@ -2,29 +2,30 @@
 
 This is not a product, this is a **tech test.**
 
-----
+---
 
 My mangling of a normal js repo header:
-* install via git
-* this repo supports
-  * "help"
-  * "app", "start", "stayup:app"
-  * "lint" 
-  * "build:app" 
-  * "build:client"
-  * "build:server"
-  * "test:app"
-  * "test:storybook" (will run a test GUI)
-  * "build:storybook" (for editing only) 
-  * "vitest"
-  * "vitest:ui" (will run extra test GUI)
-  * "jest" 
-  * "build:docs" (will create docs) 
-  * "docs" (will serve docs)
+
+- install via git
+- this repo supports
+  - "help"
+  - "app", "start", "stayup:app"
+  - "lint"
+  - "build:app"
+  - "build:client"
+  - "build:server"
+  - "test:app"
+  - "test:storybook" (will run a test GUI)
+  - "build:storybook" (for editing only)
+  - "vitest"
+  - "vitest:ui" (will run extra test GUI)
+  - "jest"
+  - "build:docs" (will create docs)
+  - "docs" (will serve docs)
 
 ### Objectives
 
-- use storybook, and vitest, possibly cypress  as I couldn't use mocha, jasmine or jest for component testing easily
+- use storybook, and vitest, possibly cypress as I couldn't use mocha, jasmine or jest for component testing easily
 - use react18 in a low-pace, code-first environment (see end); and reduce hacky use of useEffect
 
 ### Achievements:
@@ -35,7 +36,7 @@ Since then I added testing; I have improved the software architecture; I intend 
 I am showing:
 
 - About 2000 standardised LOC that is not tests, docs, CSS or libraries
-- Grownup use of css, docs & test tools 
+- Grownup use of css, docs & test tools
   - LINK https://owenberesford.me.uk/resource/storybook
   - LINK https://owenberesford.me.uk/resource/vitest
   - LINK TO COME [my site]/js-doc-tools
@@ -45,7 +46,7 @@ I am showing:
 - I can use basic React 18
 - I have a reason to use a generic type (not been in a situation where those would help previously)
 - I extended to include a _test API_, which manipulates static JSON, NB: low concurrency
-- I have used UTF8 char for icons, (more iteration here would be important for commercial work) 
+- I have used UTF8 char for icons, (more iteration here would be important for commercial work)
 - Some basic behavioural UI niceties
 - Understanding the tradeoff between useState() and useRefs(); Have a centralised repo type class for state
 - Config for test in Storybook, Vitest and Jest

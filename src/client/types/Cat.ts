@@ -12,7 +12,7 @@ export interface Cat {
   sports: Array<KnownSports>;
   about: string;
   interests: string;
-  image: string | null;   // want this to be a Blob
+  image: string | null; // want this to be a Blob
   ID: number | null;
 }
 
@@ -21,7 +21,10 @@ export interface Cat {
  *
  * @interface
  */
-export interface ShippingCat extends Omit<Cat, 'dob'> { ID:number, dob:number, }
+export interface ShippingCat extends Omit<Cat, "dob"> {
+  ID: number;
+  dob: number;
+}
 
 /**
  * Three event handlers to adjust Cats.

@@ -76,7 +76,7 @@ function wave(url, good1, bad1, post) {
       post = JSON.stringify(post);
       console.warn("trying to POST", post);
       curl.setOpt(Curl.option.POST, true);
-      curl.setOpt(Curl.option.POSTFIELDS, post);
+      curl.setOpt(Curl.option.POSTFIELDS, "data=" + post);
     }
 
     curl.on("end", good1.bind(curl));
@@ -165,7 +165,7 @@ test("get a Cat (TEST API)", (done) => {
     done();
   }
 
-  wave(BASE2_URL + "cat", pass1, err1);
+  wave(BASE2_URL + "cat/1", pass1, err1);
 });
 
 test("GET a particular Cat (TEST API)", (done) => {
@@ -204,14 +204,14 @@ test("POST a particular Cat (TEST API)", (done) => {
     if (headers) {
       headers = headers[0];
     }
-
     expect(statusCode).toBe(204);
-    expect(headers["Content-Type"]).toEqual("application/json; charset=utf-8");
+    // no content, so content format
+    //    expect(headers["Content-Type"]).toEqual("application/json; charset=utf-8");
     done();
   }
 
   let XXX = {
-    ID: 1,
+    ID: 3,
     name: "test2 test3 XXX",
     dob: 1663340872204,
     team: "poland",
@@ -228,5 +228,5 @@ test("POST a particular Cat (TEST API)", (done) => {
       "sdfs dfsfs dfsdfs dfsfs fsfsdfsdfas gdg dzdf gzdfghfgh zfgjdfhjxfghj dfgjhnxfzjhd fjnfszrys hj sry sgh",
     image: null,
   }; //  as Cat;
-  wave(BASE2_URL + "cat/1", pass1, err1, XXX);
+  wave(BASE2_URL + "cat/", pass1, err1, XXX);
 });

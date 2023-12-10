@@ -4,6 +4,17 @@ import path from "path";
 import { readFile } from "fs/promises";
 
 /**
+ * myURLs
+ * A function for testing that reports what this module 'does'/ is responsible for
+ * look at using actual URL objects, currently no need
+ *
+ * @public
+ */
+export function myURLs(): Array<string> {
+  return ["/test/cat/all", "/test/cat/:ID", "/test/cat/", "/test/cat/:ID"];
+}
+
+/**
  * setUp()
  * This module is a test implementation of an API, so the FE code can be tested.   
  * Note: API points are inert when NODE_ENV isn't development. 
@@ -11,7 +22,7 @@ import { readFile } from "fs/promises";
  * @param app type Application: the express engine to attach the API points to 
  * @access public, and exported
  */
-export function setUp(app: Application) {
+export function setUp(app: Application): void {
   app.get("/test/cat/all", getAll);
   app.get("/test/cat/:ID", getSingle);
   app.post("/test/cat/", postSingle);
@@ -22,7 +33,7 @@ export function setUp(app: Application) {
  * getAll
  * API to return the current cats
  *
- * This has no meaningfull return value.
+ * This has no meaningfull return value, but is async.
  * @param {Request} req
  * @param {Response} res
  * @internal
@@ -33,6 +44,7 @@ async function getAll(req: Request, res: Response) {
     return;
   }
 
+  console.log("recieved GET all cats ");
   const FILE = path.join(__dirname, "fixtures", "all-cats.json");
   await readFile(FILE, { encoding: "utf8" })
     .then((json) => {
@@ -45,10 +57,10 @@ async function getAll(req: Request, res: Response) {
 }
 
 /**
- * asyncgetSingle
+ * getSingle
  * API to return a singular profile.  As this is for testing, it includes a 10% chance of failure
  *
- * This has no meaningfull return value.
+ * This has no meaningfull return value but is async.
  * @param {Request} req
  * @param {Response} res
  * @internal
@@ -86,11 +98,13 @@ async function getSingle(req: Request, res: Response) {
  * @param {Response} res
  * @internal
  */
-function postSingle(req: Request, res: Response):void {
+function postSingle(req: Request, res: Response): void {
   if (process.env.NODE_ENV !== "development") {
     res.status(404);
     return;
   }
+
+  console.log("recieved POST data for a Cat");
   if (!req.body.data) {
     res.status(400).send("Text to a human: Bad data for a cat ");
     return;
@@ -125,7 +139,7 @@ function postSingle(req: Request, res: Response):void {
  * @param {Response} res
  * @internal
  */
-function patchSingle(req: Request, res: Response):void {
+function patchSingle(req: Request, res: Response): void {
   if (process.env.NODE_ENV !== "development") {
     res.status(404);
     return;
