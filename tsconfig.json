@@ -14,6 +14,8 @@
     "strictNullChecks": false,
     "types": ["vitest/globals"]
   },
+
+  "files": ["node_modules/jest-expect-message/types/index.d.ts"],
   "exclude": ["./build", "./client"],
   "include": ["."]
 }

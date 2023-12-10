@@ -34,7 +34,6 @@ describe("Reference test, but own code", () => {
     assert.equal(expandRef(point2, true), "__test___", "test 3");
     point2.current.value = '"  test  " ';
     assert.equal(expandRef(point2, true), "___test____", "test 4");
- 
   });
 
   it("looking at mapping on mapInitialValue", () => {

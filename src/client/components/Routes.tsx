@@ -12,7 +12,7 @@ const STATE = new CatState();
  * A render func for Routes based component,  see [React Routes and BrowserRouter ](https://www.npmjs.com/package/react-router)
  */
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */ // there is nothing passed in
-const CatRoutes = (props:any) => {
+const CatRoutes = (props: any) => {
   return (
     <BrowserRouter>
       <Routes>
