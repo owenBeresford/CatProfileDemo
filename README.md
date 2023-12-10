@@ -86,4 +86,4 @@ Eventual need:
 - I want to change CSS approach to have namespaces and be done in modular CSS style.  Most existing CSS here was just maximum rush speed. (guess a days work.)
 - Maybe try to get Mongoose TS types setup now; (can't guesstimate. Maybe swap to TypeORM or Prisma if easier? )
 - I would like to add reference cypress test suite (guesstimate over a week)
-- Remove auto-code directories "public" and "build" from the repo, will requite an init step in packages for fresh machines (1-2 days)
+- Remove auto-code directories "public" and "build" from the repo, will require an init step in packages for fresh machines (1-2 days)
