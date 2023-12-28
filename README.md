@@ -39,7 +39,7 @@ I am showing:
 - Grownup use of css, docs & test tools
   - LINK https://owenberesford.me.uk/resource/storybook
   - LINK https://owenberesford.me.uk/resource/vitest
-  - LINK TO COME [my site]/js-doc-tools
+  - LINK https://owenberesford.me.uk/resource/docs-for-js-ts
   - LINK TO COME my conf project for some tool templates
 - I can use Enum (feels weird outside of SQL)
 - I can use interfaces and types
