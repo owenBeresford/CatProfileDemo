@@ -1,6 +1,6 @@
 import { Transport } from "../types/Transport";
 import { isShippingCat, Cat, ShippingCat } from "../types/Cat";
-import { Axios, AxiosRequestConfig, AxiosResponse } from "axios";
+import { Axios, AxiosRequestConfig, AxiosHeaders, AxiosResponse } from "axios";
 
 interface CatWindow extends Window {
   CAT_TESTING: number;
@@ -30,11 +30,11 @@ export class Transport_b1<T, B> implements Transport<T, B> {
         "//" +
         window.location.host +
         (testing ? "/test/" : "/api/"),
-      headers: {
+      headers: AxiosHeaders.from({
         "X-Requested-With": "XMLHttpRequest",
         //      'Content-encoding':'application/json; encoding=utf8',
         Accept: "application/json; encoding=utf8",
-      },
+      }),
       validateStatus: function (status) {
         return status >= 200 && status < 300;
       },
@@ -119,7 +119,7 @@ export class Transport_b1<T, B> implements Transport<T, B> {
    * get
    * Fixed request to GET a single Cat, method exists for type assertion
    *
-   * @param { string}  ID
+   * @param {string}  ID
    * @param {AxiosRequestConfig | undefined} config
    * @access public
    * @return Promise<R>
@@ -165,16 +165,12 @@ export class Transport_b1<T, B> implements Transport<T, B> {
     payload.append("data", "" + JSON.stringify(data));
 
     if (config) {
-      return this.ax.post(
-        this.ax.defaults.baseURL + "cat/",
-        payload,
-        config.headers
-      );
+      return this.ax.post(this.ax.defaults.baseURL + "cat/", payload, config);
     } else {
       return this.ax.post(
         this.ax.defaults.baseURL + "cat/",
-        payload,
-        this.ax.defaults.headers.common
+        payload
+        //    , this.ax.defaults
       );
     }
   }
@@ -204,13 +200,13 @@ export class Transport_b1<T, B> implements Transport<T, B> {
       return this.ax.patch(
         this.ax.defaults.baseURL + "cat/" + ID,
         payload,
-        config.headers
+        config
       );
     } else {
       return this.ax.patch(
         this.ax.defaults.baseURL + "cat/" + ID,
-        payload,
-        this.ax.defaults.headers.common
+        payload
+        //    , this.ax.defaults
       );
     }
   }
