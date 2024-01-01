@@ -10,6 +10,15 @@ const text = {
     cmd: "stayup:app",
     english: "Launches App inside nodemon, same as above",
   },
+  stop: {
+    cmd: "stop",
+    english: "When the service wsa started normaly this can stop it tidily.",
+  },
+  init: {
+    cmd: "init",
+    english:
+      "TO COME, ensure all attached tooling has been configured.  This manual step is to reduce the number of files in repo",
+  },
 
   "build:app": {
     cmd: "build:app",

@@ -9,7 +9,9 @@ My mangling of a normal js repo header:
 - install via git
 - this repo supports
   - "help"
+  - "init"
   - "app", "start", "stayup:app"
+  - "stop"
   - "lint"
   - "build:app"
   - "build:client"
@@ -30,7 +32,7 @@ My mangling of a normal js repo header:
 
 ### Achievements:
 
-I wrote a "simple demo to match blogs" very quickly, in 2days. 
+I wrote a "simple demo to match blogs" very quickly, in 2days.
 Since then I added testing; I have improved the software architecture; I intend to replace the CSS as modules and get a real DB involved.
 
 I am showing:
@@ -40,7 +42,7 @@ I am showing:
   - LINK https://owenberesford.me.uk/resource/storybook
   - LINK https://owenberesford.me.uk/resource/vitest
   - LINK https://owenberesford.me.uk/resource/docs-for-js-ts
-  - LINK TO COME my conf project for some tool templates
+  - LINK https://github.com/owenBeresford/oab1-conf/ ~ A set of config files to reduce my reading time in future. This list will not live that long
 - I can use Enum (feels weird outside of SQL)
 - I can use interfaces and types
 - I can use basic React 18
@@ -83,7 +85,7 @@ I have not built:
 
 Eventual need:
 
-- I want to change CSS approach to have namespaces and be done in modular CSS style.  Most existing CSS here was just maximum rush speed. (guess a days work.)
+- I want to change CSS approach to have namespaces and be done in modular CSS style. Most existing CSS here was just maximum rush speed. (guess a days work.)
 - Maybe try to get Mongoose TS types setup now; (can't guesstimate. Maybe swap to TypeORM or Prisma if easier? )
 - I would like to add reference cypress test suite (guesstimate over a week)
 - Remove auto-code directories "public" and "build" from the repo, will require an init step in packages for fresh machines (1-2 days)
