@@ -28,4 +28,6 @@ __snapshots__
 storybook-static
 /dist/
 public/docs/
+cats.pid
+
 
