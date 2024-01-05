@@ -31,10 +31,13 @@ export function myURLs(): Array<string> {
  * @public 
  */
 export function setUp(app: Application): void {
-  const buildDir = path.join(process.cwd(), "public");
+  const buildDir = path.join(__dirname, "..", "build");
   app.use(express.static(buildDir));
-  app.get("/", function (req: Request, res: Response) {
-    console.log("request for HTML", req.url);
-    res.sendFile(path.join(buildDir, "index.html"));
-  });
+  app.get("/", basic);
+}
+
+function basic(req: Request, res: Response):void {
+  console.log("request for HTML", req.url);
+  const buildDir = path.join(__dirname, "..", "build");
+  res.sendFile(path.join(buildDir, "index.html"));
 }
