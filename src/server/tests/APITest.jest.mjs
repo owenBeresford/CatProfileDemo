@@ -53,7 +53,7 @@ import jest from "jest";
 import { Curl } from "node-libcurl";
 // import {Cat } from '../types/Cat';
 
-const BASE_URL = "http://192.168.0.34:3000";
+const BASE_URL = "http://192.168.0.35:3000";
 const BASE2_URL = BASE_URL + "/test/";
 // jest.setTimeout(10000);
 
@@ -74,7 +74,7 @@ function wave(url, good1, bad1, post) {
     ]);
     if (post) {
       post = JSON.stringify(post);
-      console.warn("trying to POST", post);
+   //   console.warn("trying to POST", post);
       curl.setOpt(Curl.option.POST, true);
       curl.setOpt(Curl.option.POSTFIELDS, "data=" + post);
     }
