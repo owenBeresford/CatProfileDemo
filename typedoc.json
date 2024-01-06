@@ -15,7 +15,7 @@
     "src/server/tests",
     "/node_modules/",
     "src/stories/",
-	"./storybook-static/",
+    "./storybook-static/",
     "src/build-tools"
   ],
   "excludeExternals": true,

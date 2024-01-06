@@ -19,7 +19,7 @@ if (!isDir) {
   }); // add abort?
 }
 isDir = lstatSync(PUBLIC_DIR, { throwIfNoEntry: false });
-if (! isDir ) {
+if (!isDir) {
   await symlink(ASSET_IN_DIR, PUBLIC_DIR).catch((ee) => {
     console.error("File link error ", ee);
   }); // add abort?

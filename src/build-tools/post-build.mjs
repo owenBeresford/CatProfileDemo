@@ -48,11 +48,10 @@ if (isDir) {
     console.error("File unlink error ", ee);
   }); // add abort?
 }
-isDir = lstatSync(EXCESS_CSS , { throwIfNoEntry: false });
+isDir = lstatSync(EXCESS_CSS, { throwIfNoEntry: false });
 if (isDir) {
-  await unlink(EXCESS_CSS ).catch((ee) => {
+  await unlink(EXCESS_CSS).catch((ee) => {
     console.error("File unlink error ", ee);
   }); // add abort?
 }
 console.log("Unlinked excess build copies");
-

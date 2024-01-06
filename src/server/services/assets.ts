@@ -36,7 +36,7 @@ export function setUp(app: Application): void {
   app.get("/", basic);
 }
 
-function basic(req: Request, res: Response):void {
+function basic(req: Request, res: Response): void {
   console.log("request for HTML", req.url);
   const buildDir = path.join(__dirname, "..", "build");
   res.sendFile(path.join(buildDir, "index.html"));

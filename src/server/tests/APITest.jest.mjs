@@ -74,7 +74,7 @@ function wave(url, good1, bad1, post) {
     ]);
     if (post) {
       post = JSON.stringify(post);
-   //   console.warn("trying to POST", post);
+      //   console.warn("trying to POST", post);
       curl.setOpt(Curl.option.POST, true);
       curl.setOpt(Curl.option.POSTFIELDS, "data=" + post);
     }

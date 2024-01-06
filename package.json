@@ -13,10 +13,8 @@
     "stop": "if [ -f ./cats.pid ]; then export CATPID=`cat ./cats.pid`; kill $CATPID; rm ./cats.pid; else echo 'No PID file found, is process running?'; fi ",
     "init": "echo 'not written yet'",
     "lint": "./node_modules/.bin/eslint --exit-on-fatal-error --fix --no-cache ; prettier --write . ; ",
-
     "build:app": "node src/build-tools/pre-build.mjs; GENERATE_SOURCEMAP=false; react-scripts build --output-path build && webpack --config webpack.config.server.js && node src/build-tools/post-build.mjs",
     "build:client": "node src/build-tools/pre-build.mjs; react-scripts build --output-path build && rm ./public ",
-
     "build:server": "webpack --config webpack.config.server.js;",
     "test:app": "node ./build/server.js & MYPID=$! ; node --experimental-vm-modules ./node_modules/.bin/jest src/server/tests/*jest.mjs; npx vitest --run --isolate; kill $MYPID; reset ; start-storybook -p 6006 -s public --disable-telemetry --modern --loglevel 3 --no-version-updates",
     "test:storybook": "start-storybook -p 6006 -s public --disable-telemetry --modern --loglevel 3 --no-version-updates ",
