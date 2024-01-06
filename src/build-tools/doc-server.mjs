@@ -21,7 +21,7 @@ const PORT = 8080;
 const ACCESSIBLE_IP = "127.0.0.1";
 
 try {
-  const staticPath = path.join(__dirname, "..", "public", "docs");
+  const staticPath = path.join(__dirname, "..", "build", "docs");
   const stat = fs.statSync(staticPath);
   if (
     !stat.isDirectory() ||

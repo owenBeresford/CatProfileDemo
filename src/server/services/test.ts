@@ -20,7 +20,7 @@ export function myURLs(): Array<string> {
  * Note: API points are inert when NODE_ENV isn't development. 
 
  * @param app type Application: the express engine to attach the API points to 
- * @access public, and exported
+ * @public, and exported
  */
 export function setUp(app: Application): void {
   app.get("/test/cat/all", getAll);

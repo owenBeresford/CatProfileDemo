@@ -9,12 +9,13 @@
     "./src/client/components/*",
     "./src/client/types/*"
   ],
-  "out": "public/docs",
+  "out": "build/docs",
   "exclude": [
     "src/client/test/",
     "src/server/tests",
     "/node_modules/",
     "src/stories/",
+	"./storybook-static/",
     "src/build-tools"
   ],
   "excludeExternals": true,

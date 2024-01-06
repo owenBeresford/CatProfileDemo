@@ -12,7 +12,7 @@ const text = {
   },
   stop: {
     cmd: "stop",
-    english: "When the service wsa started normaly this can stop it tidily.",
+    english: "When the service was started normaly this can stop it tidily.",
   },
   init: {
     cmd: "init",
