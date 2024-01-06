@@ -12,7 +12,6 @@ My mangling of a normal js repo header:
   - "init"
   - "app", "start", "stayup:app"
   - "stop"
-  - "lint"
   - "build:app"
   - "build:client"
   - "build:server"
