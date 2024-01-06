@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir, copyFile, link } from "fs/promises";
+import { readFile, writeFile, mkdir, copyFile, symlink } from "fs/promises";
 import { constants, lstatSync, createWriteStream } from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -20,7 +20,7 @@ if (!isDir) {
 }
 isDir = lstatSync(PUBLIC_DIR, { throwIfNoEntry: false });
 if (! isDir ) {
-  await link(ASSET_IN_DIR, PUBLIC_DIR).catch((ee) => {
+  await symlink(ASSET_IN_DIR, PUBLIC_DIR).catch((ee) => {
     console.error("File link error ", ee);
   }); // add abort?
 }
