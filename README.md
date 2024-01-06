@@ -9,12 +9,12 @@ My mangling of a normal js repo header:
 - install via git
 - this repo supports
   - "help"
-  - "init"
   - "app", "start", "stayup:app"
   - "stop"
   - "build:app"
   - "build:client"
   - "build:server"
+  - "lint"
   - "test:app"
   - "test:storybook" (will run a test GUI)
   - "build:storybook" (for editing only)
