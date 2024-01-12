@@ -52,6 +52,7 @@ I am showing:
 - Understanding the tradeoff between useState() and useRefs(); Have a centralised repo type class for state
 - Config for test in Storybook, Vitest and Jest
 - Reasonable management of package.json
+- Auxilary build processes for things actions not in frameworks.  These are written in JS modiles, so I do not need to compile my build process to be able to build
 
 ### Credits:
 
