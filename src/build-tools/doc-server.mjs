@@ -4,8 +4,8 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 import fs from "fs";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 // this is the octal map for r in each octet and x on each octet
 // written in base10, for my ease
 // i am asking for read mask in each case as the person checking out the source may not be the person executing it
