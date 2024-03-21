@@ -1,8 +1,10 @@
 import { Request, Response, Application } from "express";
 import { isCat } from "../types/Cat";
-import path from "path";
 import { readFile } from "fs/promises";
+import path, { dirname} from "path";
+import { fileURLToPath } from 'url';
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 /**
  * myURLs
  * A function for testing that reports what this module 'does'/ is responsible for
