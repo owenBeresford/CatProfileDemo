@@ -1,10 +1,13 @@
 import express, { Request, Response, Application } from "express";
 import bodyParser from "body-parser";
-import path from "path";
+import path, { dirname} from "path";
 // IOIO TODO disabled as do not have time to argue with types now
 // import { setUp as realAPI } from './services/v1';
 import { setUp as testAPI } from "./services/test";
 import { setUp as assetAPI } from "./services/assets";
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /**
  * @comment A bootstrap file to run a node API
@@ -35,7 +38,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // IOIO TODO Add HTTPS
-const port = process.env.SERVICE_PORT;
+const port = process.env.SERVICE_PORT || 3000;
 app.listen(port, () => {
   console.log(`Server [pid ${process.pid}] now listening on port: ${port} `);
 });
