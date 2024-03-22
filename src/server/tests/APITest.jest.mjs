@@ -1,95 +1,18 @@
 "use strict";
-/**
-      toBe: [Function: throwingMatcher],
-      toBeCloseTo: [Function: throwingMatcher],
-      toBeDefined: [Function: throwingMatcher],
-      toBeFalsy: [Function: throwingMatcher],
-      toBeGreaterThan: [Function: throwingMatcher],
-      toBeGreaterThanOrEqual: [Function: throwingMatcher],
-      toBeInstanceOf: [Function: throwingMatcher],
-      toBeLessThan: [Function: throwingMatcher],
-      toBeLessThanOrEqual: [Function: throwingMatcher],
-      toBeNaN: [Function: throwingMatcher],
-      toBeNull: [Function: throwingMatcher],
-      toBeTruthy: [Function: throwingMatcher],
-      toBeUndefined: [Function: throwingMatcher],
-      toContain: [Function: throwingMatcher],
-      toContainEqual: [Function: throwingMatcher],
-      toEqual: [Function: throwingMatcher],
-      toHaveLength: [Function: throwingMatcher],
-      toHaveProperty: [Function: throwingMatcher],
-      toMatch: [Function: throwingMatcher],
-      toMatchObject: [Function: throwingMatcher],
-      toStrictEqual: [Function: throwingMatcher],
-      lastCalledWith: [Function: throwingMatcher],
-      lastReturnedWith: [Function: throwingMatcher],
-      nthCalledWith: [Function: throwingMatcher],
-      nthReturnedWith: [Function: throwingMatcher],
-      toBeCalled: [Function: throwingMatcher],
-      toBeCalledTimes: [Function: throwingMatcher],
-      toBeCalledWith: [Function: throwingMatcher],
-      toHaveBeenCalled: [Function: throwingMatcher],
-      toHaveBeenCalledTimes: [Function: throwingMatcher],
-      toHaveBeenCalledWith: [Function: throwingMatcher],
-      toHaveBeenLastCalledWith: [Function: throwingMatcher],
-      toHaveBeenNthCalledWith: [Function: throwingMatcher],
-      toHaveLastReturnedWith: [Function: throwingMatcher],
-      toHaveNthReturnedWith: [Function: throwingMatcher],
-      toHaveReturned: [Function: throwingMatcher],
-      toHaveReturnedTimes: [Function: throwingMatcher],
-      toHaveReturnedWith: [Function: throwingMatcher],
-      toReturn: [Function: throwingMatcher],
-      toReturnTimes: [Function: throwingMatcher],
-      toReturnWith: [Function: throwingMatcher],
-      toThrow: [Function: throwingMatcher],
-      toThrowError: [Function: throwingMatcher],
-      toMatchInlineSnapshot: [Function: throwingMatcher],
-      toMatchSnapshot: [Function: throwingMatcher],
-      toThrowErrorMatchingInlineSnapshot: [Function: throwingMatcher],
-      toThrowErrorMatchingSnapshot: [Function: throwingMatcher]
-    */
-
 import jest from "jest";
-import { Curl } from "node-libcurl";
-// import {Cat } from '../types/Cat';
+import { doCurl_CB } from './common';
 
 const BASE_URL = "http://192.168.0.35:3000";
 const BASE2_URL = BASE_URL + "/test/";
 // jest.setTimeout(10000);
+// TODO: factor out the err1 to the common, need to write a function returning function, or something
 
 //
 // please note this test will sometimes fail as it talking to the TEST API which will fail 10% of the time by design.
 //
 
-function wave(url, good1, bad1, post) {
-  try {
-    const curl = new Curl();
-    curl.setOpt("URL", url);
-    curl.setOpt("FOLLOWLOCATION", true);
-    curl.setOpt("HTTPHEADER", [
-      "upgrade-insecure-requests: 1",
-      "cache-control: no-cache",
-      "accept-language: en-GB,en;q=0.5",
-      "user-agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0",
-    ]);
-    if (post) {
-      post = JSON.stringify(post);
-      //   console.warn("trying to POST", post);
-      curl.setOpt(Curl.option.POST, true);
-      curl.setOpt(Curl.option.POSTFIELDS, "data=" + post);
-    }
-
-    curl.on("end", good1.bind(curl));
-    curl.on("error", bad1.bind(curl));
-    curl.perform();
-  } catch (e) {
-    console.warn("[ERROR] Network error with " + url + " :: " + e);
-    bad1(e, url);
-  }
-}
 
 // THIS FILE-NAME IS TERRIBLE but my local test API module is called Test
-
 test("get index root asset", (done) => {
   function err1(a, b) {
     console.log(a, b);
@@ -109,7 +32,7 @@ test("get index root asset", (done) => {
     done();
   }
 
-  wave(BASE_URL + "/", pass1, err1);
+  doCurl_CB(BASE_URL + "/", pass1, err1);
 });
 // Assert: No HATEOS found.
 
@@ -140,7 +63,7 @@ test("get complete Cat catalogue (TEST API)", (done) => {
     done();
   }
 
-  wave(BASE2_URL + "cat/all", pass1, err1);
+  doCurl_CB(BASE2_URL + "cat/all", pass1, err1);
 });
 
 test("get a Cat (TEST API)", (done) => {
@@ -165,7 +88,7 @@ test("get a Cat (TEST API)", (done) => {
     done();
   }
 
-  wave(BASE2_URL + "cat/1", pass1, err1);
+  doCurl_CB(BASE2_URL + "cat/1", pass1, err1);
 });
 
 test("GET a particular Cat (TEST API)", (done) => {
@@ -190,7 +113,7 @@ test("GET a particular Cat (TEST API)", (done) => {
     done();
   }
 
-  wave(BASE2_URL + "cat/1", pass1, err1);
+  doCurl_CB(BASE2_URL + "cat/1", pass1, err1);
 });
 
 test("POST a particular Cat (TEST API)", (done) => {
@@ -227,6 +150,6 @@ test("POST a particular Cat (TEST API)", (done) => {
     interests:
       "sdfs dfsfs dfsdfs dfsfs fsfsdfsdfas gdg dzdf gzdfghfgh zfgjdfhjxfghj dfgjhnxfzjhd fjnfszrys hj sry sgh",
     image: null,
-  }; //  as Cat;
-  wave(BASE2_URL + "cat/", pass1, err1, XXX);
+  }; 
+  doCurl_CB(BASE2_URL + "cat/", pass1, err1, XXX);
 });
