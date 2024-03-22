@@ -4,11 +4,15 @@
     "outDir": "../../dist",
     "noEmit": false,
     "sourceMap": true,
+    "skipLibCheck": true,
     "module": "esnext",
     "strict": true,
     "target": "esnext",
+	"allowSyntheticDefaultImports":true,
     "moduleResolution": "node"
   },
-  "exclude": ["../../build", "../client"],
+
+
+  "exclude": ["../../build", "./../client"],
   "include": ["."]
 }
