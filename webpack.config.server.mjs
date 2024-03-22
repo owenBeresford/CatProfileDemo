@@ -1,10 +1,16 @@
-const path = require("path");
-const nodeExternals = require("webpack-node-externals");
+import path from "path";
+import nodeExternals from 'webpack-node-externals';
 
 const entry = { server: "./src/server/index.ts" };
+//const url =require('url');
+//const __dirname = __dirname ?? path.dirname(url.fileURLToPath(import.meta.url));
+if(! process.env.NODE_ENV ){
+// process.env must exist
+	process.env.NODE_ENV="development";
+}
 
-module.exports = {
-  mode: process.env.NODE_ENV ? process.env.NODE_ENV : "development",
+export default {
+  mode: process.env.NODE_ENV,
   target: "node",
   devtool: "inline-source-map",
   entry: entry,
@@ -40,3 +46,4 @@ module.exports = {
     ],
   },
 };
+
