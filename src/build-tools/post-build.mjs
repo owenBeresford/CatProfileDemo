@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir, copyFile, unlink } from "fs/promises";
+import { readFile, writeFile, mkdir, copyFile, unlink, moveFile } from "fs/promises";
 import { constants, lstatSync, createWriteStream } from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -12,6 +12,7 @@ const FIXTURE_OUT_DIR = path.join(__dirname, "..", "..", "build", "fixtures");
 const FIXTURE_IN_DIR = path.join(__dirname, "..", "server", "fixtures");
 const ASSET_IN_DIR = path.join(__dirname, "..", "client", "asset");
 const PUBLIC_DIR = path.join(__dirname, "..", "..", "public");
+const DIST_DIR = path.join(__dirname, "..", "..", "dist");
 
 let isDir = lstatSync(FIXTURE_OUT_DIR, { throwIfNoEntry: false });
 if (!isDir) {
@@ -54,4 +55,20 @@ if (isDir) {
     console.error("File unlink error ", ee);
   }); // add abort?
 }
+
+await moveFile(
+  path.join(DIST_DIR, "server.mjs"),
+  path.join(BUILD_DIR, "server.mjs"),
+  constants.COPYFILE_FICLONE
+).catch((ee) => {
+  console.error("File copy error ", ee);
+}); // add abort?
+isDir = lstatSync(DIST_DIR, { throwIfNoEntry: false });
+if (isDir) {
+  await unlink(DIST_DIR).catch((ee) => {
+    console.error("File unlink error ", ee);
+  }); // add abort?
+}
+
+
 console.log("Unlinked excess build copies");
