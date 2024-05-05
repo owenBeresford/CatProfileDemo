@@ -10,12 +10,13 @@
     "target": "esnext",
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
+	"esModuleInterop": true,
     "strictPropertyInitialization": false,
     "strictNullChecks": false,
     "types": ["vitest/globals"]
   },
 
-  "files": ["node_modules/jest-expect-message/types/index.d.ts"],
-  "exclude": ["./build", "./client"],
-  "include": ["."]
+  "files": [],
+  "exclude": :["./build", "./dist", "./node_modules" ],
+  "include": ["./src/server/**/*.ts"]
 }
