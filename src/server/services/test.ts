@@ -1,9 +1,9 @@
-import { Request, Response, Application } from "express";
-import { isCat } from "../types/Cat";
 import { readFile } from "fs/promises";
-import path, { dirname} from "path";
-import { fileURLToPath } from 'url';
+import path, { dirname} from "node:path";
+import { fileURLToPath } from 'node:url';
+import { Request, Response, Application } from "express";
 
+import { isCat } from "../types/Cat";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 /**
  * myURLs

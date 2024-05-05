@@ -1,8 +1,10 @@
+import path, { dirname} from "node:path";
 import express, { Request, Response, Application } from "express";
 import bodyParser from "body-parser";
-import path, { dirname} from "path";
+import dotenv from 'dotenv';
 // IOIO TODO disabled as do not have time to argue with types now
 // import { setUp as realAPI } from './services/v1';
+
 import { setUp as testAPI } from "./services/test";
 import { setUp as assetAPI } from "./services/assets";
 import { fileURLToPath } from 'url';
@@ -16,8 +18,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const envFileName = `.env.${process.env.NODE_ENV}`;
 const pathToEnvFile = path.resolve(__dirname, "..", envFileName);
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-require("dotenv").config({ path: pathToEnvFile });
+dotenv.config({ path: pathToEnvFile });
 
 process.env.IMPORTED_ENV = "1";
 

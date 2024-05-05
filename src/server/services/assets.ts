@@ -1,7 +1,7 @@
-import express, { Request, Response, Application } from "express";
+import { fileURLToPath } from 'node:url';
+import path, { dirname} from "node:path";
 import { readFile } from "fs/promises";
-import path, { dirname} from "path";
-import { fileURLToPath } from 'url';
+import express, { Request, Response, Application } from "express";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 /**
