@@ -1,8 +1,10 @@
 "use strict";
-import jest from "jest";
+import { assert, describe, it } from "vitest";
 import fs from "fs";
 import path from "path";
 // import { createRequire } from "node:module";
+
+import { Curl } from "node-libcurl";
 
 import { createPaths, delay, delay2, doCurl_CB } from './common';
 
@@ -105,7 +107,7 @@ console.log("[104] a test loaded file ", mustExist);
   achieved = mustExist.length;
   for (let i = 0; i < mustExist.length; i++) {
     const myURL = BASE_URL + mustExist[i];
-console.log("a test "+i +"  "+ myURL, achieved);
+console.log("[110] a test "+i +"  "+ myURL, achieved);
     const err1 = (a, b) => {
       console.log(a, b);
       expect(500, "Invalid response [no logged URL]" + myURL).toBe(204);
@@ -125,8 +127,10 @@ console.log("the actual test ", statusCode,  i, achieved, mustExist[i]);
     };
 
     await doCurl_CB(myURL, pass1, err1);
+console.log("[130] a test "+achieved );
     delay(500);
   }
+console.log("[133] a test "+achieved );
 });
 
 

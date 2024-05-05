@@ -4,6 +4,8 @@
  */
 
 export default {
+   preset: 'ts-jest/presets/default-esm',
+
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -49,7 +51,7 @@ export default {
     //    },
   },
 
-  preset: "ts-jest",
+//  preset: "ts-jest",
   //  "globalSetup": "jest-browser/setup",
   //  "globalTeardown": "jest-browser/teardown",
   //  "testEnvironment": "jest-browser",
