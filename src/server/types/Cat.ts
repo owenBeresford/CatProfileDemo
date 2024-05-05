@@ -1,5 +1,5 @@
 import { KnownSports } from "./KnownSports";
-import { Model, Document } from "mongoose";
+import {/*webpackIgnore: true*/ Model, Document } from "mongoose";
 
 /**
  * Data members to describe a Cat in RAM.
