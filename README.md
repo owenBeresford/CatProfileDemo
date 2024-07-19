@@ -1,7 +1,8 @@
 # CatProfileDemo
 
 This is not a product, this is a **tech test.**
-This code repo is now too old to be used.  ONLY Use as a tool references, but with "old node v18", it doesnt execute anymore
+
+##### This code repo is now too old to be used.  ONLY Use as a tool reference, but with "old node v18", it doesnt execute anymore
 It had little to no security errors via `npm audit` when I wrote the code, but the fact that I used React means there are now lots of them.
 
 ---
